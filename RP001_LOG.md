@@ -99,3 +99,10 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 **Reason:** Milestone 1B's leakage validation found the 2026-06-19 protection was accidental, not designed.
 **Evidence:** Full-period scan (all 24,584 institutional rows) confirms 2026-06-19 is the ONLY non-trading-day contamination across the entire 2-year sample — not a recurring pattern, but still required a permanent regression test given it happened once.
 **Impact:** Feature panel version bumped to v0.2. Regression check confirmed 0 unexpected changes to existing feature values (only the already-excluded 06-19 rows differ). 5/5 pipeline tests pass.
+
+---
+
+**Decision:** Only F_INST_01_foreign (and secondarily F_INST_07) recommended for Milestone 1D Freeze Review; no feature recommended for unconditional Freeze.
+**Reason:** Real diagnostic evidence, not a design preference.
+**Evidence:** Year-by-year stability check shows F_INST_01's IC decaying from 0.072 (2024) to -0.001 (2026); sector-neutralization strips 75% of F_INT_03's and flips the sign of F_INT_02's raw IC; incremental-IC test confirms F_INST_06 is redundant with F_INST_05 (residual IC ~0.002).
+**Impact:** Milestone 1C report explicitly recommends against treating any feature as unconditionally stable. F_INT_01 stays Experimental per instruction despite having the strongest raw numbers in the set.
