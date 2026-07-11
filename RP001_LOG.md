@@ -92,3 +92,10 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 **Reason:** Found a real mis-dated institutional data row (2026-06-19, a confirmed non-trading day with genuine non-zero buy/sell values) in the Merge Loss Audit. It didn't reach the current feature panel, but only incidentally (inner join with price happened to drop it), not by deliberate design.
 **Evidence:** Price data confirms zero rows for 2026-06-19 across all 50 stocks (clean holiday gap, 06-18 to 06-22); institutional data for the same date contains real, substantial buy/sell figures for 49 of 50 stocks.
 **Impact:** This is a data-integrity leakage risk distinct from the code-level leakage already empirically ruled out (rolling-window truncation test passed cleanly). Must be closed with an explicit safeguard, not left to incidental protection, before Milestone 1C results are treated as final.
+
+---
+
+**Decision:** Trading Calendar Gate implemented as an explicit filter (not relying on incidental inner-join protection); feature panel rebuilt as v0.2.
+**Reason:** Milestone 1B's leakage validation found the 2026-06-19 protection was accidental, not designed.
+**Evidence:** Full-period scan (all 24,584 institutional rows) confirms 2026-06-19 is the ONLY non-trading-day contamination across the entire 2-year sample — not a recurring pattern, but still required a permanent regression test given it happened once.
+**Impact:** Feature panel version bumped to v0.2. Regression check confirmed 0 unexpected changes to existing feature values (only the already-excluded 06-19 rows differ). 5/5 pipeline tests pass.
