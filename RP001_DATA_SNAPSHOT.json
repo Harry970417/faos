@@ -1,0 +1,61 @@
+{
+  "snapshot_id": "RP001-SNAPSHOT-0B-001",
+  "created_utc": "2026-07-11T07:43:12Z",
+  "faos_version": "Alpha 0.2",
+  "faos_git_commit": "05ccedc2af023f93435d7741538b43dacd48b445",
+  "purpose": "Fixed data version for RP-001 Milestone 0A characterization and all downstream RP-001 work referencing this snapshot",
+  "random_seed": 42,
+  "source": {
+    "provider": "FinMind",
+    "dataset": "TaiwanStockInstitutionalInvestorsBuySell",
+    "api_endpoint": "https://api.finmindtrade.com/api/v4/data",
+    "authentication": "none (unregistered tier used for this snapshot)"
+  },
+  "sample_scope": {
+    "note": "Characterization sample only, NOT the full RP-001 universe defined in RP001_RESEARCH_DESIGN.md. Full-universe pull is a Phase 1 task.",
+    "stock_list_source": "taiwan-attention-signal/config/stock_list_50.csv",
+    "n_stocks_requested": 50,
+    "n_stocks_returned": 50,
+    "start_date": "2024-07-01",
+    "end_date": "2026-07-09",
+    "includes_financial_stocks": true,
+    "note_on_financials": "3 financial holding stocks (2891, 2881, 2882) are present in this characterization sample for completeness but are excluded from RP-001's actual research universe per RP001_RESEARCH_DESIGN.md Section 1"
+  },
+  "data_summary": {
+    "total_rows": 122920,
+    "unique_trading_days": 492,
+    "institutional_categories": [
+      "Foreign_Investor",
+      "Foreign_Dealer_Self",
+      "Investment_Trust",
+      "Dealer_self",
+      "Dealer_Hedging"
+    ],
+    "missing_cells": 80,
+    "missing_cell_rate": 0.00065,
+    "null_value_rows": 0
+  },
+  "raw_files": {
+    "location": "rp001_data/raw/inst_{stock_id}.csv",
+    "n_files": 50,
+    "manifest": "rp001_data/raw_manifest.json",
+    "manifest_note": "Each file's SHA-256 hash and byte size recorded in raw_manifest.json — any downstream analysis claiming to use this snapshot must match these hashes"
+  },
+  "industry_reference": {
+    "source": "TWSE OpenAPI",
+    "endpoint": "https://openapi.twse.com.tw/v1/opendata/t187ap03_L",
+    "pulled": "2026-07-11",
+    "note": "Not yet saved as a persisted local file at this milestone — spot-verified live only, full pull is Phase 1 work"
+  },
+  "known_limitations_at_snapshot_time": [
+    "Sample is taiwan-attention-signal's existing 50-stock large-cap-weighted list, not the full TWSE/TPEx universe RP-001's Research Design specifies",
+    "FinMind free tier reports shares, not NT$ value, for all institutional flow figures",
+    "Foreign_Dealer_Self category is ~99.99% zero across the full sample — effectively degenerate, see RP001_DATA_PROFILE.md",
+    "Corporate-action-adjusted price data not yet pulled or reconciled with this snapshot",
+    "Delisted-stock data (TaiwanStockDelisting, 337 rows, confirmed available in Phase -1) not yet joined to this snapshot"
+  ],
+  "reproducibility": {
+    "environment": "Python 3.14.5, pandas 3.0.3, numpy 2.4.6, requests 2.34.2",
+    "recommended_venv": "taiwan-attention-signal/venv (has statsmodels 0.14.6, this global environment does not)"
+  }
+}
