@@ -106,3 +106,17 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 **Reason:** Real diagnostic evidence, not a design preference.
 **Evidence:** Year-by-year stability check shows F_INST_01's IC decaying from 0.072 (2024) to -0.001 (2026); sector-neutralization strips 75% of F_INT_03's and flips the sign of F_INT_02's raw IC; incremental-IC test confirms F_INST_06 is redundant with F_INST_05 (residual IC ~0.002).
 **Impact:** Milestone 1C report explicitly recommends against treating any feature as unconditionally stable. F_INT_01 stays Experimental per instruction despite having the strongest raw numbers in the set.
+
+---
+
+**Decision:** F_INT_04_foreign_x_liquidity reclassified from "strongest raw signal" to "likely data artifact."
+**Reason:** Residualization test, not assumption.
+**Evidence:** Raw IC 0.073 (t=6.41) drops to -0.005 (icir -0.04) once both plain Foreign rank and plain Liquidity rank are jointly controlled for -- the apparent amplification is almost entirely additive, not a genuine multiplicative interaction.
+**Impact:** Same suspicion extended to F_INT_05/06 (foreign x volatility, foreign x size) which were not individually tested this round but show the same raw-IC shape that turned out artifactual for liquidity. None of the four Foreign-interaction features are recommended for Freeze without individual residualization testing.
+
+---
+
+**Decision:** Structural break at 2025-09-24 established as the central fact governing any Freeze decision on F_INST_01.
+**Reason:** CUSUM break detection + Welch t-test, not a visual read of a declining trend line.
+**Evidence:** Pre-break mean IC 0.052 vs post-break -0.008, t=3.41, p=0.0007.
+**Impact:** Any future Freeze recommendation for F_INST_01 must carry this break as an explicit condition (era-specific, not unconditional), plus the low-volatility-regime dependence found in the same milestone.
