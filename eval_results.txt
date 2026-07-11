@@ -1,0 +1,117 @@
+Q001|Quantitative Methods|ME01|18|7|5|Y|Concept,Formula,Framework,Metric,Model,Standard,Theory
+Q002|Quantitative Methods|ME07|32|7|14|Y|Concept,Factor,Metric,Model,Pattern,Procedure,Theory
+Q003|Quantitative Methods|FA03,PR03|21|6|3|Y|Concept,Factor,Metric,Model,Pattern,Procedure
+Q004|Quantitative Methods|FA04,PA01|18|5|1|Y|Concept,Factor,Metric,Pattern,Procedure
+Q005|Quantitative Methods|PA02|5|5|1|Y|Factor,Metric,Model,Pattern,Procedure
+Q006|Quantitative Methods|M17,C47|8|7|1|Y|Concept,Factor,Formula,Metric,Model,Pattern,Theory
+Q007|Quantitative Methods|C50,PR10|5|3|2|Y|Concept,Model,Procedure
+Q008|Quantitative Methods|C51|4|2|1|Y|Concept,Procedure
+Q009|Quantitative Methods|M16|3|3|2|Y|Concept,Formula,Model
+Q010|Quantitative Methods|C49|4|2|1|Y|Concept,Procedure
+Q011|Quantitative Methods|C46|3|3|1|Y|Concept,Formula,Model
+Q012|Quantitative Methods|T02,T10|27|9|1|Y|Assumption,Concept,Factor,Formula,Framework,Metric,Model,Standard,Theory
+Q013|Quantitative Methods|T24,T02|18|7|2|Y|Assumption,Concept,Factor,Formula,Framework,Model,Theory
+Q014|Quantitative Methods|C48|1|1|0|N|Concept
+Q015|Quantitative Methods|FA01,ME07|42|7|5|Y|Concept,Factor,Metric,Model,Pattern,Procedure,Theory
+Q016|Fixed Income|ME08,F15|8|4|2|Y|Concept,Formula,Metric,Procedure
+Q017|Fixed Income|ME09,F16|5|3|2|Y|Concept,Formula,Metric
+Q018|Fixed Income|ME10,F17|4|3|1|Y|Formula,Metric,Procedure
+Q019|Fixed Income|T06|13|4|2|Y|Assumption,Concept,Model,Theory
+Q020|Fixed Income|T07,C56|18|6|1|Y|Assumption,Concept,Factor,Framework,Model,Theory
+Q021|Fixed Income|T08|6|3|1|Y|Concept,Model,Theory
+Q022|Fixed Income|M05,F06|6|3|1|Y|Assumption,Formula,Model
+Q023|Fixed Income|M06,M05|6|3|1|Y|Assumption,Formula,Model
+Q024|Fixed Income|M09,C12|15|7|1|Y|Assumption,Concept,Factor,Formula,Model,Procedure,Theory
+Q025|Fixed Income|PR07,F19|2|2|1|N|Formula,Procedure
+Q026|Fixed Income|PR08,PR21|7|4|1|Y|Concept,Formula,Metric,Procedure
+Q027|Fixed Income|M07,F07|7|4|1|Y|Concept,Formula,Model,Theory
+Q028|Fixed Income|PA05,C31|2|2|1|N|Concept,Pattern
+Q029|Fixed Income|C58,C12|7|5|0|N|Assumption,Concept,Formula,Model,Procedure
+Q030|Portfolio Management|T01,F01|30|9|2|Y|Assumption,Concept,Factor,Formula,Framework,Metric,Model,Standard,Theory
+Q031|Portfolio Management|T01,A01,A02|49|9|6|Y|Assumption,Concept,Factor,Formula,Framework,Metric,Model,Standard,Theory
+Q032|Portfolio Management|T03,C05|21|7|2|Y|Assumption,Concept,Formula,Metric,Model,Procedure,Theory
+Q033|Portfolio Management|M01,T01|36|11|5|Y|Assumption,Concept,Factor,Formula,Framework,Metric,Model,Pattern,Procedure,Standard,Theory
+Q034|Portfolio Management|M04,M01|22|9|2|Y|Assumption,Concept,Factor,Formula,Metric,Model,Pattern,Procedure,Theory
+Q035|Portfolio Management|M10|10|6|2|Y|Factor,Metric,Model,Pattern,Procedure,Theory
+Q036|Portfolio Management|ME02,ME01|21|7|2|Y|Concept,Formula,Framework,Metric,Model,Standard,Theory
+Q037|Portfolio Management|ME17,F14|14|8|2|Y|Assumption,Concept,Formula,Framework,Metric,Model,Standard,Theory
+Q038|Portfolio Management|ME18,C65|5|3|1|Y|Concept,Formula,Metric
+Q039|Portfolio Management|F29,PR32|2|2|1|N|Formula,Procedure
+Q040|Portfolio Management|F30,PR33|2|2|1|N|Formula,Procedure
+Q041|Portfolio Management|FR13|10|6|1|Y|Concept,Framework,Metric,Model,Standard,Theory
+Q042|Portfolio Management|ME20|13|6|2|Y|Concept,Framework,Metric,Model,Standard,Theory
+Q043|Derivatives|M02,F03|24|6|4|Y|Assumption,Concept,Formula,Metric,Model,Theory
+Q044|Derivatives|M02,A01,A03,A05,A06|37|5|1|Y|Assumption,Concept,Formula,Model,Theory
+Q045|Derivatives|M08,M02|27|5|4|Y|Assumption,Concept,Formula,Model,Theory
+Q046|Derivatives|T09|19|6|4|Y|Assumption,Concept,Formula,Metric,Model,Theory
+Q047|Derivatives|ME13,PR09|11|7|2|Y|Concept,Formula,Framework,Metric,Procedure,Standard,Theory
+Q048|Derivatives|ME14|6|3|2|Y|Formula,Framework,Metric
+Q049|Derivatives|ME16,C04|12|9|1|Y|Assumption,Concept,Factor,Formula,Metric,Model,Pattern,Procedure,Theory
+Q050|Derivatives|PR20,M09|17|8|2|Y|Assumption,Concept,Factor,Formula,Model,Procedure,Standard,Theory
+Q051|Derivatives|C26,S11|6|4|1|Y|Concept,Model,Procedure,Standard
+Q052|Derivatives|C59,C60|3|2|0|N|Concept,Pattern
+Q053|Derivatives|C27|5|4|2|Y|Concept,Metric,Procedure,Standard
+Q054|Financial Statement Analysis|FR01,ME04|3|2|1|Y|Framework,Metric
+Q055|Financial Statement Analysis|ME04,ME05|3|2|1|Y|Framework,Metric
+Q056|Financial Statement Analysis|FR08,ME28|5|5|1|Y|Concept,Framework,Metric,Procedure,Theory
+Q057|Financial Statement Analysis|ME28,C07|7|7|2|Y|Assumption,Concept,Formula,Framework,Metric,Procedure,Theory
+Q058|Financial Statement Analysis|S01,S02|12|3|4|Y|Concept,Procedure,Standard
+Q059|Financial Statement Analysis|C53|10|3|3|Y|Concept,Procedure,Standard
+Q060|Financial Statement Analysis|C54|12|3|5|Y|Concept,Procedure,Standard
+Q061|Financial Statement Analysis|C55|9|3|2|Y|Concept,Procedure,Standard
+Q062|Financial Statement Analysis|S12|7|2|2|Y|Concept,Standard
+Q063|Economics|T21|7|4|2|Y|Concept,Metric,Model,Theory
+Q064|Economics|T22,F27|8|5|1|Y|Concept,Formula,Metric,Model,Theory
+Q065|Economics|M21,F26|10|5|1|Y|Concept,Formula,Metric,Model,Theory
+Q066|Economics|M22|6|3|3|Y|Concept,Model,Theory
+Q067|Economics|T23|9|3|1|Y|Assumption,Model,Theory
+Q068|Economics|T25|9|3|1|Y|Assumption,Model,Theory
+Q069|Economics|T11|10|4|2|Y|Assumption,Concept,Model,Theory
+Q070|Economics|T12|6|4|1|Y|Concept,Metric,Model,Theory
+Q071|Equity Investments|M12,C08|21|9|3|Y|Assumption,Concept,Factor,Formula,Framework,Metric,Model,Pattern,Procedure
+Q072|Equity Investments|M03|13|7|3|Y|Assumption,Concept,Factor,Formula,Metric,Model,Procedure
+Q073|Equity Investments|M13|11|6|2|Y|Concept,Factor,Formula,Metric,Model,Procedure
+Q074|Equity Investments|M14,C40|3|3|1|Y|Concept,Formula,Model
+Q075|Equity Investments|ME35,PR05|12|5|1|Y|Concept,Factor,Metric,Model,Procedure
+Q076|Equity Investments|ME38|4|3|1|Y|Concept,Metric,Procedure
+Q077|Equity Investments|PA06|1|1|0|N|Pattern
+Q078|Equity Investments|C42|11|6|2|Y|Concept,Factor,Framework,Metric,Model,Procedure
+Q079|Alternative Investments|PR17,C21|5|3|1|Y|Concept,Procedure,Standard
+Q080|Alternative Investments|C20|5|3|2|Y|Concept,Procedure,Standard
+Q081|Alternative Investments|ME22,ME23|3|2|0|N|Concept,Metric
+Q082|Alternative Investments|PR18,ME25|2|2|1|N|Metric,Procedure
+Q083|Alternative Investments|FR11|3|3|1|Y|Concept,Framework,Pattern
+Q084|Alternative Investments|PR30,ME47|2|2|1|N|Metric,Procedure
+Q085|Alternative Investments|C19|3|3|2|Y|Concept,Framework,Pattern
+Q086|Corporate Issuers|T05,C07|13|8|2|Y|Assumption,Concept,Formula,Framework,Metric,Model,Procedure,Theory
+Q087|Corporate Issuers|T14,C38|4|2|1|Y|Concept,Theory
+Q088|Corporate Issuers|T13|3|2|1|Y|Concept,Theory
+Q089|Corporate Issuers|T15,C41|2|2|1|N|Concept,Theory
+Q090|Corporate Issuers|T16,C43|3|3|1|Y|Concept,Metric,Theory
+Q091|Corporate Issuers|PR23,F05|7|5|2|Y|Concept,Formula,Metric,Procedure,Theory
+Q092|Corporate Issuers|PR34,C37|2|2|1|N|Concept,Procedure
+Q093|Ethical and Professional Standards|C34|4|3|1|Y|Concept,Procedure,Standard
+Q094|Ethical and Professional Standards|PR29,C35|4|3|1|Y|Concept,Procedure,Standard
+Q095|Ethical and Professional Standards|PR28,C36|5|3|1|Y|Concept,Procedure,Standard
+Q096|Ethical and Professional Standards|S06,PR15|3|3|1|Y|Framework,Procedure,Standard
+Q097|Ethical and Professional Standards|S08,PR16|2|2|1|N|Procedure,Standard
+Q098|Ethical and Professional Standards|S16,PR35|2|2|1|N|Procedure,Standard
+Q099|Ethical and Professional Standards|FR14|1|1|0|N|Framework
+Q100|Ethical and Professional Standards|S07|6|2|1|Y|Concept,Standard
+
+=== SUMMARY ===
+Conceptually Sufficient: {'Y': 84, 'N': 16}
+
+By root (sufficient/total):
+  Alternative Investments                  4/7
+  Corporate Issuers                        5/7
+  Derivatives                              10/11
+  Economics                                8/8
+  Equity Investments                       7/8
+  Ethical and Professional Standards       5/8
+  Financial Statement Analysis             9/9
+  Fixed Income                             11/14
+  Portfolio Management                     11/13
+  Quantitative Methods                     14/15
+
+Questions with a fully isolated anchor: ['Q014', 'Q029', 'Q052', 'Q077', 'Q081', 'Q099']

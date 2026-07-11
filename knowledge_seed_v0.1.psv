@@ -1,0 +1,51 @@
+ID|Name|Type|RootTaxonomy|Region|Maturity|DependsOn|References|Implements|DerivedFrom
+C01|Risk|Concept|Portfolio Management|Global|Verified||||
+C02|Return|Concept|Portfolio Management|Global|Verified||||
+C03|Liquidity|Concept|Portfolio Management|Global|Verified||||
+C04|Volatility|Concept|Quantitative Methods|Global|Verified||||
+C05|Diversification|Concept|Portfolio Management|Global|Verified||||
+C06|Correlation|Concept|Quantitative Methods|Global|Verified||||
+C07|Leverage|Concept|Corporate Issuers|Global|Verified||||
+C08|Intrinsic Value|Concept|Equity Investments|Global|Verified||||
+C09|Systematic Risk|Concept|Portfolio Management|Global|Verified||||
+A01|Frictionless Markets|Assumption|Economics|Global|Verified||||
+A02|Rational Investors|Assumption|Economics|Global|Verified||||
+A03|Normally Distributed Returns|Assumption|Quantitative Methods|Global|Verified||||
+S01|IFRS|Standard|Financial Statement Analysis|Global|Verified||||
+S02|US GAAP|Standard|Financial Statement Analysis|US|Verified||||
+S03|CFA Code of Ethics and Standards of Professional Conduct|Standard|Ethical and Professional Standards|Global|Verified||||
+T01|CAPM|Theory|Portfolio Management|Global|Verified (contested)|A01;A02|C01;C02;F01(informal-F1)||
+T02|Efficient Market Hypothesis|Theory|Economics|Global|Verified (contested)|A01;A02|C03||
+T03|Modern Portfolio Theory|Theory|Portfolio Management|Global|Verified|A01;A02|C05;C06||
+T04|Arbitrage Pricing Theory|Theory|Portfolio Management|Global|Verified|A02|C09||
+T05|Modigliani-Miller Theorem|Theory|Corporate Issuers|Global|Verified|A01|C07||
+M01|Fama-French Three-Factor Model|Model|Portfolio Management|Global (US-origin)|Verified|FA01;FA02|T01(semantic-extends,F3)||
+M02|Black-Scholes Model|Model|Derivatives|Global|Verified|F03;A01;A03|||
+M03|Gordon Growth Model|Model|Equity Investments|Global|Verified|F04;C08|||
+M04|Fama-French Five-Factor Model|Model|Portfolio Management|Global|Verified|M01(semantic-extends,F3)|C02||
+F01|CAPM Equation|Formula|Portfolio Management|Global|Verified||||
+F02|Sharpe Ratio Formula|Formula|Portfolio Management|Global|Verified||||
+F03|Black-Scholes Formula|Formula|Derivatives|Global|Verified||||
+F04|Present Value Formula|Formula|Equity Investments|Global|Verified||||
+F05|WACC Formula|Formula|Equity Investments|Global|Verified||||
+ME01|Sharpe Ratio|Metric|Portfolio Management|Global|Verified|F02|C01;C02||
+ME02|Treynor Ratio|Metric|Portfolio Management|Global|Verified||C09;C02||
+ME03|Information Ratio|Metric|Portfolio Management|Global|Verified||ME01||
+ME04|ROE|Metric|Financial Statement Analysis|Global|Verified||||
+ME05|ROA|Metric|Financial Statement Analysis|Global|Verified||||
+ME06|P/E Ratio|Metric|Equity Investments|Global|Verified||C08||
+ME07|Information Coefficient (IC)|Metric|Quantitative Methods|Global|Verified|C06|||
+FA01|Value Factor|Factor|Quantitative Methods|Global|Verified|PR01;ME07(semantic-evaluatedby)|C08||
+FA02|Size Factor|Factor|Quantitative Methods|Global|Verified|PR01;ME07(semantic-evaluatedby)|||
+FA03|Momentum Factor (general)|Factor|Quantitative Methods|Global|Verified|PR03;ME07(semantic-evaluatedby)|||
+FA04|Momentum Factor (Taiwan, thesis)|Factor|Quantitative Methods|Taiwan|Provisional|PR03;ME07(semantic-evaluatedby)|||
+PR01|Portfolio Sorting Procedure|Procedure|Quantitative Methods|Global|Verified||C06||
+PR02|Discounted Cash Flow Valuation|Procedure|Equity Investments|Global|Verified|F04|C08||
+PR03|Momentum Factor Construction|Procedure|Quantitative Methods|Taiwan|Verified|PR04|||
+PR04|Cross-Sectional IC Computation|Procedure|Quantitative Methods|Global|Verified|ME07|||
+PR05|Comparable Company Analysis|Procedure|Equity Investments|Global|Verified||C08||
+FR01|DuPont Analysis|Framework|Financial Statement Analysis|Global|Verified||ME04;ME05||
+FR02|Porter's Five Forces|Framework|Corporate Issuers|Global|Verified||||
+FR03|SWOT Analysis|Framework|Corporate Issuers|Global|Verified||||
+PA01|Momentum Reversal in Taiwan Small-Caps|Pattern|Quantitative Methods|Taiwan|Provisional||||FA04
+PA02|January Effect|Pattern|Quantitative Methods|Global|Disputed||FA03||

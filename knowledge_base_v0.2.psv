@@ -1,0 +1,303 @@
+ID|Name|Type|RootTaxonomy|Region|Maturity|DependsOn|References|Implements|DerivedFrom
+C01|Risk|Concept|Portfolio Management|Global|Verified||||
+C02|Return|Concept|Portfolio Management|Global|Verified||||
+C03|Liquidity|Concept|Portfolio Management|Global|Verified||||
+C04|Volatility|Concept|Quantitative Methods|Global|Verified||||
+C05|Diversification|Concept|Portfolio Management|Global|Verified||||
+C06|Correlation|Concept|Quantitative Methods|Global|Verified||||
+C07|Leverage|Concept|Corporate Issuers|Global|Verified||||
+C08|Intrinsic Value|Concept|Equity Investments|Global|Verified||||
+C09|Systematic Risk|Concept|Portfolio Management|Global|Verified||||
+A01|Frictionless Markets|Assumption|Economics|Global|Verified||||
+A02|Rational Investors|Assumption|Economics|Global|Verified||||
+A03|Normally Distributed Returns|Assumption|Quantitative Methods|Global|Verified||||
+S01|IFRS|Standard|Financial Statement Analysis|Global|Verified||||
+S02|US GAAP|Standard|Financial Statement Analysis|US|Verified||||
+S03|CFA Code of Ethics and Standards of Professional Conduct|Standard|Ethical and Professional Standards|Global|Verified||||
+T01|CAPM|Theory|Portfolio Management|Global|Verified (contested)|A01;A02|C01;C02;F01(informal-F1)||
+T02|Efficient Market Hypothesis|Theory|Economics|Global|Verified (contested)|A01;A02|C03||
+T03|Modern Portfolio Theory|Theory|Portfolio Management|Global|Verified|A01;A02|C05;C06||
+T04|Arbitrage Pricing Theory|Theory|Portfolio Management|Global|Verified|A02|C09||
+T05|Modigliani-Miller Theorem|Theory|Corporate Issuers|Global|Verified|A01|C07||
+M01|Fama-French Three-Factor Model|Model|Portfolio Management|Global (US-origin)|Verified|FA01;FA02|T01(semantic-extends,F3)||
+M02|Black-Scholes Model|Model|Derivatives|Global|Verified|F03;A01;A03|||
+M03|Gordon Growth Model|Model|Equity Investments|Global|Verified|F04;C08|||
+M04|Fama-French Five-Factor Model|Model|Portfolio Management|Global|Verified|M01(semantic-extends,F3)|C02||
+F01|CAPM Equation|Formula|Portfolio Management|Global|Verified||||
+F02|Sharpe Ratio Formula|Formula|Portfolio Management|Global|Verified||||
+F03|Black-Scholes Formula|Formula|Derivatives|Global|Verified||||
+F04|Present Value Formula|Formula|Equity Investments|Global|Verified||||
+F05|WACC Formula|Formula|Equity Investments|Global|Verified||||
+ME01|Sharpe Ratio|Metric|Portfolio Management|Global|Verified|F02|C01;C02||
+ME02|Treynor Ratio|Metric|Portfolio Management|Global|Verified||C09;C02||
+ME03|Information Ratio|Metric|Portfolio Management|Global|Verified||ME01||
+ME04|ROE|Metric|Financial Statement Analysis|Global|Verified||||
+ME05|ROA|Metric|Financial Statement Analysis|Global|Verified||||
+ME06|P/E Ratio|Metric|Equity Investments|Global|Verified||C08||
+ME07|Information Coefficient (IC)|Metric|Quantitative Methods|Global|Verified|C06|||
+FA01|Value Factor|Factor|Quantitative Methods|Global|Verified|PR01;ME07(semantic-evaluatedby)|C08||
+FA02|Size Factor|Factor|Quantitative Methods|Global|Verified|PR01;ME07(semantic-evaluatedby)|||
+FA03|Momentum Factor (general)|Factor|Quantitative Methods|Global|Verified|PR03;ME07(semantic-evaluatedby)|||
+FA04|Momentum Factor (Taiwan, thesis)|Factor|Quantitative Methods|Taiwan|Provisional|PR03;ME07(semantic-evaluatedby)|||
+PR01|Portfolio Sorting Procedure|Procedure|Quantitative Methods|Global|Verified||C06||
+PR02|Discounted Cash Flow Valuation|Procedure|Equity Investments|Global|Verified|F04|C08||
+PR03|Momentum Factor Construction|Procedure|Quantitative Methods|Taiwan|Verified|PR04|||
+PR04|Cross-Sectional IC Computation|Procedure|Quantitative Methods|Global|Verified|ME07|||
+PR05|Comparable Company Analysis|Procedure|Equity Investments|Global|Verified||C08||
+FR01|DuPont Analysis|Framework|Financial Statement Analysis|Global|Verified||ME04;ME05||
+FR02|Porter's Five Forces|Framework|Corporate Issuers|Global|Verified||||
+FR03|SWOT Analysis|Framework|Corporate Issuers|Global|Verified||||
+PA01|Momentum Reversal in Taiwan Small-Caps|Pattern|Quantitative Methods|Taiwan|Provisional||||FA04
+PA02|January Effect|Pattern|Quantitative Methods|Global|Disputed||FA03||
+C10|Time Value of Money|Concept|Fixed Income|Global|Verified||||
+C11|Credit Risk|Concept|Fixed Income|Global|Verified||||
+C12|Default Risk|Concept|Fixed Income|Global|Verified||||
+C13|Reinvestment Risk|Concept|Fixed Income|Global|Verified||||
+C14|Interest Rate Risk|Concept|Fixed Income|Global|Verified||||
+C15|Par Value|Concept|Fixed Income|Global|Verified||||
+C16|Coupon Rate|Concept|Fixed Income|Global|Verified||||
+C17|Yield Curve|Concept|Fixed Income|Global|Verified||||
+C18|Credit Spread|Concept|Fixed Income|Global|Verified||||
+C19|Illiquidity Premium|Concept|Alternative Investments|Global|Verified||||
+C20|Vintage Year|Concept|Alternative Investments|Global|Verified||||
+C21|Carried Interest|Concept|Alternative Investments|Global|Verified||||
+C22|Net Asset Value|Concept|Alternative Investments|Global|Verified||||
+C23|Underlying Asset|Concept|Derivatives|Global|Verified||||
+C24|Strike Price|Concept|Derivatives|Global|Verified||||
+C25|Moneyness|Concept|Derivatives|Global|Verified||||
+C26|Counterparty Risk|Concept|Derivatives|Global|Verified||||
+C27|Basis Risk|Concept|Derivatives|Global|Verified||||
+C28|Inflation|Concept|Economics|Global|Verified||||
+C29|Gross Domestic Product|Concept|Economics|Global|Verified||||
+C30|Unemployment Rate|Concept|Economics|Global|Verified||||
+C31|Business Cycle|Concept|Economics|Global|Verified||||
+C32|Monetary Policy|Concept|Economics|Global|Verified||||
+C33|Fiscal Policy|Concept|Economics|Global|Verified||||
+C34|Fiduciary Duty|Concept|Ethical and Professional Standards|Global|Verified||||
+C35|Conflict of Interest|Concept|Ethical and Professional Standards|Global|Verified||||
+C36|Material Nonpublic Information|Concept|Ethical and Professional Standards|Global|Verified||||
+C37|Working Capital|Concept|Corporate Issuers|Global|Verified||||
+C38|Cost of Capital|Concept|Corporate Issuers|Global|Verified||||
+C39|Capital Structure|Concept|Corporate Issuers|Global|Verified||||
+C40|Free Cash Flow|Concept|Corporate Issuers|Global|Verified||||
+C41|Agency Problem|Concept|Corporate Issuers|Global|Verified||||
+C42|Economic Moat|Concept|Equity Investments|Global|Verified||||
+C43|Dividend Payout|Concept|Equity Investments|Global|Verified||||
+C44|Market Capitalization|Concept|Equity Investments|Global|Verified||||
+C45|Float|Concept|Equity Investments|Global|Verified||||
+C46|Autocorrelation|Concept|Quantitative Methods|Global|Verified||||
+C47|Heteroskedasticity|Concept|Quantitative Methods|Global|Verified||||
+C48|Stationarity|Concept|Quantitative Methods|Global|Verified||||
+C49|Overfitting|Concept|Quantitative Methods|Global|Verified||||
+C50|Look-Ahead Bias|Concept|Quantitative Methods|Global|Verified||||
+C51|Survivorship Bias|Concept|Quantitative Methods|Global|Verified||||
+C52|Accrual|Concept|Financial Statement Analysis|Global|Verified||||
+C53|Going Concern|Concept|Financial Statement Analysis|Global|Verified||||
+C54|Materiality|Concept|Financial Statement Analysis|Global|Verified||||
+C55|Off-Balance-Sheet Item|Concept|Financial Statement Analysis|Global|Verified||||
+A04|No Taxes or Transaction Costs|Assumption|Economics|Global|Verified||||
+A05|Continuous Trading|Assumption|Derivatives|Global|Verified||||
+A06|Constant Volatility|Assumption|Derivatives|Global|Verified||||
+A07|No Arbitrage|Assumption|Economics|Global|Verified||||
+A08|Homogeneous Expectations|Assumption|Portfolio Management|Global|Verified||||
+A09|Perfect Capital Markets|Assumption|Corporate Issuers|Global|Verified||||
+A10|Constant Growth Rate|Assumption|Equity Investments|Global|Verified||||
+A11|Mean Reversion|Assumption|Quantitative Methods|Global|Provisional||||
+A12|Independent and Identically Distributed Returns|Assumption|Quantitative Methods|Global|Verified||||
+A13|Efficient Diversification|Assumption|Portfolio Management|Global|Verified||||
+A14|Stable Correlations|Assumption|Portfolio Management|Global|Disputed||||
+A15|Flat Term Structure|Assumption|Fixed Income|Global|Verified||||
+S04|Basel III|Standard|Ethical and Professional Standards|Global|Verified||||
+S05|Solvency II|Standard|Ethical and Professional Standards|Global|Verified||||
+S06|GIPS (Global Investment Performance Standards)|Standard|Ethical and Professional Standards|Global|Verified||||
+S07|SEC Regulation FD|Standard|Ethical and Professional Standards|US|Verified||||
+S08|MiFID II|Standard|Ethical and Professional Standards|Global|Verified||||
+S09|UCITS|Standard|Alternative Investments|Global|Verified||||
+S10|AIFMD|Standard|Alternative Investments|Global|Verified||||
+S11|ISDA Master Agreement|Standard|Derivatives|Global|Verified||||
+S12|Sarbanes-Oxley Act|Standard|Financial Statement Analysis|US|Verified||||
+S13|Dodd-Frank Act|Standard|Derivatives|US|Verified||||
+S14|Taiwan Financial Supervisory Commission Disclosure Rules|Standard|Financial Statement Analysis|Taiwan|Verified||||
+S15|ISO 31000 Risk Management|Standard|Portfolio Management|Global|Verified||||
+T06|Pure Expectations Theory|Theory|Fixed Income|Global|Verified (contested)|A07|C17||
+T07|Liquidity Preference Theory|Theory|Fixed Income|Global|Verified|A07|C17;C03||
+T08|Market Segmentation Theory|Theory|Fixed Income|Global|Verified||C17||
+T09|Put-Call Parity|Theory|Derivatives|Global|Verified|A01;A07|C23;C24||
+T10|Prospect Theory|Theory|Economics|Global|Verified||C01||
+T11|Rational Expectations Theory|Theory|Economics|Global|Verified (contested)|A02|C32||
+T12|Quantity Theory of Money|Theory|Economics|Global|Verified||C28||
+T13|Pecking Order Theory|Theory|Corporate Issuers|Global|Verified||C39||
+T14|Trade-Off Theory of Capital Structure|Theory|Corporate Issuers|Global|Verified||C39;C38||
+T15|Agency Theory|Theory|Corporate Issuers|Global|Verified||C41||
+T16|Signaling Theory|Theory|Corporate Issuers|Global|Verified||C43||
+T17|Adaptive Market Hypothesis|Theory|Economics|Global|Provisional|A11|C04||
+T18|Law of One Price|Theory|Economics|Global|Verified|A07|||
+T19|Term Structure of Interest Rates Theory|Theory|Fixed Income|Global|Verified||C17||
+T20|Behavioral Portfolio Theory|Theory|Portfolio Management|Global|Provisional||C05||
+M05|Vasicek Interest Rate Model|Model|Fixed Income|Global|Verified|F06;A15|||
+M06|Cox-Ingersoll-Ross Model|Model|Fixed Income|Global|Verified|M05(semantic-extends,F3)|||
+M07|Nelson-Siegel Yield Curve Model|Model|Fixed Income|Global|Verified|F07|C17||
+M08|Binomial Option Pricing Model|Model|Derivatives|Global|Verified|F08;A07|M02(semantic-extends,F3)||
+M09|Merton Structural Credit Model|Model|Fixed Income|Global|Verified|F09;A07|C11||
+M10|Carhart Four-Factor Model|Model|Portfolio Management|Global|Verified|M01(semantic-extends,F3);FA03|||
+M11|Arbitrage Pricing Model|Model|Portfolio Management|Global|Verified|T04(semantic-extends,F3)|||
+M12|Dividend Discount Model|Model|Equity Investments|Global|Verified|F04;A10|M03||
+M13|Residual Income Model|Model|Equity Investments|Global|Verified|F10;C08|||
+M14|Free Cash Flow to Equity Model|Model|Equity Investments|Global|Verified|F11;C40|||
+M15|CAPM International Extension|Model|Portfolio Management|Global|Verified|T01(semantic-extends,F3)|A02||
+M16|Fama-MacBeth Regression Model|Model|Quantitative Methods|Global|Verified|F12|C46||
+M17|GARCH Volatility Model|Model|Quantitative Methods|Global|Verified|F13|C04||
+M18|Value-at-Risk Model|Model|Portfolio Management|Global|Verified|F14;A03|C01||
+M19|Monte Carlo Simulation Model|Model|Quantitative Methods|Global|Verified||C50||
+M20|Real Options Model|Model|Alternative Investments|Global|Verified|M08(semantic-extends,F3)|||
+F06|Vasicek Short Rate Formula|Formula|Fixed Income|Global|Verified||||
+F07|Nelson-Siegel Curve Formula|Formula|Fixed Income|Global|Verified||||
+F08|Binomial Tree Pricing Formula|Formula|Derivatives|Global|Verified||||
+F09|Merton Distance-to-Default Formula|Formula|Fixed Income|Global|Verified||||
+F10|Residual Income Formula|Formula|Equity Investments|Global|Verified||||
+F11|FCFE Formula|Formula|Equity Investments|Global|Verified||||
+F12|Fama-MacBeth Two-Pass Regression Formula|Formula|Quantitative Methods|Global|Verified||||
+F13|GARCH(1,1) Formula|Formula|Quantitative Methods|Global|Verified||||
+F14|Parametric VaR Formula|Formula|Portfolio Management|Global|Verified||||
+F15|Macaulay Duration Formula|Formula|Fixed Income|Global|Verified||||
+F16|Modified Duration Formula|Formula|Fixed Income|Global|Verified|F15|||
+F17|Convexity Formula|Formula|Fixed Income|Global|Verified||||
+F18|Yield to Maturity Formula|Formula|Fixed Income|Global|Verified||||
+F19|Forward Rate Formula|Formula|Fixed Income|Global|Verified||||
+F20|Option Delta Formula|Formula|Derivatives|Global|Verified|F03|||
+F21|Option Gamma Formula|Formula|Derivatives|Global|Verified|F03|||
+F22|Option Vega Formula|Formula|Derivatives|Global|Verified|F03|||
+F23|Futures Fair Value Formula|Formula|Derivatives|Global|Verified|A01|||
+F24|Swap Rate Formula|Formula|Derivatives|Global|Verified||||
+F25|Sortino Ratio Formula|Formula|Portfolio Management|Global|Verified||||
+ME08|Macaulay Duration|Metric|Fixed Income|Global|Verified|F15|C14||
+ME09|Modified Duration|Metric|Fixed Income|Global|Verified|F16|C14||
+ME10|Convexity|Metric|Fixed Income|Global|Verified|F17|||
+ME11|Yield to Maturity|Metric|Fixed Income|Global|Verified|F18|C16||
+ME12|Credit Spread Metric|Metric|Fixed Income|Global|Verified||C18||
+ME13|Option Delta|Metric|Derivatives|Global|Verified|F20|C24||
+ME14|Option Gamma|Metric|Derivatives|Global|Verified|F21|||
+ME15|Option Vega|Metric|Derivatives|Global|Verified|F22|||
+ME16|Implied Volatility|Metric|Derivatives|Global|Verified||C04||
+ME17|Value at Risk|Metric|Portfolio Management|Global|Verified|F14|C01||
+ME18|Conditional Value at Risk|Metric|Portfolio Management|Global|Verified||ME17||
+ME19|Sortino Ratio|Metric|Portfolio Management|Global|Verified|F25|C01;C02||
+ME20|Jensen's Alpha|Metric|Portfolio Management|Global|Verified||C01;C02||
+ME21|Tracking Error|Metric|Portfolio Management|Global|Verified||||
+ME22|Internal Rate of Return|Metric|Alternative Investments|Global|Verified||||
+ME23|Multiple on Invested Capital|Metric|Alternative Investments|Global|Verified||||
+ME24|Distribution to Paid-In Capital|Metric|Alternative Investments|Global|Verified||||
+ME25|Cap Rate|Metric|Alternative Investments|Global|Verified||||
+ME26|Current Ratio|Metric|Financial Statement Analysis|Global|Verified||||
+ME27|Quick Ratio|Metric|Financial Statement Analysis|Global|Verified||||
+ME28|Debt-to-Equity Ratio|Metric|Financial Statement Analysis|Global|Verified||C07||
+ME29|Interest Coverage Ratio|Metric|Financial Statement Analysis|Global|Verified||||
+ME30|Gross Margin|Metric|Financial Statement Analysis|Global|Verified||||
+ME31|Operating Margin|Metric|Financial Statement Analysis|Global|Verified||||
+ME32|Net Margin|Metric|Financial Statement Analysis|Global|Verified||||
+ME33|Asset Turnover|Metric|Financial Statement Analysis|Global|Verified||||
+ME34|Inventory Turnover|Metric|Financial Statement Analysis|Global|Verified||||
+ME35|EV/EBITDA|Metric|Equity Investments|Global|Verified||||
+ME36|Price-to-Book Ratio|Metric|Equity Investments|Global|Verified||C08||
+ME37|Dividend Yield|Metric|Equity Investments|Global|Verified||C43||
+ME38|PEG Ratio|Metric|Equity Investments|Global|Verified||||
+ME39|Beta|Metric|Portfolio Management|Global|Verified||C09||
+ME40|R-Squared|Metric|Quantitative Methods|Global|Verified||C06||
+ME41|T-Statistic|Metric|Quantitative Methods|Global|Verified||||
+ME42|Standard Error|Metric|Quantitative Methods|Global|Verified||||
+ME43|Sharpe Ratio Confidence Interval|Metric|Quantitative Methods|Global|Provisional||ME01||
+FA05|Quality Factor|Factor|Quantitative Methods|Global|Verified|PR06;ME07(semantic-evaluatedby)|||
+FA06|Low Volatility Factor|Factor|Quantitative Methods|Global|Verified|PR06;ME07(semantic-evaluatedby)|C04||
+FA07|Profitability Factor|Factor|Quantitative Methods|Global|Verified|PR06;ME07(semantic-evaluatedby)|||
+FA08|Investment Factor|Factor|Quantitative Methods|Global|Verified|PR06;ME07(semantic-evaluatedby)|||
+FA09|Carry Factor|Factor|Quantitative Methods|Global|Verified|PR06;ME07(semantic-evaluatedby)|||
+FA10|Liquidity Factor|Factor|Quantitative Methods|Global|Verified|PR06;ME07(semantic-evaluatedby)|C03||
+FA11|Term Factor|Factor|Fixed Income|Global|Verified|PR06;ME07(semantic-evaluatedby)|||
+FA12|Default Factor|Factor|Fixed Income|Global|Verified|PR06;ME07(semantic-evaluatedby)|C11||
+PR06|Long-Short Factor Portfolio Construction|Procedure|Quantitative Methods|Global|Verified||C06||
+PR07|Yield Curve Bootstrapping|Procedure|Fixed Income|Global|Verified|F19|||
+PR08|Duration-Matching Immunization|Procedure|Fixed Income|Global|Verified|ME08|||
+PR09|Delta Hedging|Procedure|Derivatives|Global|Verified|ME13|||
+PR10|Backtesting Procedure|Procedure|Quantitative Methods|Global|Verified||C50;C51||
+PR11|Monte Carlo Simulation Procedure|Procedure|Quantitative Methods|Global|Verified||||
+PR12|Financial Statement Ratio Analysis|Procedure|Financial Statement Analysis|Global|Verified|||S01(semantic-standardimpl)|
+PR13|Revenue Recognition under IFRS 15|Procedure|Financial Statement Analysis|Global|Verified|||S01(semantic-standardimpl)|
+PR14|Lease Accounting under IFRS 16|Procedure|Financial Statement Analysis|Global|Verified|||S01(semantic-standardimpl)|
+PR15|GIPS-Compliant Performance Presentation|Procedure|Ethical and Professional Standards|Global|Verified|||S06(semantic-standardimpl)|
+PR16|Best Execution Procedure|Procedure|Ethical and Professional Standards|Global|Verified|||S08(semantic-standardimpl)|
+PR17|Private Equity Waterfall Distribution|Procedure|Alternative Investments|Global|Verified||C21||
+PR18|Real Estate Appraisal (Income Approach)|Procedure|Alternative Investments|Global|Verified|ME25|||
+PR19|Interest Rate Swap Valuation|Procedure|Derivatives|Global|Verified|F24|||
+PR20|Credit Default Swap Pricing|Procedure|Derivatives|Global|Verified|M09|||
+PR21|Bond Immunization|Procedure|Fixed Income|Global|Verified|ME08;ME10|||
+PR22|Comparable Transaction Analysis|Procedure|Corporate Issuers|Global|Verified||C08||
+PR23|Leveraged Buyout Modeling|Procedure|Corporate Issuers|Global|Verified|F05|C07||
+PR24|Weighted Average Cost of Capital Estimation|Procedure|Corporate Issuers|Global|Verified|F05|||
+PR25|Economic Value Added Calculation|Procedure|Corporate Issuers|Global|Verified|F05|||
+FR04|CAPM-Based Cost of Equity Framework|Framework|Portfolio Management|Global|Verified||F01||
+FR05|Balanced Scorecard|Framework|Corporate Issuers|Global|Verified||||
+FR06|Value Chain Analysis|Framework|Corporate Issuers|Global|Verified||||
+FR07|BCG Growth-Share Matrix|Framework|Corporate Issuers|Global|Verified||||
+FR08|Altman Z-Score Framework|Framework|Financial Statement Analysis|Global|Verified||ME28||
+FR09|CAMELS Rating Framework|Framework|Fixed Income|Global|Verified||||
+FR10|Greeks Risk Framework|Framework|Derivatives|Global|Verified||ME13;ME14;ME15||
+FR11|Endowment Model (Alternative Allocation)|Framework|Alternative Investments|Global|Verified||||
+FR12|GIPS Composite Construction Framework|Framework|Ethical and Professional Standards|Global|Verified||S06||
+FR13|Risk Parity Framework|Framework|Portfolio Management|Global|Verified||C01||
+PA03|Value Premium Persistence|Pattern|Quantitative Methods|Global|Verified||||FA01
+PA04|Low-Volatility Anomaly|Pattern|Quantitative Methods|Global|Verified||||FA06
+PA05|Credit Spread Widening in Recessions|Pattern|Fixed Income|Global|Verified||C31||
+PA06|Post-Earnings Announcement Drift|Pattern|Equity Investments|Global|Verified||||
+PA07|Small-Firm Effect|Pattern|Quantitative Methods|Global|Disputed||FA02||
+PA08|Volatility Clustering|Pattern|Quantitative Methods|Global|Verified||C04||
+PA09|Taiwan Foreign Capital Flow Co-Movement with Momentum|Pattern|Quantitative Methods|Taiwan|Provisional||FA04||
+PA10|Illiquidity Premium Realization Lag|Pattern|Alternative Investments|Global|Provisional||C19||
+T21|Phillips Curve|Theory|Economics|Global|Verified (contested)||C30;C28||
+T22|Fisher Effect|Theory|Economics|Global|Verified||C28;C10||
+T23|Purchasing Power Parity|Theory|Economics|Global|Verified (contested)|A07|||
+T24|Random Walk Theory|Theory|Quantitative Methods|Global|Verified||T02(semantic-extends,F3)||
+T25|Uncovered Interest Rate Parity|Theory|Economics|Global|Verified (contested)|A07|||
+M21|Taylor Rule Model|Model|Economics|Global|Verified|F26|C32;C28||
+M22|IS-LM Model|Model|Economics|Global|Verified||C29;C32;C33||
+M23|Ho-Lee Interest Rate Model|Model|Fixed Income|Global|Verified|M05(semantic-extends,F3)|||
+M24|Black-Derman-Toy Model|Model|Fixed Income|Global|Verified|M23(semantic-extends,F3)|||
+F26|Taylor Rule Formula|Formula|Economics|Global|Verified||||
+F27|Fisher Equation|Formula|Economics|Global|Verified||||
+F28|Covered Interest Rate Parity Formula|Formula|Derivatives|Global|Verified||||
+F29|Black-Litterman Formula|Formula|Portfolio Management|Global|Verified||||
+F30|Kelly Criterion Formula|Formula|Portfolio Management|Global|Verified||||
+ME44|Real Interest Rate|Metric|Economics|Global|Verified|F27|C28||
+ME46|Sharpe-to-Drawdown Ratio|Metric|Portfolio Management|Global|Provisional||C64||
+ME47|ESG Score|Metric|Alternative Investments|Global|Provisional||||
+ME48|Expense Ratio|Metric|Alternative Investments|Global|Verified||||
+PR26|Liquidity Ratio Analysis|Procedure|Financial Statement Analysis|Global|Verified||ME26;ME27||
+PR27|Profitability Ratio Analysis|Procedure|Financial Statement Analysis|Global|Verified||ME30;ME31;ME32||
+PR28|Insider Trading Compliance Review|Procedure|Ethical and Professional Standards|Global|Verified||C36|S03(semantic-standardimpl)|
+PR29|Conflict of Interest Disclosure Procedure|Procedure|Ethical and Professional Standards|Global|Verified||C35|S03(semantic-standardimpl)|
+PR30|ESG Integration Screening|Procedure|Alternative Investments|Global|Verified|ME47|||
+PR31|Currency Hedging via Forward Contracts|Procedure|Derivatives|Global|Verified|F28|||
+PR32|Black-Litterman Portfolio Optimization|Procedure|Portfolio Management|Global|Verified|F29|||
+PR33|Kelly Criterion Position Sizing|Procedure|Portfolio Management|Global|Provisional|F30|||
+PR34|Working Capital Management|Procedure|Corporate Issuers|Global|Verified||C37||
+PR35|Anti-Money Laundering Screening|Procedure|Ethical and Professional Standards|Global|Verified|||S16(semantic-standardimpl)|
+C56|Term Premium|Concept|Fixed Income|Global|Verified||||
+C57|Roll-Down Return|Concept|Fixed Income|Global|Verified||||
+C58|Sovereign Risk|Concept|Fixed Income|Global|Verified||||
+C59|Contango|Concept|Derivatives|Global|Verified||||
+C60|Backwardation|Concept|Derivatives|Global|Verified||||
+C61|Implied Correlation|Concept|Derivatives|Global|Verified||||
+C62|ESG Integration|Concept|Alternative Investments|Global|Verified||||
+C63|Lock-Up Period|Concept|Alternative Investments|Global|Verified||||
+C64|Drawdown|Concept|Portfolio Management|Global|Verified||||
+C65|Tail Risk|Concept|Portfolio Management|Global|Verified||||
+A16|Covered Interest Rate Parity Holds|Assumption|Derivatives|Global|Verified||||
+A17|No Model Risk|Assumption|Quantitative Methods|Global|Disputed||||
+A18|Stable Regulatory Environment|Assumption|Ethical and Professional Standards|Global|Provisional||||
+S16|FATCA|Standard|Ethical and Professional Standards|US|Verified||||
+S17|Volcker Rule|Standard|Ethical and Professional Standards|US|Verified||||
+S18|Common Reporting Standard|Standard|Ethical and Professional Standards|Global|Verified||||
+FR14|Three Lines of Defense|Framework|Ethical and Professional Standards|Global|Verified||||
+FR15|ESG Materiality Framework|Framework|Alternative Investments|Global|Verified||C62||
+FR16|Liquidity Ladder Framework|Framework|Fixed Income|Global|Verified||C57||
+PA11|Contango Roll Yield Drag|Pattern|Derivatives|Global|Verified||C59||
+PA12|ESG Premium Persistence|Pattern|Alternative Investments|Global|Disputed||C62||

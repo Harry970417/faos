@@ -1,0 +1,29 @@
+EvidenceID|Type|Tier|Citation|GroundedObjects|Quality
+EV01|Journal Paper|Primary|Sharpe, W.F. (1964). Capital Asset Prices: A Theory of Market Equilibrium under Conditions of Risk. Journal of Finance.|T01;F01|High
+EV02|Journal Paper|Primary|Lintner, J. (1965). The Valuation of Risk Assets and the Selection of Risky Investments in Stock Portfolios and Capital Budgets. Review of Economics and Statistics.|T01;F01|High
+EV03|Book|Secondary|Bodie, Z., Kane, A., Marcus, A. (2018). Investments, 11th ed. McGraw-Hill.|T01|High
+EV04|Journal Paper|Primary|Fama, E.F. (1970). Efficient Capital Markets: A Review of Theory and Empirical Work. Journal of Finance.|T02|High
+EV05|Journal Paper|Secondary|Malkiel, B.G. (2003). The Efficient Market Hypothesis and Its Critics. Journal of Economic Perspectives.|T02|High
+EV06|Journal Paper|Primary|Fama, E.F., French, K.R. (1993). Common Risk Factors in the Returns on Stocks and Bonds. Journal of Financial Economics.|M01|High
+EV07|Dataset|Primary|CRSP US Stock Database, Center for Research in Security Prices, University of Chicago.|M01|High
+EV08|Journal Paper|Primary|Jegadeesh, N., Titman, S. (1993). Returns to Buying Winners and Selling Losers: Implications for Stock Market Efficiency. Journal of Finance.|FA03|High
+EV09|Journal Paper|Secondary|Asness, C., Moskowitz, T., Pedersen, L. (2013). Value and Momentum Everywhere. Journal of Finance.|FA03|High
+EV10|Journal Paper|Primary|Sharpe, W.F. (1966). Mutual Fund Performance. Journal of Business.|ME01|High
+EV11|Journal Paper|Primary|Sharpe, W.F. (1994). The Sharpe Ratio. Journal of Portfolio Management.|ME01|High
+EV12|Book|Primary|Grinold, R.C., Kahn, R.N. (1999). Active Portfolio Management, 2nd ed. McGraw-Hill.|ME07|High
+EV13|Book|Primary|Williams, J.B. (1938). The Theory of Investment Value. Harvard University Press.|PR02|High
+EV14|Book|Secondary|Damodaran, A. (2012). Investment Valuation, 3rd ed. Wiley.|PR02|High
+EV15|Official Standard|Primary|IFRS Foundation. IFRS Standards (official consolidated text, current edition).|S01|High
+EV16|Journal Paper|Primary|Modigliani, F., Miller, M.H. (1958). The Cost of Capital, Corporation Finance and the Theory of Investment. American Economic Review.|A01;T05|High
+EV17|Journal Paper|Primary|Markowitz, H. (1952). Portfolio Selection. Journal of Finance.|T03;C01|High
+EV18|Book|Primary|Graham, B., Dodd, D. (1934). Security Analysis. McGraw-Hill.|C08|High
+EV19|Book|Primary|Knight, F.H. (1921). Risk, Uncertainty and Profit. Houghton Mifflin.|C01|High
+EV20|Journal Paper|Primary|Black, F., Scholes, M. (1973). The Pricing of Options and Corporate Liabilities. Journal of Political Economy.|M02|High
+EV21|Journal Paper|Primary|Merton, R.C. (1973). Theory of Rational Option Pricing. Bell Journal of Economics and Management Science.|M02|High
+EV22|Journal Paper|Primary|Stoll, H.R. (1969). The Relationship Between Put and Call Option Prices. Journal of Finance.|T09|High
+EV23|Journal Paper|Primary|Fama, E.F., French, K.R. (1992). The Cross-Section of Expected Stock Returns. Journal of Finance.|FA01|High
+EV24|Journal Paper|Secondary|Basu, S. (1977). Investment Performance of Common Stocks in Relation to Their Price-Earnings Ratios. Journal of Finance.|FA01|High
+EV25|Journal Paper|Primary|Modigliani, F., Miller, M.H. (1963). Corporate Income Taxes and the Cost of Capital: A Correction. American Economic Review.|T05|High
+EV26|Book|Secondary|Brealey, R., Myers, S., Allen, F. (2020). Principles of Corporate Finance, 13th ed. McGraw-Hill.|FR01|High
+EV27|Journal Paper|Primary|Lutz, F.A. (1940). The Structure of Interest Rates. Quarterly Journal of Economics.|T06|High
+EV28|Official Standard|Primary|CFA Institute. CFA Institute Code of Ethics and Standards of Professional Conduct (official current edition).|S03|High

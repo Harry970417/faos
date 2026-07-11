@@ -1,0 +1,421 @@
+=== PART A: RELATIONSHIP CANDIDATE DETAIL ===
+
+--- semantic-evaluatedby ---
+Count: 12
+Source->Target type distribution: {('Factor', 'Metric'): 12}
+Native edge column used: Counter({'DependsOn': 12})
+    FA01(Factor) -> ME07(Metric)  [Value Factor -> Information Coefficient (IC)]
+    FA02(Factor) -> ME07(Metric)  [Size Factor -> Information Coefficient (IC)]
+    FA03(Factor) -> ME07(Metric)  [Momentum Factor (general) -> Information Coefficient (IC)]
+    FA04(Factor) -> ME07(Metric)  [Momentum Factor (Taiwan, thesis) -> Information Coefficient (IC)]
+    FA05(Factor) -> ME07(Metric)  [Quality Factor -> Information Coefficient (IC)]
+    FA06(Factor) -> ME07(Metric)  [Low Volatility Factor -> Information Coefficient (IC)]
+    FA07(Factor) -> ME07(Metric)  [Profitability Factor -> Information Coefficient (IC)]
+    FA08(Factor) -> ME07(Metric)  [Investment Factor -> Information Coefficient (IC)]
+    FA09(Factor) -> ME07(Metric)  [Carry Factor -> Information Coefficient (IC)]
+    FA10(Factor) -> ME07(Metric)  [Liquidity Factor -> Information Coefficient (IC)]
+    FA11(Factor) -> ME07(Metric)  [Term Factor -> Information Coefficient (IC)]
+    FA12(Factor) -> ME07(Metric)  [Default Factor -> Information Coefficient (IC)]
+
+--- semantic-extends ---
+Count: 11
+Source->Target type distribution: {('Model', 'Theory'): 3, ('Model', 'Model'): 7, ('Theory', 'Theory'): 1}
+Native edge column used: Counter({'DependsOn': 8, 'References': 3})
+    M01(Model) -> T01(Theory)  [Fama-French Three-Factor Model -> CAPM]
+    M04(Model) -> M01(Model)  [Fama-French Five-Factor Model -> Fama-French Three-Factor Model]
+    M06(Model) -> M05(Model)  [Cox-Ingersoll-Ross Model -> Vasicek Interest Rate Model]
+    M08(Model) -> M02(Model)  [Binomial Option Pricing Model -> Black-Scholes Model]
+    M10(Model) -> M01(Model)  [Carhart Four-Factor Model -> Fama-French Three-Factor Model]
+    M11(Model) -> T04(Theory)  [Arbitrage Pricing Model -> Arbitrage Pricing Theory]
+    M15(Model) -> T01(Theory)  [CAPM International Extension -> CAPM]
+    M20(Model) -> M08(Model)  [Real Options Model -> Binomial Option Pricing Model]
+    T24(Theory) -> T02(Theory)  [Random Walk Theory -> Efficient Market Hypothesis]
+    M23(Model) -> M05(Model)  [Ho-Lee Interest Rate Model -> Vasicek Interest Rate Model]
+    M24(Model) -> M23(Model)  [Black-Derman-Toy Model -> Ho-Lee Interest Rate Model]
+
+--- semantic-standardimpl ---
+Count: 8
+Source->Target type distribution: {('Procedure', 'Standard'): 8}
+Native edge column used: Counter({'Implements': 8})
+    PR12(Procedure) -> S01(Standard)  [Financial Statement Ratio Analysis -> IFRS]
+    PR13(Procedure) -> S01(Standard)  [Revenue Recognition under IFRS 15 -> IFRS]
+    PR14(Procedure) -> S01(Standard)  [Lease Accounting under IFRS 16 -> IFRS]
+    PR15(Procedure) -> S06(Standard)  [GIPS-Compliant Performance Presentation -> GIPS (Global Investment Performance Standards)]
+    PR16(Procedure) -> S08(Standard)  [Best Execution Procedure -> MiFID II]
+    PR28(Procedure) -> S03(Standard)  [Insider Trading Compliance Review -> CFA Code of Ethics and Standards of Professional Conduct]
+    PR29(Procedure) -> S03(Standard)  [Conflict of Interest Disclosure Procedure -> CFA Code of Ethics and Standards of Professional Conduct]
+    PR35(Procedure) -> S16(Standard)  [Anti-Money Laundering Screening -> FATCA]
+
+--- informal-F1 ---
+Count: 1
+Source->Target type distribution: {('Theory', 'Formula'): 1}
+Native edge column used: Counter({'References': 1})
+    T01(Theory) -> F01(Formula)  [CAPM -> CAPM Equation]
+
+--- Untagged type-pairs (potential unnamed candidates) ---
+   28  Theory --References--> Concept
+   23  Metric --References--> Concept
+   17  Theory --DependsOn--> Assumption
+   13  Model --DependsOn--> Formula
+   12  Model --References--> Concept
+   12  Factor --DependsOn--> Procedure
+   12  Procedure --References--> Concept
+   11  Metric --DependsOn--> Formula
+    9  Procedure --DependsOn--> Formula
+    7  Model --DependsOn--> Assumption
+    7  Procedure --DependsOn--> Metric
+    6  Framework --References--> Metric
+    5  Pattern --References--> Concept
+    5  Procedure --References--> Metric
+    4  Factor --References--> Concept
+    4  Formula --DependsOn--> Formula
+    3  Model --DependsOn--> Factor
+    3  Model --DependsOn--> Concept
+    3  Metric --References--> Metric
+    3  Pattern --DerivedFrom--> Factor
+    3  Pattern --References--> Factor
+    3  Framework --References--> Concept
+    1  Metric --DependsOn--> Concept
+    1  Procedure --DependsOn--> Procedure
+    1  Model --References--> Model
+    1  Model --References--> Assumption
+    1  Formula --DependsOn--> Assumption
+    1  Procedure --DependsOn--> Model
+    1  Framework --References--> Formula
+    1  Framework --References--> Standard
+
+
+=== PART B: CONNECTIVITY ===
+
+Isolated count: 71
+
+Isolated rate by Root:
+  Portfolio Management                     6/41 = 14.6%
+  Quantitative Methods                     8/46 = 17.4%
+  Corporate Issuers                        6/22 = 27.3%
+  Equity Investments                       6/22 = 27.3%
+  Economics                                1/25 = 4.0%
+  Financial Statement Analysis             10/26 = 38.5%
+  Ethical and Professional Standards       8/20 = 40.0%
+  Derivatives                              10/34 = 29.4%
+  Fixed Income                             6/44 = 13.6%
+  Alternative Investments                  10/22 = 45.5%
+
+Isolated rate by Type:
+  Concept      25/65 = 38.5%
+  Assumption   11/18 = 61.1%
+  Standard     13/18 = 72.2%
+  Theory       0/25 = 0.0%
+  Model        0/24 = 0.0%
+  Formula      0/30 = 0.0%
+  Metric       12/47 = 25.5%
+  Factor       0/12 = 0.0%
+  Procedure    1/35 = 2.9%
+  Framework    8/16 = 50.0%
+  Pattern      1/12 = 8.3%
+
+Components (excluding singletons), with Root/Type composition:
+  n=135  roots={'Quantitative Methods': 31, 'Portfolio Management': 29, 'Economics': 23}  types={'Theory': 21, 'Concept': 19, 'Metric': 19}  members=['A01', 'A02', 'A03', 'A07', 'A10', 'A11', 'C01', 'C02', 'C03']...
+  n=  9  roots={'Fixed Income': 9}  types={'Formula': 3, 'Metric': 3, 'Procedure': 2}  members=['C14', 'F15', 'F16', 'F17', 'ME08', 'ME09', 'ME10', 'PR08', 'PR21']
+  n=  6  roots={'Fixed Income': 6}  types={'Model': 4, 'Assumption': 1, 'Formula': 1}  members=['A15', 'F06', 'M05', 'M06', 'M23', 'M24']
+  n=  5  roots={'Ethical and Professional Standards': 5}  types={'Concept': 2, 'Procedure': 2, 'Standard': 1}  members=['C35', 'C36', 'PR28', 'PR29', 'S03']
+  n=  4  roots={'Financial Statement Analysis': 4}  types={'Procedure': 3, 'Standard': 1}  members=['PR12', 'PR13', 'PR14', 'S01']
+  n=  4  roots={'Corporate Issuers': 4}  types={'Concept': 2, 'Theory': 2}  members=['C38', 'C39', 'T13', 'T14']
+  n=  4  roots={'Quantitative Methods': 4}  types={'Concept': 2, 'Procedure': 1, 'Model': 1}  members=['C50', 'C51', 'M19', 'PR10']
+  n=  4  roots={'Financial Statement Analysis': 4}  types={'Metric': 3, 'Procedure': 1}  members=['ME30', 'ME31', 'ME32', 'PR27']
+  n=  3  roots={'Financial Statement Analysis': 3}  types={'Metric': 2, 'Framework': 1}  members=['FR01', 'ME04', 'ME05']
+  n=  3  roots={'Fixed Income': 3}  types={'Metric': 1, 'Formula': 1, 'Concept': 1}  members=['C16', 'F18', 'ME11']
+  n=  3  roots={'Equity Investments': 2, 'Corporate Issuers': 1}  types={'Formula': 1, 'Model': 1, 'Concept': 1}  members=['C40', 'F11', 'M14']
+  n=  3  roots={'Equity Investments': 2, 'Corporate Issuers': 1}  types={'Concept': 1, 'Metric': 1, 'Theory': 1}  members=['C43', 'ME37', 'T16']
+  n=  3  roots={'Quantitative Methods': 3}  types={'Formula': 1, 'Concept': 1, 'Model': 1}  members=['C46', 'F12', 'M16']
+  n=  3  roots={'Ethical and Professional Standards': 3}  types={'Standard': 1, 'Procedure': 1, 'Framework': 1}  members=['FR12', 'PR15', 'S06']
+  n=  3  roots={'Financial Statement Analysis': 3}  types={'Metric': 2, 'Procedure': 1}  members=['ME26', 'ME27', 'PR26']
+  n=  3  roots={'Alternative Investments': 3}  types={'Framework': 1, 'Concept': 1, 'Pattern': 1}  members=['C62', 'FR15', 'PA12']
+  n=  2  roots={'Fixed Income': 2}  types={'Concept': 1, 'Metric': 1}  members=['C18', 'ME12']
+  n=  2  roots={'Alternative Investments': 2}  types={'Pattern': 1, 'Concept': 1}  members=['C19', 'PA10']
+  n=  2  roots={'Alternative Investments': 2}  types={'Procedure': 1, 'Concept': 1}  members=['C21', 'PR17']
+  n=  2  roots={'Economics': 1, 'Fixed Income': 1}  types={'Concept': 1, 'Pattern': 1}  members=['C31', 'PA05']
+  n=  2  roots={'Corporate Issuers': 2}  types={'Concept': 1, 'Procedure': 1}  members=['C37', 'PR34']
+  n=  2  roots={'Corporate Issuers': 2}  types={'Concept': 1, 'Theory': 1}  members=['C41', 'T15']
+  n=  2  roots={'Ethical and Professional Standards': 2}  types={'Procedure': 1, 'Standard': 1}  members=['PR16', 'S08']
+  n=  2  roots={'Fixed Income': 2}  types={'Formula': 1, 'Procedure': 1}  members=['F19', 'PR07']
+  n=  2  roots={'Derivatives': 2}  types={'Procedure': 1, 'Formula': 1}  members=['F24', 'PR19']
+  n=  2  roots={'Alternative Investments': 2}  types={'Procedure': 1, 'Metric': 1}  members=['ME25', 'PR18']
+  n=  2  roots={'Derivatives': 2}  types={'Formula': 1, 'Procedure': 1}  members=['F28', 'PR31']
+  n=  2  roots={'Portfolio Management': 2}  types={'Procedure': 1, 'Formula': 1}  members=['F29', 'PR32']
+  n=  2  roots={'Portfolio Management': 2}  types={'Formula': 1, 'Procedure': 1}  members=['F30', 'PR33']
+  n=  2  roots={'Portfolio Management': 2}  types={'Metric': 1, 'Concept': 1}  members=['C64', 'ME46']
+  n=  2  roots={'Alternative Investments': 2}  types={'Metric': 1, 'Procedure': 1}  members=['ME47', 'PR30']
+  n=  2  roots={'Ethical and Professional Standards': 2}  types={'Standard': 1, 'Procedure': 1}  members=['PR35', 'S16']
+  n=  2  roots={'Fixed Income': 2}  types={'Concept': 1, 'Framework': 1}  members=['C57', 'FR16']
+  n=  2  roots={'Derivatives': 2}  types={'Concept': 1, 'Pattern': 1}  members=['C59', 'PA11']
+
+Articulation points: 67 -> ['A01', 'A02', 'A07', 'C01', 'C04', 'C05', 'C06', 'C07', 'C08', 'C09', 'C17', 'C28', 'C32', 'C39', 'C43', 'C50', 'C62', 'F01', 'F05', 'FA01', 'FA02', 'FA03', 'FA04', 'FA06', 'FR01', 'M05', 'M07', 'M08', 'M09', 'M12', 'M13', 'M14', 'M16', 'M17', 'M21', 'M22', 'M23', 'ME01', 'ME08', 'ME10', 'ME11', 'ME13', 'ME17', 'ME19', 'ME28', 'ME44', 'PR10', 'PR21', 'PR23', 'PR26', 'PR27', 'PR28', 'PR29', 'S01', 'S03', 'S06', 'T01', 'T02', 'T03', 'T04', 'T05', 'T09', 'T11', 'T14', 'T17', 'T21', 'T22']
+Bridge edges: 132
+    ME01(Sharpe Ratio) -- F02(Sharpe Ratio Formula)
+    ME01(Sharpe Ratio) -- ME43(Sharpe Ratio Confidence Interval)
+    T04(Arbitrage Pricing Theory) -- M11(Arbitrage Pricing Model)
+    C09(Systematic Risk) -- ME39(Beta)
+    ME28(Debt-to-Equity Ratio) -- FR08(Altman Z-Score Framework)
+    C07(Leverage) -- ME28(Debt-to-Equity Ratio)
+    F05(WACC Formula) -- PR25(Economic Value Added Calculation)
+    F05(WACC Formula) -- PR24(Weighted Average Cost of Capital Estimation)
+    PR23(Leveraged Buyout Modeling) -- F05(WACC Formula)
+    C07(Leverage) -- PR23(Leveraged Buyout Modeling)
+    T05(Modigliani-Miller Theorem) -- C07(Leverage)
+    A01(Frictionless Markets) -- T05(Modigliani-Miller Theorem)
+    ME13(Option Delta) -- PR09(Delta Hedging)
+    ME17(Value at Risk) -- ME18(Conditional Value at Risk)
+    M08(Binomial Option Pricing Model) -- M20(Real Options Model)
+    M08(Binomial Option Pricing Model) -- F08(Binomial Tree Pricing Formula)
+    M09(Merton Structural Credit Model) -- PR20(Credit Default Swap Pricing)
+    M09(Merton Structural Credit Model) -- F09(Merton Distance-to-Default Formula)
+    FA01(Value Factor) -- PA03(Value Premium Persistence)
+    FA04(Momentum Factor (Taiwan, thesis)) -- PA09(Taiwan Foreign Capital Flow Co-Movement with Momentum)
+    FA04(Momentum Factor (Taiwan, thesis)) -- PA01(Momentum Reversal in Taiwan Small-Caps)
+    FA03(Momentum Factor (general)) -- PA02(January Effect)
+    FA02(Size Factor) -- PA07(Small-Firm Effect)
+    C06(Correlation) -- ME40(R-Squared)
+    FA06(Low Volatility Factor) -- PA04(Low-Volatility Anomaly)
+    T17(Adaptive Market Hypothesis) -- A11(Mean Reversion)
+    C04(Volatility) -- T17(Adaptive Market Hypothesis)
+    C04(Volatility) -- ME16(Implied Volatility)
+    C04(Volatility) -- PA08(Volatility Clustering)
+    M17(GARCH Volatility Model) -- F13(GARCH(1,1) Formula)
+    C04(Volatility) -- M17(GARCH Volatility Model)
+    FA06(Low Volatility Factor) -- C04(Volatility)
+    M07(Nelson-Siegel Yield Curve Model) -- F07(Nelson-Siegel Curve Formula)
+    C17(Yield Curve) -- M07(Nelson-Siegel Yield Curve Model)
+    C17(Yield Curve) -- T19(Term Structure of Interest Rates Theory)
+    C17(Yield Curve) -- T08(Market Segmentation Theory)
+    T02(Efficient Market Hypothesis) -- T24(Random Walk Theory)
+    M12(Dividend Discount Model) -- A10(Constant Growth Rate)
+    C08(Intrinsic Value) -- ME06(P/E Ratio)
+    M13(Residual Income Model) -- F10(Residual Income Formula)
+    C08(Intrinsic Value) -- M13(Residual Income Model)
+    C08(Intrinsic Value) -- PR22(Comparable Transaction Analysis)
+    C08(Intrinsic Value) -- PR05(Comparable Company Analysis)
+    C08(Intrinsic Value) -- ME36(Price-to-Book Ratio)
+    FA01(Value Factor) -- C08(Intrinsic Value)
+    A07(No Arbitrage) -- T18(Law of One Price)
+    A07(No Arbitrage) -- T23(Purchasing Power Parity)
+    A07(No Arbitrage) -- T25(Uncovered Interest Rate Parity)
+    T09(Put-Call Parity) -- C23(Underlying Asset)
+    A01(Frictionless Markets) -- F23(Futures Fair Value Formula)
+    C05(Diversification) -- T20(Behavioral Portfolio Theory)
+    T03(Modern Portfolio Theory) -- C05(Diversification)
+    M22(IS-LM Model) -- C33(Fiscal Policy)
+    M22(IS-LM Model) -- C29(Gross Domestic Product)
+    C32(Monetary Policy) -- M22(IS-LM Model)
+    T21(Phillips Curve) -- C30(Unemployment Rate)
+    C28(Inflation) -- T21(Phillips Curve)
+    T22(Fisher Effect) -- C10(Time Value of Money)
+    C28(Inflation) -- T22(Fisher Effect)
+    C28(Inflation) -- T12(Quantity Theory of Money)
+    ME44(Real Interest Rate) -- F27(Fisher Equation)
+    C28(Inflation) -- ME44(Real Interest Rate)
+    M21(Taylor Rule Model) -- C28(Inflation)
+    M21(Taylor Rule Model) -- F26(Taylor Rule Formula)
+    C32(Monetary Policy) -- M21(Taylor Rule Model)
+    T11(Rational Expectations Theory) -- C32(Monetary Policy)
+    A02(Rational Investors) -- T11(Rational Expectations Theory)
+    F01(CAPM Equation) -- FR04(CAPM-Based Cost of Equity Framework)
+    T01(CAPM) -- F01(CAPM Equation)
+    ME19(Sortino Ratio) -- F25(Sortino Ratio Formula)
+    ME01(Sharpe Ratio) -- ME03(Information Ratio)
+    C01(Risk) -- FR13(Risk Parity Framework)
+    C01(Risk) -- T10(Prospect Theory)
+    S01(IFRS) -- PR12(Financial Statement Ratio Analysis)
+    S01(IFRS) -- PR14(Lease Accounting under IFRS 16)
+    S01(IFRS) -- PR13(Revenue Recognition under IFRS 15)
+    PR28(Insider Trading Compliance Review) -- C36(Material Nonpublic Information)
+    S03(CFA Code of Ethics and Standards of Professional Conduct) -- PR28(Insider Trading Compliance Review)
+    PR29(Conflict of Interest Disclosure Procedure) -- C35(Conflict of Interest)
+    S03(CFA Code of Ethics and Standards of Professional Conduct) -- PR29(Conflict of Interest Disclosure Procedure)
+    FR01(DuPont Analysis) -- ME05(ROA)
+    ME04(ROE) -- FR01(DuPont Analysis)
+    ME08(Macaulay Duration) -- PR08(Duration-Matching Immunization)
+    ME10(Convexity) -- F17(Convexity Formula)
+    PR21(Bond Immunization) -- ME10(Convexity)
+    ME08(Macaulay Duration) -- PR21(Bond Immunization)
+    ME11(Yield to Maturity) -- F18(Yield to Maturity Formula)
+    C16(Coupon Rate) -- ME11(Yield to Maturity)
+    C18(Credit Spread) -- ME12(Credit Spread Metric)
+    C19(Illiquidity Premium) -- PA10(Illiquidity Premium Realization Lag)
+    C21(Carried Interest) -- PR17(Private Equity Waterfall Distribution)
+    C31(Business Cycle) -- PA05(Credit Spread Widening in Recessions)
+    C37(Working Capital) -- PR34(Working Capital Management)
+    C39(Capital Structure) -- T13(Pecking Order Theory)
+    T14(Trade-Off Theory of Capital Structure) -- C39(Capital Structure)
+    C38(Cost of Capital) -- T14(Trade-Off Theory of Capital Structure)
+    M14(Free Cash Flow to Equity Model) -- F11(FCFE Formula)
+    C40(Free Cash Flow) -- M14(Free Cash Flow to Equity Model)
+    C41(Agency Problem) -- T15(Agency Theory)
+    C43(Dividend Payout) -- T16(Signaling Theory)
+    C43(Dividend Payout) -- ME37(Dividend Yield)
+    M16(Fama-MacBeth Regression Model) -- F12(Fama-MacBeth Two-Pass Regression Formula)
+    C46(Autocorrelation) -- M16(Fama-MacBeth Regression Model)
+    PR10(Backtesting Procedure) -- C51(Survivorship Bias)
+    C50(Look-Ahead Bias) -- PR10(Backtesting Procedure)
+    C50(Look-Ahead Bias) -- M19(Monte Carlo Simulation Model)
+    M05(Vasicek Interest Rate Model) -- M06(Cox-Ingersoll-Ross Model)
+    M23(Ho-Lee Interest Rate Model) -- M24(Black-Derman-Toy Model)
+    M05(Vasicek Interest Rate Model) -- M23(Ho-Lee Interest Rate Model)
+    M05(Vasicek Interest Rate Model) -- F06(Vasicek Short Rate Formula)
+    A15(Flat Term Structure) -- M05(Vasicek Interest Rate Model)
+    S06(GIPS (Global Investment Performance Standards)) -- PR15(GIPS-Compliant Performance Presentation)
+    S06(GIPS (Global Investment Performance Standards)) -- FR12(GIPS Composite Construction Framework)
+    S08(MiFID II) -- PR16(Best Execution Procedure)
+    F19(Forward Rate Formula) -- PR07(Yield Curve Bootstrapping)
+    F24(Swap Rate Formula) -- PR19(Interest Rate Swap Valuation)
+    ME25(Cap Rate) -- PR18(Real Estate Appraisal (Income Approach))
+    PR26(Liquidity Ratio Analysis) -- ME27(Quick Ratio)
+    ME26(Current Ratio) -- PR26(Liquidity Ratio Analysis)
+    PR27(Profitability Ratio Analysis) -- ME31(Operating Margin)
+    PR27(Profitability Ratio Analysis) -- ME32(Net Margin)
+    ME30(Gross Margin) -- PR27(Profitability Ratio Analysis)
+    F28(Covered Interest Rate Parity Formula) -- PR31(Currency Hedging via Forward Contracts)
+    F29(Black-Litterman Formula) -- PR32(Black-Litterman Portfolio Optimization)
+    F30(Kelly Criterion Formula) -- PR33(Kelly Criterion Position Sizing)
+    ME46(Sharpe-to-Drawdown Ratio) -- C64(Drawdown)
+    ME47(ESG Score) -- PR30(ESG Integration Screening)
+    PR35(Anti-Money Laundering Screening) -- S16(FATCA)
+    C57(Roll-Down Return) -- FR16(Liquidity Ladder Framework)
+    C59(Contango) -- PA11(Contango Roll Yield Drag)
+    C62(ESG Integration) -- FR15(ESG Materiality Framework)
+    C62(ESG Integration) -- PA12(ESG Premium Persistence)
+
+Giant component size: 135 / 302 = 44.7%
+
+Most efficient reconnection targets (non-giant components, by size):
+  component n=9, root(s)={'Fixed Income': 9}, members=['C14', 'F15', 'F16', 'F17', 'ME08', 'ME09', 'ME10', 'PR08', 'PR21']  -> connecting with 1 edge adds 9 nodes to giant, new share=47.7%
+  component n=6, root(s)={'Fixed Income': 6}, members=['A15', 'F06', 'M05', 'M06', 'M23', 'M24']  -> connecting with 1 edge adds 6 nodes to giant, new share=46.7%
+  component n=5, root(s)={'Ethical and Professional Standards': 5}, members=['C35', 'C36', 'PR28', 'PR29', 'S03']  -> connecting with 1 edge adds 5 nodes to giant, new share=46.4%
+  component n=4, root(s)={'Financial Statement Analysis': 4}, members=['PR12', 'PR13', 'PR14', 'S01']  -> connecting with 1 edge adds 4 nodes to giant, new share=46.0%
+  component n=4, root(s)={'Corporate Issuers': 4}, members=['C38', 'C39', 'T13', 'T14']  -> connecting with 1 edge adds 4 nodes to giant, new share=46.0%
+  component n=4, root(s)={'Quantitative Methods': 4}, members=['C50', 'C51', 'M19', 'PR10']  -> connecting with 1 edge adds 4 nodes to giant, new share=46.0%
+  component n=4, root(s)={'Financial Statement Analysis': 4}, members=['ME30', 'ME31', 'ME32', 'PR27']  -> connecting with 1 edge adds 4 nodes to giant, new share=46.0%
+  component n=3, root(s)={'Financial Statement Analysis': 3}, members=['FR01', 'ME04', 'ME05']  -> connecting with 1 edge adds 3 nodes to giant, new share=45.7%
+  component n=3, root(s)={'Fixed Income': 3}, members=['C16', 'F18', 'ME11']  -> connecting with 1 edge adds 3 nodes to giant, new share=45.7%
+  component n=3, root(s)={'Equity Investments': 2, 'Corporate Issuers': 1}, members=['C40', 'F11', 'M14']  -> connecting with 1 edge adds 3 nodes to giant, new share=45.7%
+  component n=3, root(s)={'Equity Investments': 2, 'Corporate Issuers': 1}, members=['C43', 'ME37', 'T16']  -> connecting with 1 edge adds 3 nodes to giant, new share=45.7%
+  component n=3, root(s)={'Quantitative Methods': 3}, members=['C46', 'F12', 'M16']  -> connecting with 1 edge adds 3 nodes to giant, new share=45.7%
+  component n=3, root(s)={'Ethical and Professional Standards': 3}, members=['FR12', 'PR15', 'S06']  -> connecting with 1 edge adds 3 nodes to giant, new share=45.7%
+  component n=3, root(s)={'Financial Statement Analysis': 3}, members=['ME26', 'ME27', 'PR26']  -> connecting with 1 edge adds 3 nodes to giant, new share=45.7%
+  component n=3, root(s)={'Alternative Investments': 3}, members=['C62', 'FR15', 'PA12']  -> connecting with 1 edge adds 3 nodes to giant, new share=45.7%
+  component n=2, root(s)={'Fixed Income': 2}, members=['C18', 'ME12']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Alternative Investments': 2}, members=['C19', 'PA10']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Alternative Investments': 2}, members=['C21', 'PR17']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Economics': 1, 'Fixed Income': 1}, members=['C31', 'PA05']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Corporate Issuers': 2}, members=['C37', 'PR34']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Corporate Issuers': 2}, members=['C41', 'T15']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Ethical and Professional Standards': 2}, members=['PR16', 'S08']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Fixed Income': 2}, members=['F19', 'PR07']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Derivatives': 2}, members=['F24', 'PR19']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Alternative Investments': 2}, members=['ME25', 'PR18']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Derivatives': 2}, members=['F28', 'PR31']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Portfolio Management': 2}, members=['F29', 'PR32']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Portfolio Management': 2}, members=['F30', 'PR33']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Portfolio Management': 2}, members=['C64', 'ME46']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Alternative Investments': 2}, members=['ME47', 'PR30']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Ethical and Professional Standards': 2}, members=['PR35', 'S16']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Fixed Income': 2}, members=['C57', 'FR16']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+  component n=2, root(s)={'Derivatives': 2}, members=['C59', 'PA11']  -> connecting with 1 edge adds 2 nodes to giant, new share=45.4%
+=== BASIC ===
+Total nodes: 302
+Total edges: 233
+Missing targets: None
+Missing sources: None
+Self-loops: None
+Duplicate edges: None
+DAG check: No cycles - valid DAG
+
+=== OBJECT DISTRIBUTION ===
+By Type: {'Concept': 65, 'Metric': 47, 'Procedure': 35, 'Formula': 30, 'Theory': 25, 'Model': 24, 'Assumption': 18, 'Standard': 18, 'Framework': 16, 'Factor': 12, 'Pattern': 12}
+By Root: {'Quantitative Methods': 46, 'Fixed Income': 44, 'Portfolio Management': 41, 'Derivatives': 34, 'Financial Statement Analysis': 26, 'Economics': 25, 'Corporate Issuers': 22, 'Equity Investments': 22, 'Alternative Investments': 22, 'Ethical and Professional Standards': 20}
+
+=== RELATIONSHIP FREQUENCY ===
+By edge type: {'DependsOn': 110, 'References': 112, 'DerivedFrom': 3, 'Implements': 8}
+Top 15 type-pairs:
+   28  Theory --References--> Concept
+   23  Metric --References--> Concept
+   17  Theory --DependsOn--> Assumption
+   13  Model --DependsOn--> Formula
+   12  Model --References--> Concept
+   12  Factor --DependsOn--> Procedure
+   12  Factor --DependsOn--> Metric
+   12  Procedure --References--> Concept
+   11  Metric --DependsOn--> Formula
+    9  Procedure --DependsOn--> Formula
+    8  Procedure --Implements--> Standard
+    7  Model --DependsOn--> Assumption
+    7  Procedure --DependsOn--> Metric
+    6  Model --DependsOn--> Model
+    6  Framework --References--> Metric
+Semantic tags: {'informal-F1': 1, 'semantic-extends': 11, 'semantic-evaluatedby': 12, 'semantic-standardimpl': 8}
+
+=== DEGREE DISTRIBUTION (undirected) ===
+  degree 0: 71 objects
+  degree 1: 122 objects
+  degree 2: 57 objects
+  degree 3: 22 objects
+  degree 4: 14 objects
+  degree 5: 7 objects
+  degree 6: 2 objects
+  degree 7: 2 objects
+  degree 8: 3 objects
+  degree 9: 1 objects
+  degree 14: 1 objects
+Mean degree: 1.54
+Max degree: 14
+Isolated objects: 71 -> ['S02', 'FR02', 'FR03', 'C12', 'C13', 'C15', 'C20', 'C22', 'C25', 'C26', 'C27', 'C34', 'C42', 'C44', 'C45', 'C47', 'C48', 'C49', 'C52', 'C53', 'C54', 'C55', 'A04', 'A05', 'A06', 'A08', 'A09', 'A12', 'A13', 'A14', 'S04', 'S05', 'S07', 'S09', 'S10', 'S11', 'S12', 'S13', 'S14', 'S15', 'ME21', 'ME22', 'ME23', 'ME24', 'ME29', 'ME33', 'ME34', 'ME35', 'ME38', 'ME41', 'ME42', 'PR11', 'FR05', 'FR06', 'FR07', 'FR09', 'FR11', 'PA06', 'ME48', 'C56', 'C58', 'C60', 'C61', 'C63', 'C65', 'A16', 'A17', 'A18', 'S17', 'S18', 'FR14']
+
+=== TOP 15 BY DEGREE CENTRALITY (undirected degree) ===
+   14  ME07   Information Coefficient (IC) [Metric]
+    9  PR06   Long-Short Factor Portfolio Construction [Procedure]
+    8  C01    Risk [Concept]
+    8  C08    Intrinsic Value [Concept]
+    8  A07    No Arbitrage [Assumption]
+    7  A01    Frictionless Markets [Assumption]
+    7  T01    CAPM [Theory]
+    6  C02    Return [Concept]
+    6  A02    Rational Investors [Assumption]
+    5  C04    Volatility [Concept]
+    5  C06    Correlation [Concept]
+    5  M01    Fama-French Three-Factor Model [Model]
+    5  ME01   Sharpe Ratio [Metric]
+    5  FA01   Value Factor [Factor]
+    5  C17    Yield Curve [Concept]
+
+=== TOP 15 BY BETWEENNESS CENTRALITY ===
+   3112.83  A01    Frictionless Markets [Assumption]
+   3106.19  T01    CAPM [Theory]
+   2333.95  A02    Rational Investors [Assumption]
+   2324.13  ME07   Information Coefficient (IC) [Metric]
+   1856.04  M01    Fama-French Three-Factor Model [Model]
+   1841.42  FA01   Value Factor [Factor]
+   1740.11  T03    Modern Portfolio Theory [Theory]
+   1680.00  T11    Rational Expectations Theory [Theory]
+   1603.00  C32    Monetary Policy [Concept]
+   1400.92  C06    Correlation [Concept]
+   1397.50  C08    Intrinsic Value [Concept]
+   1176.38  T09    Put-Call Parity [Theory]
+   1133.00  M21    Taylor Rule Model [Model]
+   1120.35  M02    Black-Scholes Model [Model]
+   1091.44  C01    Risk [Concept]
+
+=== CONNECTED COMPONENTS ===
+Number of components: 105
+Largest component size: 135 (44.7% of graph)
+Component sizes: [135, 9, 6, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2]
+Fully isolated objects: 71
+
+=== COMMUNITY STRUCTURE (label propagation, giant component only) ===
+Communities found: 29
+Community sizes (top 10): [18, 15, 11, 10, 8, 5, 5, 5, 4, 4]
+  Community (n=18): dominant roots=[('Portfolio Management', 11), ('Economics', 4), ('Quantitative Methods', 3)], dominant types=[('Theory', 5), ('Concept', 4), ('Model', 4)]
+  Community (n=15): dominant roots=[('Derivatives', 5), ('Fixed Income', 5), ('Economics', 4)], dominant types=[('Theory', 6), ('Model', 3), ('Concept', 2)]
+  Community (n=11): dominant roots=[('Quantitative Methods', 9), ('Fixed Income', 2)], dominant types=[('Factor', 7), ('Metric', 2), ('Procedure', 1)]
+  Community (n=10): dominant roots=[('Portfolio Management', 9), ('Economics', 1)], dominant types=[('Metric', 4), ('Formula', 2), ('Concept', 1)]
+  Community (n=8): dominant roots=[('Equity Investments', 7), ('Corporate Issuers', 1)], dominant types=[('Procedure', 3), ('Metric', 2), ('Model', 1)]
+  Community (n=5): dominant roots=[('Quantitative Methods', 5)], dominant types=[('Pattern', 2), ('Procedure', 2), ('Factor', 1)]
