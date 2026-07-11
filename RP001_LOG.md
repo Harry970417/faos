@@ -78,3 +78,17 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 **Reason:** No dedicated market-cap-history dataset was checked this session; shares outstanding is a reasonable approximation since share count changes far less often than price.
 **Evidence:** TWSE OpenAPI `t187ap03_L` confirmed to return real, complete shares-outstanding data for all 50 sample stocks (0% missing after join).
 **Impact:** F_INT_02 (size interaction) does not reflect intra-period share count changes (buybacks, capital increases) — acceptable approximation for this construction pass, should be revisited if any sample stock had a material capital event during 2024-07 to 2026-07.
+
+---
+
+**Decision:** F_INST_05/06/07 flagged as one redundancy cluster for Milestone 1C reporting, not three independent features.
+**Reason:** Real, not assumed — mechanically expected given their construction, now confirmed empirically.
+**Evidence:** Spearman correlation 0.88-0.91 between all three pairs, computed on the real 24,535-row panel.
+**Impact:** Milestone 1C IC/ICIR reporting must treat this cluster as one signal group, or risk overstating how many independent predictive features exist.
+
+---
+
+**Decision:** Trading-calendar validation flagged as required before Milestone 1C, not yet implemented.
+**Reason:** Found a real mis-dated institutional data row (2026-06-19, a confirmed non-trading day with genuine non-zero buy/sell values) in the Merge Loss Audit. It didn't reach the current feature panel, but only incidentally (inner join with price happened to drop it), not by deliberate design.
+**Evidence:** Price data confirms zero rows for 2026-06-19 across all 50 stocks (clean holiday gap, 06-18 to 06-22); institutional data for the same date contains real, substantial buy/sell figures for 49 of 50 stocks.
+**Impact:** This is a data-integrity leakage risk distinct from the code-level leakage already empirically ruled out (rolling-window truncation test passed cleanly). Must be closed with an explicit safeguard, not left to incidental protection, before Milestone 1C results are treated as final.
