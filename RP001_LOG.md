@@ -162,3 +162,10 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 **Reason:** Full research program (Milestones 0A through 1C-R) applied consistently -- no feature reached unconditional Research-Grade status.
 **Evidence:** Full decision table in RP001_FEATURE_DECISION_TABLE.md; every cell traceable to a specific prior milestone's computation.
 **Impact:** RP-001's factor-research phase concludes with one conditional signal, one secondary candidate, and a fully-documented, dead-end interaction-feature family (all seven confirmed artifacts) -- itself a legitimate, evidenced research conclusion, not a null result to be hidden.
+
+---
+
+**Decision:** RP-001 Exploratory Factor Research marked Complete; RP-001 overall remains Open pending Phase 2A. Two parallel workstreams established: Research Report v0.1 (documenting exploratory results as exploratory, not confirmatory) and Phase 2A Confirmatory Protocol (pre-registered, not yet executed).
+**Reason:** The break/volatility/liquidity conditions were all discovered on the same 50-stock sample used to test them -- internal robustness testing reduces but does not eliminate this concern, so a genuinely independent confirmatory pass is required before treating any finding as final.
+**Evidence:** N/A -- this is a governance/sequencing decision, not an empirical finding.
+**Impact:** Research Report v0.1 explicitly states its "Confirmatory" findings category is empty by design. Phase 2A Protocol locks F_INST_01's definition, normalization, horizon, break interval, liquidity/volatility definitions, and statistical methods before any full-universe data is touched -- deviations require pre-registration per RP001_DEVIATION_POLICY.md, not post-hoc adjustment. No full-universe data pulled yet; execution awaits Protocol approval.
