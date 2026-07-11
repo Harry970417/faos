@@ -148,3 +148,17 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 **Reason:** Requested full test inventory, not selective reporting of significant results.
 **Evidence:** 9/56 tests survive FDR correction, including F_INT_03 (t+2,t+3,t+5) and F_INT_01 (t+5) -- both separately shown to be artifacts via neutralization/residualization.
 **Impact:** Established as a standing principle for this project: statistical significance surviving multiple-testing correction is necessary but not sufficient -- mechanism-level tests (neutralization, residualization) are required in addition, not as a substitute.
+
+---
+
+**Decision:** F_INT_01, F_INT_02, F_INT_03 (aggregate-based interactions) tested via joint residualization against their own constituents for the first time at Milestone 1D, closing a gap the prior rounds had only partially addressed (sector/mcap neutrality had been tested, not joint-residualization against the interaction's own two components).
+**Reason:** Your explicit rule: incomplete joint-residualization tests must be marked Inconclusive/Pending, not assumed to transfer from a similar feature's result.
+**Evidence:** F_INT_01 residual t+5 IC -0.004 (t=-0.42); F_INT_02 residual -0.003 (t=-0.38); F_INT_03 residual -0.004 (t=-0.46) -- all collapse to zero, same pattern as the four features already tested in Milestone 1C-R.
+**Impact:** All seven interaction features (F_INT_01 through F_INT_07) now uniformly Confirmed Artifact -- no exceptions, no feature retained as Research-Grade due to raw IC or FDR survival alone. F_INT_03's FDR-significant raw IC and F_INT_01's FDR-significant raw IC are both now documented as artifacts despite passing the purely statistical bar.
+
+---
+
+**Decision:** RP-001 Feature Freeze completed at Milestone 1D. F_INST_01 is the only feature reaching Frozen status, and only as Frozen-Conditional with six permanent, mandatory conditions written into FEATURE_REGISTRY.md.
+**Reason:** Full research program (Milestones 0A through 1C-R) applied consistently -- no feature reached unconditional Research-Grade status.
+**Evidence:** Full decision table in RP001_FEATURE_DECISION_TABLE.md; every cell traceable to a specific prior milestone's computation.
+**Impact:** RP-001's factor-research phase concludes with one conditional signal, one secondary candidate, and a fully-documented, dead-end interaction-feature family (all seven confirmed artifacts) -- itself a legitimate, evidenced research conclusion, not a null result to be hidden.

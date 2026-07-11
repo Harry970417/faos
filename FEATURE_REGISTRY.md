@@ -33,24 +33,37 @@ Governs all 11 features from RP001_FEATURE_SPECIFICATION.md. Built and tested on
 
 This registry and its build reflect the 50-stock characterization sample. Extending to RP-001's actual research universe (full TWSE/TPEx, survivorship-bias-free, per RP001_RESEARCH_DESIGN.md) requires the delisted-stock integration and full-universe pull that Milestone 0A confirmed is *available* (`TaiwanStockDelisting`, 337 rows) but not yet *executed*. That's a Milestone 1A follow-up, not done here.
 
-## Feature Status — as of Milestone 1C-R (interim, no Freeze)
+## Feature Status — FROZEN as of Milestone 1D (Feature Freeze Review)
 
-Status reflects IC/ICIR diagnostics (1C), mechanism analysis (1C+), and robustness/confirmation testing (1C-R) — see `RP001_MILESTONE_1C_R_ROBUSTNESS.md` for full reasoning.
+Freeze does not mean permanently valid, tradeable, deployable, or performance-validated — it means the research determination below is stable under current sample/methods/robustness tests and will not change by design preference alone; only new evidence can revise it. Full basis in `RP001_MILESTONE_1D_FEATURE_FREEZE_REVIEW.md` and `RP001_FEATURE_DECISION_TABLE.md`.
 
-| Feature | Status | Basis |
+| Feature | Frozen Status | Basis |
 |---|---|---|
-| F_INST_01_foreign | **Conditional Candidate** (recommended for 1D Freeze Review) | Robust across FDR correction, break-detection, and neutralization — but valid only pre-break (~through Aug–Oct 2025), low-vol regime, illiquid/mid-liquidity names. Never unconditional. |
-| F_INST_07_flow_to_volume | **Secondary Conditional Candidate** | Retains incremental info beyond F_INST_05 (Milestone 1C), but its own structural break not independently confirmed (permutation p=0.171) |
-| F_INST_02_trust | Rejected | No evidence of predictive power at any horizon tested |
-| F_INST_03_dealer_self | Experimental (insufficient evidence either way) | Marginal, only significant at t+5 |
-| F_INST_04_dealer_hedge | Rejected | No evidence of predictive power at any horizon tested |
-| F_INST_05_aggregate | Deprecated (reconstruction candidate) | Dilutes F_INST_01's real signal by summing in non-informative categories |
-| F_INST_06_value_proxy | Deprecated | Confirmed redundant with F_INST_05 via incremental-IC test (residual IC ≈ 0.002) |
-| F_INST_08_streak | Experimental (insufficient evidence either way) | Weak, marginal only at t+5 |
-| F_INST_09_change_rate | Rejected | No evidence of predictive power at any horizon tested |
-| F_INT_01 / F_INT_07 (Foreign × Momentum) | **Experimental** (per explicit instruction) | Confirmed Additive Recombination Artifact via residualization — strongest raw numbers in the study, fully explained by its two components, sign-flips post-break |
-| F_INT_02_flow_x_size | Artifact / Redesign Required | Sector-neutral IC flips sign |
-| F_INT_03_flow_x_liquidity | Artifact / Redesign Required | Survives FDR correction on raw IC, but sector-neutralization explains away 75% — statistical survival is not sufficient on its own |
-| F_INT_04_foreign_x_liquidity | **Confirmed Artifact** | Residual IC ≈ 0 after joint residualization |
-| F_INT_05_foreign_x_volatility | Inconclusive, leaning Artifact | Residual IC consistently negative (not just null) across every cut tested |
-| F_INT_06_foreign_x_size | **Confirmed Artifact** | Residual IC collapses cleanly to ~0 across every cut tested |
+| F_INST_01_foreign | **Frozen — Conditional** (the only Research-Grade-tier result in the study) | See mandatory conditions below |
+| F_INST_07_flow_to_volume | **Secondary Candidate** | Retains incremental info beyond F_INST_05, but own structural break not permutation-confirmed (p=0.171) — proximity to F_INST_01's break date is not treated as independent confirmation |
+| F_INST_02_trust | **Rejected** | No evidence of predictive power at any horizon tested |
+| F_INST_03_dealer_self | **Inconclusive** | Marginal, only significant at t+5, not further tested |
+| F_INST_04_dealer_hedge | **Rejected** | No evidence of predictive power at any horizon tested |
+| F_INST_05_aggregate | **Deprecated** | Dilutes F_INST_01's real signal by summing in non-informative categories |
+| F_INST_06_value_proxy | **Deprecated** | Confirmed redundant with F_INST_05 (residual IC ≈ 0.002) |
+| F_INST_08_streak | **Inconclusive** | Weak, marginal only at t+5, not further tested |
+| F_INST_09_change_rate | **Rejected** | No evidence of predictive power at any horizon tested |
+| F_INT_01 (aggregate × momentum) | **Confirmed Artifact** | Residual vs. both own constituents ≈ 0 (tested Milestone 1D) |
+| F_INT_02 (aggregate × size) | **Confirmed Artifact** | Residual vs. both own constituents ≈ 0 (tested Milestone 1D) |
+| F_INT_03 (aggregate × liquidity) | **Confirmed Artifact** | Residual vs. both own constituents ≈ 0 (tested Milestone 1D) — survives FDR on raw IC, artifact regardless |
+| F_INT_04 (foreign × liquidity) | **Confirmed Artifact** | Residual ≈ 0 |
+| F_INT_05 (foreign × volatility) | **Confirmed Artifact** | Residual consistently negative, not positive — raw signal not real |
+| F_INT_06 (foreign × size) | **Confirmed Artifact** | Residual collapses cleanly to ~0 |
+| F_INT_07 (foreign × momentum) | **Experimental** (per explicit instruction; independently evidenced as artifact) | Strongest raw numbers in the study, fully collapses under residualization, sign-flips post-break |
+
+### F_INST_01 — mandatory permanent conditions (never omit, never summarize away)
+
+1. Effect concentrated before the structural-break interval (approx. through Q3 2025)
+2. Post-break IC is approximately zero, not merely smaller
+3. Stronger in illiquid / mid-liquidity names; weak in liquid, large-cap names
+4. The low-volatility result is not independent of the break (Low-vol & Post-break IC ≈ 0)
+5. Cannot be described as universally stable
+6. Cannot be described as a confirmed causal informed-trading mechanism — "consistent with," never "demonstrates"
+
+**Acceptable wording:** *"Foreign investor net flow showed conditional predictive power for cross-sectional returns, concentrated in a pre-break interval (through approximately Q3 2025), low-volatility regimes, and illiquid-to-mid-liquidity names."*
+**Prohibited wording:** "Foreign flow predicts returns" (unqualified); any causal claim; "robust factor" applied to any interaction feature; "statistically significant" used as a synonym for "real" or "tradeable."
