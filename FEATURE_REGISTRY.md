@@ -32,3 +32,25 @@ Governs all 11 features from RP001_FEATURE_SPECIFICATION.md. Built and tested on
 ## Full-universe scale-up — explicitly deferred
 
 This registry and its build reflect the 50-stock characterization sample. Extending to RP-001's actual research universe (full TWSE/TPEx, survivorship-bias-free, per RP001_RESEARCH_DESIGN.md) requires the delisted-stock integration and full-universe pull that Milestone 0A confirmed is *available* (`TaiwanStockDelisting`, 337 rows) but not yet *executed*. That's a Milestone 1A follow-up, not done here.
+
+## Feature Status — as of Milestone 1C-R (interim, no Freeze)
+
+Status reflects IC/ICIR diagnostics (1C), mechanism analysis (1C+), and robustness/confirmation testing (1C-R) — see `RP001_MILESTONE_1C_R_ROBUSTNESS.md` for full reasoning.
+
+| Feature | Status | Basis |
+|---|---|---|
+| F_INST_01_foreign | **Conditional Candidate** (recommended for 1D Freeze Review) | Robust across FDR correction, break-detection, and neutralization — but valid only pre-break (~through Aug–Oct 2025), low-vol regime, illiquid/mid-liquidity names. Never unconditional. |
+| F_INST_07_flow_to_volume | **Secondary Conditional Candidate** | Retains incremental info beyond F_INST_05 (Milestone 1C), but its own structural break not independently confirmed (permutation p=0.171) |
+| F_INST_02_trust | Rejected | No evidence of predictive power at any horizon tested |
+| F_INST_03_dealer_self | Experimental (insufficient evidence either way) | Marginal, only significant at t+5 |
+| F_INST_04_dealer_hedge | Rejected | No evidence of predictive power at any horizon tested |
+| F_INST_05_aggregate | Deprecated (reconstruction candidate) | Dilutes F_INST_01's real signal by summing in non-informative categories |
+| F_INST_06_value_proxy | Deprecated | Confirmed redundant with F_INST_05 via incremental-IC test (residual IC ≈ 0.002) |
+| F_INST_08_streak | Experimental (insufficient evidence either way) | Weak, marginal only at t+5 |
+| F_INST_09_change_rate | Rejected | No evidence of predictive power at any horizon tested |
+| F_INT_01 / F_INT_07 (Foreign × Momentum) | **Experimental** (per explicit instruction) | Confirmed Additive Recombination Artifact via residualization — strongest raw numbers in the study, fully explained by its two components, sign-flips post-break |
+| F_INT_02_flow_x_size | Artifact / Redesign Required | Sector-neutral IC flips sign |
+| F_INT_03_flow_x_liquidity | Artifact / Redesign Required | Survives FDR correction on raw IC, but sector-neutralization explains away 75% — statistical survival is not sufficient on its own |
+| F_INT_04_foreign_x_liquidity | **Confirmed Artifact** | Residual IC ≈ 0 after joint residualization |
+| F_INT_05_foreign_x_volatility | Inconclusive, leaning Artifact | Residual IC consistently negative (not just null) across every cut tested |
+| F_INT_06_foreign_x_size | **Confirmed Artifact** | Residual IC collapses cleanly to ~0 across every cut tested |

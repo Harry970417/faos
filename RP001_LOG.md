@@ -120,3 +120,31 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 **Reason:** CUSUM break detection + Welch t-test, not a visual read of a declining trend line.
 **Evidence:** Pre-break mean IC 0.052 vs post-break -0.008, t=3.41, p=0.0007.
 **Impact:** Any future Freeze recommendation for F_INST_01 must carry this break as an explicit condition (era-specific, not unconditional), plus the low-volatility-regime dependence found in the same milestone.
+
+---
+
+**Decision:** Structural break reclassified from a single-date finding to a break INTERVAL (late Aug - late Oct 2025), and confirmed via a properly-corrected unknown-breakpoint test, not a single post-hoc Welch t-test.
+**Reason:** Original 1C+ test picked one candidate date and ran one t-test on it -- vulnerable to the "break date chosen from the same data" critique.
+**Evidence:** Quandt-Andrews sup-Wald test (self-implemented; ruptures/Bai-Perron failed to build, no C++ compiler in this environment) with permutation p-value (2000 reps): p=0.0105 for F_INST_01, properly accounting for the search across all candidate dates. Break-date sensitivity confirms the qualitative conclusion holds across +/-40 trading days. Two independent rolling windows (40d, 90d) show the identical persistent shape.
+**Impact:** F_INST_01's Freeze candidacy must state a break interval, not a precise date, and must not be presented as unconditional.
+
+---
+
+**Decision:** Low-volatility effect and structural break determined to be intertwined, not independent findings.
+**Reason:** Double-sort test, not assumption carried over from Milestone 1C+.
+**Evidence:** Low-vol & Post-break cell: mean IC = -0.004 (t=-0.17) -- the low-vol effect vanishes once you move past the break, even though volatility itself stayed low in parts of the post-break period.
+**Impact:** Milestone 1C+'s framing (three separate findings: break, low-vol, liquidity) revised to one primary mechanism (the break) with volatility and liquidity as within-regime modulators, not free-standing effects.
+
+---
+
+**Decision:** All four tested Foreign-interaction features (Liquidity, Volatility, Size, Momentum) confirmed or strongly suspected as additive recombination artifacts, none show genuine incremental interaction.
+**Reason:** Residualization against BOTH constituent main effects simultaneously (not one at a time), for every interaction, not just the ones that looked suspicious.
+**Evidence:** F_INT_04 residual IC -0.005 (confirmed 1C+); F_INT_06 residual IC -0.002 to -0.004 across all cuts (confirmed this round); F_INT_07/F_INT_01 residual IC 0.0004 at t+5 with a sign flip post-break (confirmed this round, despite having the strongest raw numbers in the entire study); F_INT_05 residual IC consistently negative across every cut (inconclusive-leaning-artifact).
+**Impact:** No interaction feature is a Freeze candidate. F_INT_01's Experimental status is now directly evidenced rather than just a cautious default.
+
+---
+
+**Decision:** Multiple testing register built (56 tests, BH-FDR at q<0.10); F_INT_03 and F_INT_01 flagged as passing statistical correction while independently confirmed as mechanism-level artifacts.
+**Reason:** Requested full test inventory, not selective reporting of significant results.
+**Evidence:** 9/56 tests survive FDR correction, including F_INT_03 (t+2,t+3,t+5) and F_INT_01 (t+5) -- both separately shown to be artifacts via neutralization/residualization.
+**Impact:** Established as a standing principle for this project: statistical significance surviving multiple-testing correction is necessary but not sufficient -- mechanism-level tests (neutralization, residualization) are required in addition, not as a substitute.
