@@ -1,5 +1,7 @@
 # RP-001 Phase 2A.1: Full-Universe Availability Audit
 
+> **Correction (logged during Phase 2A.2 Batch 1, do not delete or edit the sections below — this note stands alongside them for the audit trail):** the "Institutional-flow category schema change" finding below concluded the `Dealer` → `Dealer_self`+`Dealer_Hedging` split was a clean, universal, one-time cutover on 2014-12-01, based on a single-stock check (1101 only). Batch 1 of Phase 2A.2 found stock 1342 showing undifferentiated `Dealer` rows again from **2019-12-17 to 2020-10-26** — five years after the claimed cutover. **The "clean one-time cutover, non-material, does not require escalation" conclusion below is retracted.** This is now an open, unresolved historical-definition-drift question — see `RP001_LOG.md` (Phase 2A.2 Batch 1 STOP entry) and `RP001_PHASE2A_DEVIATION_LOG.md` for current status. Two other single-stock-based conclusions in this document (missing-value semantics: "explicit zero encoding," based on 1101; the ~2.5-year pre-listing gap being the expected magnitude, based on 6986) were also contradicted by Batch 1 evidence from other stocks (1213, 1256) and should not be relied on as universal until re-verified at scale.
+
 **Status: Complete.** All 10 items verified with live API calls executed during this audit (2026-07-11), not assumed from documentation or memory. Raw evidence retained under `rp001_data/` (see file references per item).
 
 ## 1. TWSE/TPEx historical listed stock list availability

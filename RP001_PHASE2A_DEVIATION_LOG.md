@@ -15,3 +15,49 @@ Format per `RP001_DEVIATION_POLICY.md`: **Deviation / Original Spec / Reason / D
 **Impact on Which Hypothesis:** Universe construction only (all five hypotheses inherit whichever universe is built). Does not touch F_INST_01's definition, rank normalization, return horizon, or the break interval boundary — does not trigger the Escalation clause. Practical effect: some stocks that were under disposition on some historical dates within the confirmatory test window may not be excluded on exactly those dates, because the only verifiable proxy is each stock's most recent disposition announcements (if any historical announcement archive can be located via MOPS 已公告注意/處置股票 pages during Phase 2A.2 execution) rather than a complete day-by-day flag. This is a coverage-completeness gap in a universe *exclusion* rule, not a fabrication risk — worst case, a small number of disposition-period stock-days remain in the universe that should have been excluded, which would work against finding the pre-registered effects (conservative direction), not toward manufacturing them.
 
 **Resolution status:** Open. To be revisited at the start of Phase 2A.2 — if a genuine historical disposition archive is found (e.g., via MOPS T05ST domain, not yet checked), this deviation is superseded; if not, this snapshot-proxy approach proceeds as the logged deviation.
+
+---
+
+**Deviation D-02: Delisted-stock listing dates approximated via first price-observation date, not a verified official listing-date field.**
+
+**Original Spec:** `RP001_FULL_UNIVERSE_SPEC.md` — daily universe requires "listing_date ≤ t < delisting_date," using "listing-date information from TWSE company info."
+
+**Reason:** Discovered while building the Phase 2A.2 acquisition universe list (before any batch download): TWSE `t187ap03_L` (1,089 rows) and TPEx `mopsfin_t187ap03_O` (891 rows) are **current-listing-only snapshots** — verified by direct set check, **0 of the 337 `TaiwanStockDelisting` stock_ids appear in either registry**. FinMind's `TaiwanStockInfo` covers only 230/337 delisted stock_ids, and its `date` field was already established as unreliable for listing-date purposes (Availability Audit Item 1); spot-check on stock 4987 confirms its `date` value (2026-05-23) sits 6 days *before* its actual delisting date (2026-05-29), consistent with a last-trading/status-change date, not a listing date. No source located during this audit gives verified listing dates for delisted stocks.
+
+**Reason this is a legitimate deviation, not a construction impossibility:** `TaiwanStockPrice`'s first available observation date for a given stock_id is a workable proxy for its listing date — available for all 337 delisted stocks (price history is not gated by the same registry limitation). This proxy carries the same caveat already documented for currently-listed stocks in `RP001_DAILY_UNIVERSE_VALIDATION.md` (pre-listing/興櫃 trading may predate official listing under the same stock_id for some names) — for delisted stocks this caveat is applied without the cross-check against an official listing_date field, since none exists for this subset.
+
+**Decided Before or After Seeing Results:** Before — discovered and logged during acquisition-universe construction, before any Batch 1 download.
+
+**Impact on Which Hypothesis:** Universe construction only, and only for the minimum-120-trading-day-history gate and initial-eligibility-date determination of delisted stocks specifically (currently-listed stocks are unaffected — their listing dates remain verified via the registries, Availability Audit Item 1). Does not touch F_INST_01's definition, rank normalization, return horizon, or the break interval boundary. Practical effect: a delisted stock's entry into the daily universe may be dated slightly earlier than its true official listing date (if pre-listing trading data exists under its stock_id), which — like D-01 — biases toward over-inclusion rather than fabrication, and only affects the stock's eligibility window, not its price/return values on any given day.
+
+**Resolution status:** Open, proceeding with the price-first-observation proxy for all 337 delisted stocks, flagged as `listing_date_source = price_proxy` (vs. `registry` for the 1,980 currently-listed stocks) in the acquisition universe manifest, for full auditability.
+
+---
+
+**Deviation D-03: ETF/ETN identification for delisted stocks via stock-code-prefix heuristic, not registry absence (since registries exclude ALL delisted entities regardless of asset class).**
+
+**Original Spec:** `RP001_FULL_UNIVERSE_SPEC.md` — ETFs and ETNs excluded from the universe. For currently-listed stocks, "absent from the TWSE/TPEx company registry" is a verified, structural ETF filter (Availability Audit Item 5). That mechanism does not work for delisted entities, because the registries exclude delisted stocks of *every* asset class, not just delisted ETFs.
+
+**Reason:** 62 of the 337 delisted stock_ids follow Taiwan's conventional ETF/ETN numbering pattern (codes starting with `0`, e.g. `00732`, `00747B`, `0081`) — consistent with the same prefix convention used by every currently-listed ETF checked in this study (e.g., `0050`). This is a naming-convention heuristic, not a field-level confirmation (no per-stock "is this an ETF" flag exists for delisted entities in any source checked).
+
+**Decided Before or After Seeing Results:** Before — applied to the acquisition universe list before any download, to avoid pulling data for entities that would be excluded from every downstream test regardless.
+
+**Impact on Which Hypothesis:** Universe construction only. These 62 stock_ids are excluded from the Phase 2A.2 acquisition universe entirely (not downloaded) — same practical effect as excluding currently-listed ETFs, just via a different (heuristic rather than structural) detection method. If the heuristic is wrong for any of the 62 (a non-ETF security that happens to start with '0', considered unlikely given Taiwan's numbering conventions but not verified per-entity), that stock is simply absent from the acquired dataset — a coverage gap in the same conservative direction as D-01/D-02, not a fabrication risk.
+
+**Resolution status:** Closed for acquisition purposes — applied. Not revisited unless a specific stock_id is challenged.
+
+---
+
+**Deviation D-04 (ESCALATED — execution paused, awaiting approval): institutional-category `Dealer`/`Dealer_self`+`Dealer_Hedging` split is not a universal one-time cutover; it recurs per-stock at unpredictable dates, status and full extent unknown.**
+
+**Original Spec:** F_INST_01's locked definition (`RP001_PHASE2A_PROTOCOL_LOCK.md`) uses `Dealer_self` and `Dealer_Hedging` as separate inputs. Phase 2A.1's Availability Audit concluded this pairing is available throughout the entire confirmatory test window (2025 break interval) based on a single stock's history (1101), finding a clean cutover on 2014-12-01 with the undifferentiated `Dealer` category never recurring after that date.
+
+**Reason (why this is now escalated, not logged-and-continued like D-01/D-02/D-03):** Phase 2A.2 Batch 1 (120 stocks) found stock 1342 reporting undifferentiated `Dealer` rows again from **2019-12-17 to 2020-10-26** — five years after the claimed cutover, for a stock not in the original 1101 check. This directly contradicts the "one-time, universal, non-recurring" characterization the Phase 2A.1 disposition relied on to avoid escalation. **The true pattern is unknown**: whether `Dealer` reappears only in isolated historical windows for specific stocks (as with 1342), whether it could recur during the actual 2025 confirmatory test window for some stocks (unverified — not yet checked for any stock), and what fraction of the full universe is affected, are all open questions. If `Dealer` recurs for any stock during the 2025 break-interval window, F_INST_01 cannot be constructed for that stock-date from `Dealer_self`+`Dealer_Hedging` as specified — this would be a direct, mechanical failure of the locked feature definition, not a peripheral universe-construction issue.
+
+**Decided Before or After Seeing Results:** Before — found during Phase 2A.2 Batch 1's Integrity Gate check, before any confirmatory test has touched this data. Execution stopped immediately per your instruction; no attempt was made to "explain away" the finding before logging it.
+
+**Escalation basis:** This deviation is assessed as touching F_INST_01's definition directly (per `RP001_DEVIATION_POLICY.md`'s Escalation clause: "any deviation affecting the definition of F_INST_01 itself... requires explicit approval before proceeding, pauses execution rather than proceeding with a logged note"). Unlike D-01/D-02/D-03 (which affect universe-membership rules, a step removed from F_INST_01's own construction), this could affect whether F_INST_01 can be computed at all for specific stock-dates within the locked test window.
+
+**Impact on Which Hypothesis:** Potentially H-C1 through H-C4 (all of which depend on F_INST_01). Extent unknown pending further investigation — could range from "isolated, immaterial, a handful of stock-days" to "systemic enough to require a defined fallback rule for how to treat `Dealer`-only dates." No hypothesis test has been run on any full-universe data, so nothing is invalidated yet — this is a pre-execution pause, exactly as the Deviation Policy intends.
+
+**Resolution status:** OPEN — execution paused. Batch 2 has not started. Awaiting your decision on how to investigate/resolve before Phase 2A.2 resumes (see `RP001_LOG.md` for the specific open questions and possible next steps).
