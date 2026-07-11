@@ -1,0 +1,15 @@
+stock_id,desc,dataset,status,n_rows,elapsed_sec,retries,sha256,file_size_bytes
+1101,"TWSE, old (1962), high-liquidity",TaiwanStockInstitutionalInvestorsBuySell,200,15324,0.7,0,677cbedabc0422876f9a44111168c3fd392b9f3db9bc252c270a33c88dc16a16,1522209
+1101,"TWSE, old (1962), high-liquidity",TaiwanStockPrice,200,3549,0.677,0,e32687f70e133bb437d7e9beb7e110e2203d48295e65268e1cf990abc8788706,703846
+6986,"TPEx, newest listing (2026-06-26)",TaiwanStockInstitutionalInvestorsBuySell,200,998,1.192,0,166fc2b910d6d6274befc8d25eda68209980b6e00b7d529fe56c89974a52de68,90742
+6986,"TPEx, newest listing (2026-06-26)",TaiwanStockPrice,200,631,0.436,0,1d335eae78a20068bbfad66bf946cba957379bebf237eba659d259d923060023,120842
+4987,Delisted 2026-05-29,TaiwanStockInstitutionalInvestorsBuySell,200,6546,0.505,0,42a00c81a8d6814a0d0a93f2f25f396e3918954907c2e55e2a43ce23539630d2,606266
+4987,Delisted 2026-05-29,TaiwanStockPrice,200,3512,0.584,0,e0b2384df7e662268f74ec0c0ee4608794f47e29460b9b0e2b0dc032d66d4e81,665946
+7827,TWSE newly listed (2026-05-29),TaiwanStockInstitutionalInvestorsBuySell,200,646,0.43,0,bb7eefe02feaf0e469257dff4e6979a67c8e0bf0d32b8c1303fa329e83dbddf1,59495
+7827,TWSE newly listed (2026-05-29),TaiwanStockPrice,200,257,0.467,0,cace71661ea9a2bbfb7990b8a041b82c0610ea65fcc1edbc4a62fe74ab226f6c,50566
+2891,Financial holding (TWSE),TaiwanStockInstitutionalInvestorsBuySell,200,15342,0.676,0,29ec7780c590a2b7f22f17538b5d827a8dba0b3db079006c4fff96609e1b9959,1532758
+2891,Financial holding (TWSE),TaiwanStockPrice,200,3549,0.916,0,6be9ad0f419384bee25602fb2826929c2b225fab8dd635318c238f90c4731887,707122
+0050,ETF (TWSE),TaiwanStockInstitutionalInvestorsBuySell,200,15312,0.899,0,32b0b33ef0f317e020e8a5b0b0033f28fd3789dc8689eb09bb9c55e53e005a6b,1514785
+0050,ETF (TWSE),TaiwanStockPrice,200,3544,0.851,0,de5a08f3ab93b1a3b9ee7e4c7fe733f8c0f8629c63f5504999805dad568b325d,709319
+1264,Small-cap / lower-liquidity candidate,TaiwanStockInstitutionalInvestorsBuySell,200,9893,0.62,0,e2526e65861716575bcaac7e3f7c4db3b8a7856fe6b36bb9430cd073d1906193,920724
+1264,Small-cap / lower-liquidity candidate,TaiwanStockPrice,200,3020,0.607,0,d57fb6bdfd27cbb60dabdfb58a638fd5564c09000b37e50f132d18e3010dc975,584490
