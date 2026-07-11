@@ -64,3 +64,17 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 **Reason:** Root-caused this session — terminal stdout encoding (cp950), not a data-source problem. Raw bytes confirmed valid UTF-8 both from FinMind and TWSE's official OpenAPI.
 **Evidence:** Direct byte-level decode test, cross-verified against TWSE OpenAPI returning correct, complete company records (臺灣水泥, 亞洲水泥, etc.).
 **Impact:** Execution Readiness improves — one of three Phase -1 blockers was never real. Industry classification confirmed usable via TWSE's coded 產業別 field, recommended over FinMind's free-text field for stability.
+
+---
+
+**Decision:** F_INT_01's momentum component built as a 20-trading-day price return, not yet formally linked to KB objects FA03/FA04.
+**Reason:** FA03/FA04 (Momentum Factor) exist as KOM objects but don't have a single precise, code-ready formula attached; needed a concrete definition to build Milestone 1A now rather than block on that linkage.
+**Evidence:** N/A — this is a construction-convenience placeholder, not evidence-driven; flagged explicitly so it isn't mistaken for a validated choice.
+**Impact:** F_INT_01 as currently built is provisional. Formal reconciliation with FA03/FA04's KB definition is required before Milestone 1C diagnostics are treated as final.
+
+---
+
+**Decision:** Market cap computed from TWSE OpenAPI shares-outstanding (mostly static) × daily close, not from a dedicated daily market-cap dataset.
+**Reason:** No dedicated market-cap-history dataset was checked this session; shares outstanding is a reasonable approximation since share count changes far less often than price.
+**Evidence:** TWSE OpenAPI `t187ap03_L` confirmed to return real, complete shares-outstanding data for all 50 sample stocks (0% missing after join).
+**Impact:** F_INT_02 (size interaction) does not reflect intra-period share count changes (buybacks, capital increases) — acceptable approximation for this construction pass, should be revisited if any sample stock had a material capital event during 2024-07 to 2026-07.
