@@ -1,18 +1,30 @@
 """
-RP-001 Phase 2A.2: Batch-based full-universe data acquisition.
+RP-001 Phase 2A.2 (resumed under Phase 2A.2-R Decision Gate): Batch-based
+full-universe data acquisition, v2.
 
-Each run processes exactly one batch: raw download -> SHA verification ->
-manifest update -> trading-calendar validation -> listing-date validation ->
-missing-rate report -> retry report -> integrity gate.
+v2 changes vs. the Batch-1 version (RP001_API_AND_SOURCE_FEASIBILITY.md §5):
+  - skip-existing: won't re-download a (dataset, stock_id) already `success`
+    in the manifest.
+  - rate-aware pacing: stops issuing new requests once `max_requests` is hit
+    in this run (default 260, a safety margin under the documented 300/hr
+    anonymous ceiling) rather than running into a 402 wall mid-symbol.
+  - failed-symbol queue: any non-success (dataset, stock_id) pair is written
+    to rp001_data/phase2a/manifests/failed_queue.csv for a later retry pass,
+    instead of being silently dropped when a batch ends early.
+  - Integrity Gate narrowed per RP001_PHASE2A2R_DECISION_GATE.md §7: the
+    three anomaly types fully characterized in Phase 2A.2-R (Dealer
+    recurrence OUTSIDE the break window, missing-rate patterns, listing-date
+    gaps) now WARN and log instead of hard-STOP, since they're governed by
+    RP001_MISSINGNESS_POLICY.md / RP001_DAILY_INVESTABLE_UNIVERSE_SPEC_v2.md.
+    Genuinely new anomaly types (schema drift beyond the known 6 categories,
+    duplicated observations, trading-calendar inconsistency, or Dealer
+    recurrence INSIDE the break window) still hard-STOP.
 
-Usage: python rp001_batch_acquire.py <batch_id> <start_idx> <end_idx>
-  batch_id: integer, 1-based
-  start_idx, end_idx: row range (0-based, end exclusive) into
-    rp001_data/phase2a_acquisition_universe.csv
-
-Exits 0 and prints "GATE: PASS" if the batch's Integrity Gate passes.
-Exits 1 and prints "GATE: STOP" with reasons if any hard-stop condition fires.
-Never proceeds to a next batch itself -- the caller decides, per batch.
+Usage: python rp001_batch_acquire.py <batch_id> <start_idx> <end_idx> [max_requests]
+Exits 0 and prints "GATE: PASS" (batch fully done, no new-anomaly stop).
+Exits 2 and prints "PAUSED: rate limit" if max_requests was hit before the
+  batch finished -- not a failure, just needs another invocation to continue.
+Exits 1 and prints "GATE: STOP" if a genuinely new anomaly type fires.
 """
 import sys, os, time, json, hashlib, csv
 from pathlib import Path
@@ -34,9 +46,20 @@ DATASETS = ["TaiwanStockInstitutionalInvestorsBuySell", "TaiwanStockPrice", "Tai
 
 EXPECTED_INST_SCHEMA = {"date", "stock_id", "buy", "sell", "name"}
 EXPECTED_PRICE_SCHEMA = {"date", "stock_id", "Trading_Volume", "Trading_money", "open", "max", "min", "close", "spread", "Trading_turnover"}
-KNOWN_CATEGORIES_PRE_CUTOVER = {"Foreign_Investor", "Foreign_Dealer_Self", "Investment_Trust", "Dealer"}
-KNOWN_CATEGORIES_POST_CUTOVER = {"Foreign_Investor", "Foreign_Dealer_Self", "Investment_Trust", "Dealer_self", "Dealer_Hedging"}
+KNOWN_CATEGORIES = {"Foreign_Investor", "Foreign_Dealer_Self", "Investment_Trust", "Dealer", "Dealer_self", "Dealer_Hedging"}
 CUTOVER_DATE = "2014-12-01"
+BREAK_START, BREAK_END = "2025-08-01", "2025-10-31"
+MANIFEST_PATH = MANIFEST_DIR / "pull_manifest.csv"
+FAILED_QUEUE_PATH = MANIFEST_DIR / "failed_queue.csv"
+
+
+def load_existing_success():
+    """(dataset, stock_id) pairs already successfully downloaded, per the manifest."""
+    if not MANIFEST_PATH.exists():
+        return set()
+    m = pd.read_csv(MANIFEST_PATH, dtype=str)
+    ok = m[m["status"] == "success"]
+    return set(zip(ok["dataset"], ok["stock_id"]))
 
 
 def fetch(dataset, stock_id, start, end, max_retries=3):
@@ -55,72 +78,122 @@ def fetch(dataset, stock_id, start, end, max_retries=3):
     return {"status": -1, "data": []}, retries, time.time() - t0, str(e) if 'e' in dir() else "unknown"
 
 
-def run_batch(batch_id, start_idx, end_idx):
+def run_batch(batch_id, start_idx, end_idx, max_requests=260):
     universe = pd.read_csv(ROOT / "rp001_data" / "phase2a_acquisition_universe.csv", dtype=str)
     batch = universe.iloc[start_idx:end_idx].reset_index(drop=True)
     stock_ids = batch["stock_id"].tolist()
 
+    already_done = load_existing_success()
+    todo = [(sid, ds) for sid in stock_ids for ds in DATASETS if (ds, sid) not in already_done]
+    skipped = len(stock_ids) * len(DATASETS) - len(todo)
+    print(f"Batch {batch_id}: {len(stock_ids)} stocks, {len(todo)} requests needed ({skipped} already cached, skipped)")
+
     manifest_rows = []
-    failed_symbols = []
-    schema_drift_flags = []
-    duplicate_flags = []
-    all_price_frames = {}
-    all_inst_frames = {}
+    failed_rows = []
+    n_requests_this_run = 0
+    hit_rate_cap = False
 
+    for sid, dataset in todo:
+        if n_requests_this_run >= max_requests:
+            hit_rate_cap = True
+            break
+        payload, retries, elapsed, err = fetch(dataset, sid, START_DATE, END_DATE)
+        n_requests_this_run += 1
+        rows = payload.get("data", []) if isinstance(payload, dict) else []
+        status_ok = isinstance(payload, dict) and payload.get("status") == 200
+        raw_bytes = json.dumps(rows, ensure_ascii=False).encode("utf-8")
+        sha = hashlib.sha256(raw_bytes).hexdigest()
+        out_path = RAW_DIR / f"{dataset}_{sid}.json"
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(rows, f, ensure_ascii=False)
+
+        status = "success" if status_ok and rows else ("empty" if status_ok else "failed")
+        row = {
+            "batch_id": batch_id, "dataset": dataset, "stock_id": sid,
+            "query_start_date": START_DATE, "query_end_date": END_DATE,
+            "download_timestamp": datetime.utcnow().isoformat(), "row_count": len(rows),
+            "sha256": sha, "source_endpoint": API_URL, "retry_count": retries,
+            "status": status, "file_path": str(out_path.relative_to(ROOT)),
+        }
+        manifest_rows.append(row)
+        if status != "success":
+            failed_rows.append({"batch_id": batch_id, "dataset": dataset, "stock_id": sid,
+                                 "http_status": payload.get("status") if isinstance(payload, dict) else None,
+                                 "error": err, "queued_at": datetime.utcnow().isoformat()})
+            if payload.get("status") == 402:
+                print(f"  HTTP 402 (quota) at request {n_requests_this_run}/{len(todo)} -- stopping this run early.")
+                hit_rate_cap = True
+                break
+        time.sleep(0.4)
+
+    if manifest_rows:
+        write_header = not MANIFEST_PATH.exists()
+        with open(MANIFEST_PATH, "a", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=list(manifest_rows[0].keys()))
+            if write_header:
+                w.writeheader()
+            w.writerows(manifest_rows)
+
+    if failed_rows:
+        write_header = not FAILED_QUEUE_PATH.exists()
+        with open(FAILED_QUEUE_PATH, "a", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=list(failed_rows[0].keys()))
+            if write_header:
+                w.writeheader()
+            w.writerows(failed_rows)
+
+    n_success_this_run = sum(1 for r in manifest_rows if r["status"] == "success")
+    print(f"This run: {n_requests_this_run} requests issued, {n_success_this_run} succeeded, {len(failed_rows)} failed/queued")
+
+    remaining = len(todo) - n_requests_this_run
+    if hit_rate_cap or remaining > 0:
+        print(f"PAUSED: rate limit -- {remaining} requests still pending for batch {batch_id}. Re-run the same command to continue.")
+        return 2
+
+    # --- Batch complete: run Integrity Gate over the FULL batch (not just this run's slice) ---
+    return _integrity_gate(batch_id, stock_ids, batch)
+
+
+def _integrity_gate(batch_id, stock_ids, batch):
+    m = pd.read_csv(MANIFEST_PATH, dtype=str)
+    batch_manifest = m[(m["stock_id"].isin(stock_ids))]
+
+    all_price_frames, all_inst_frames = {}, {}
+    schema_drift_flags, duplicate_flags = [], []
     for sid in stock_ids:
-        for dataset in DATASETS:
-            payload, retries, elapsed, err = fetch(dataset, sid, START_DATE, END_DATE)
-            rows = payload.get("data", []) if isinstance(payload, dict) else []
-            status_ok = isinstance(payload, dict) and payload.get("status") == 200
-            raw_bytes = json.dumps(rows, ensure_ascii=False).encode("utf-8")
-            sha = hashlib.sha256(raw_bytes).hexdigest()
-            out_path = RAW_DIR / f"{dataset}_{sid}.json"
-            with open(out_path, "w", encoding="utf-8") as f:
-                json.dump(rows, f, ensure_ascii=False)
+        for dataset, store in (("TaiwanStockPrice", all_price_frames), ("TaiwanStockInstitutionalInvestorsBuySell", all_inst_frames)):
+            p = RAW_DIR / f"{dataset}_{sid}.json"
+            if not p.exists():
+                continue
+            rows = json.loads(p.read_text(encoding="utf-8"))
+            if not rows:
+                continue
+            df = pd.DataFrame(rows)
+            store[sid] = df
+            keys = set(rows[0].keys())
+            expected = EXPECTED_INST_SCHEMA if dataset == "TaiwanStockInstitutionalInvestorsBuySell" else EXPECTED_PRICE_SCHEMA
+            if keys != expected:
+                schema_drift_flags.append((sid, dataset, sorted(keys)))
+            key_cols = ["date", "stock_id"] + (["name"] if "name" in df.columns else [])
+            dup_count = df.duplicated(subset=key_cols).sum()
+            if dup_count > 0:
+                duplicate_flags.append((sid, dataset, int(dup_count)))
+            if dataset == "TaiwanStockInstitutionalInvestorsBuySell":
+                unexpected_cats = set(df["name"].unique()) - KNOWN_CATEGORIES
+                if unexpected_cats:
+                    schema_drift_flags.append((sid, "unexpected category", sorted(unexpected_cats)))
 
-            # schema drift check
-            if rows:
-                keys = set(rows[0].keys())
-                if dataset == "TaiwanStockInstitutionalInvestorsBuySell" and keys != EXPECTED_INST_SCHEMA:
-                    schema_drift_flags.append((sid, dataset, sorted(keys)))
-                elif dataset == "TaiwanStockPrice" and keys != EXPECTED_PRICE_SCHEMA:
-                    schema_drift_flags.append((sid, dataset, sorted(keys)))
+    # Dealer recurrence -- WARN unless it lands inside the break window (new/dangerous)
+    dealer_in_break = []
+    for sid, df in all_inst_frames.items():
+        post = df[(df["name"] == "Dealer") & (df["date"] >= CUTOVER_DATE)]
+        if post.empty:
+            continue
+        in_break = post[(post["date"] >= BREAK_START) & (post["date"] <= BREAK_END)]
+        if not in_break.empty:
+            dealer_in_break.append(sid)
 
-            # duplicate observation check ((stock_id,date[,name]) uniqueness)
-            if rows:
-                df = pd.DataFrame(rows)
-                key_cols = ["date", "stock_id"] + (["name"] if "name" in df.columns else [])
-                dup_count = df.duplicated(subset=key_cols).sum()
-                if dup_count > 0:
-                    duplicate_flags.append((sid, dataset, int(dup_count)))
-                if dataset == "TaiwanStockPrice":
-                    all_price_frames[sid] = df
-                if dataset == "TaiwanStockInstitutionalInvestorsBuySell":
-                    all_inst_frames[sid] = df
-
-            if not status_ok or not rows:
-                failed_symbols.append({"stock_id": sid, "dataset": dataset, "status": payload.get("status") if isinstance(payload, dict) else None, "error": err})
-
-            manifest_rows.append({
-                "batch_id": batch_id, "dataset": dataset, "stock_id": sid,
-                "query_start_date": START_DATE, "query_end_date": END_DATE,
-                "download_timestamp": datetime.utcnow().isoformat(), "row_count": len(rows),
-                "sha256": sha, "source_endpoint": API_URL, "retry_count": retries,
-                "status": "success" if status_ok and rows else ("empty" if status_ok else "failed"),
-                "file_path": str(out_path.relative_to(ROOT)),
-            })
-            time.sleep(0.4)
-
-    # manifest update
-    manifest_path = MANIFEST_DIR / "pull_manifest.csv"
-    write_header = not manifest_path.exists()
-    with open(manifest_path, "a", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=list(manifest_rows[0].keys()))
-        if write_header:
-            w.writeheader()
-        w.writerows(manifest_rows)
-
-    # trading calendar validation: build batch-level empirical calendar from price data, check institutional dates are a subset (post-floor)
+    # trading-calendar inconsistency -- unchanged hard-stop condition (residual gaps > 5 are still a real inconsistency)
     calendar_inconsistencies = []
     all_price_dates = set()
     for sid, df in all_price_frames.items():
@@ -128,102 +201,72 @@ def run_batch(batch_id, start_idx, end_idx):
     for sid, df in all_inst_frames.items():
         if sid not in all_price_frames:
             continue
-        inst_dates = set(df["date"].unique())
-        price_dates = set(all_price_frames[sid]["date"].unique())
-        extra = inst_dates - price_dates
+        extra = set(df["date"].unique()) - set(all_price_frames[sid]["date"].unique())
         extra_post_floor = {d for d in extra if d >= "2012-05-02"}
-        if len(extra_post_floor) > 5:  # small residual gaps are expected (established in pilot); large counts are a real inconsistency
+        if len(extra_post_floor) > 5:
             calendar_inconsistencies.append((sid, len(extra_post_floor)))
 
-    # listing-date validation
-    listing_violations = []
-    batch = batch.set_index("stock_id")
-    for sid, df in all_price_frames.items():
-        if df.empty:
-            continue
-        first_data_date = df["date"].min()
-        row = batch.loc[sid] if sid in batch.index else None
-        if row is not None and row["listing_date_source"] == "registry" and pd.notna(row.get("listing_date_raw")):
-            raw = str(row["listing_date_raw"])
-            try:
-                if len(raw) == 8 and raw.isdigit():
-                    listed = f"{raw[:4]}-{raw[4:6]}-{raw[6:]}"
-                else:
-                    listed = raw
-                if first_data_date < listed:
-                    gap_days = (pd.to_datetime(listed) - pd.to_datetime(first_data_date)).days
-                    if gap_days > 30:  # small gaps expected (settlement/index-inclusion lag); large gaps are the real hazard
-                        listing_violations.append((sid, first_data_date, listed, gap_days))
-            except Exception:
-                pass
+    # --- Hard-stop conditions (genuinely new, not characterized by Phase 2A.2-R) ---
+    stop_reasons = []
+    if schema_drift_flags:
+        stop_reasons.append(f"schema drift (new/unexpected): {schema_drift_flags[:5]}")
+    if duplicate_flags:
+        stop_reasons.append(f"duplicated observations: {duplicate_flags[:5]}")
+    if calendar_inconsistencies:
+        stop_reasons.append(f"trading-calendar inconsistency: {calendar_inconsistencies[:5]}")
+    if dealer_in_break:
+        stop_reasons.append(f"Dealer recurrence INSIDE the locked break window (new -- not seen in Phase 2A.2-R's 86-stock check): {dealer_in_break}")
 
-    # missing-rate report
-    missing_report = []
+    # --- Downgraded-to-WARN conditions (logged, do not stop) ---
+    warnings = []
+    high_missing = []
     for sid, df in all_inst_frames.items():
         if sid not in all_price_frames:
             continue
         price_dates_post_floor = {d for d in all_price_frames[sid]["date"].unique() if d >= "2012-05-02"}
         inst_dates = set(df["date"].unique())
         if price_dates_post_floor:
-            missing_rate = 1 - (len(inst_dates & price_dates_post_floor) / len(price_dates_post_floor))
-            missing_report.append({"stock_id": sid, "missing_rate": round(missing_rate, 4)})
-    missing_df = pd.DataFrame(missing_report)
-    high_missing = missing_df[missing_df["missing_rate"] > 0.10] if not missing_df.empty else missing_df
+            rate = 1 - (len(inst_dates & price_dates_post_floor) / len(price_dates_post_floor))
+            if rate > 0.10:
+                high_missing.append({"stock_id": sid, "missing_rate": round(rate, 4)})
+    if high_missing:
+        warnings.append(f"missing-rate > 10% (governed by RP001_MISSINGNESS_POLICY.md, not a stop): {len(high_missing)} stocks")
 
-    # historical definition drift check
-    drift_flags = []
-    for sid, df in all_inst_frames.items():
-        if df.empty:
+    listing_violations = []
+    batch_idx = batch.set_index("stock_id")
+    for sid, df in all_price_frames.items():
+        if df.empty or sid not in batch_idx.index:
             continue
-        pre = df[df["date"] < CUTOVER_DATE]
-        post = df[df["date"] >= CUTOVER_DATE]
-        pre_cats = set(pre["name"].unique()) if not pre.empty else set()
-        post_cats = set(post["name"].unique()) if not post.empty else set()
-        if not pre_cats.issubset(KNOWN_CATEGORIES_PRE_CUTOVER):
-            drift_flags.append((sid, "pre-cutover unexpected categories", sorted(pre_cats - KNOWN_CATEGORIES_PRE_CUTOVER)))
-        if not post_cats.issubset(KNOWN_CATEGORIES_POST_CUTOVER):
-            drift_flags.append((sid, "post-cutover unexpected categories", sorted(post_cats - KNOWN_CATEGORIES_POST_CUTOVER)))
-
-    retry_total = sum(r["retry_count"] for r in manifest_rows)
-    retry_over_1 = [r for r in manifest_rows if r["retry_count"] >= 2]
-
-    # integrity gate
-    stop_reasons = []
-    if schema_drift_flags:
-        stop_reasons.append(f"schema drift: {schema_drift_flags[:5]}")
-    if drift_flags:
-        stop_reasons.append(f"historical definition drift: {drift_flags[:5]}")
-    if not high_missing.empty:
-        stop_reasons.append(f"unexpected missing pattern: {high_missing.to_dict('records')[:5]}")
-    if duplicate_flags:
-        stop_reasons.append(f"duplicated observations: {duplicate_flags[:5]}")
-    if calendar_inconsistencies:
-        stop_reasons.append(f"trading-calendar inconsistency: {calendar_inconsistencies[:5]}")
+        row = batch_idx.loc[sid]
+        if row["listing_date_source"] == "registry" and pd.notna(row.get("listing_date_raw")):
+            raw = str(row["listing_date_raw"])
+            try:
+                listed = f"{raw[:4]}-{raw[4:6]}-{raw[6:]}" if len(raw) == 8 and raw.isdigit() else raw
+                first_data_date = df["date"].min()
+                if first_data_date < listed:
+                    gap_days = (pd.to_datetime(listed) - pd.to_datetime(first_data_date)).days
+                    if gap_days > 30:
+                        listing_violations.append((sid, first_data_date, listed, gap_days))
+            except Exception:
+                pass
     if listing_violations:
-        stop_reasons.append(f"listing-date violation: {listing_violations[:5]}")
+        warnings.append(f"listing-date gap > 30 days (governed by RP001_DAILY_INVESTABLE_UNIVERSE_SPEC_v2.md, not a stop): {len(listing_violations)} stocks")
+
+    dealer_recurrence_outside_break = [sid for sid, df in all_inst_frames.items()
+                                        if not df[(df["name"] == "Dealer") & (df["date"] >= CUTOVER_DATE)].empty
+                                        and sid not in dealer_in_break]
+    if dealer_recurrence_outside_break:
+        warnings.append(f"Dealer recurrence outside break window (governed by D-04 downgrade, not a stop): {dealer_recurrence_outside_break}")
 
     gate_pass = len(stop_reasons) == 0
-
     result = {
-        "batch_id": batch_id, "n_stocks": len(stock_ids), "n_requests": len(manifest_rows),
-        "total_rows": sum(r["row_count"] for r in manifest_rows),
-        "failed_symbols": failed_symbols, "n_failed": len(failed_symbols),
-        "retry_total": retry_total, "n_retry_over_1": len(retry_over_1),
-        "gate_pass": gate_pass, "stop_reasons": stop_reasons,
-        "high_missing_count": len(high_missing) if not high_missing.empty else 0,
+        "batch_id": batch_id, "n_stocks": len(stock_ids),
+        "gate_pass": gate_pass, "stop_reasons": stop_reasons, "warnings": warnings,
+        "high_missing_count": len(high_missing), "listing_violation_count": len(listing_violations),
     }
-
-    # persist anomaly detail files (append)
-    if listing_violations:
-        with open(ANOMALY_DIR / "pre_listing_data_flags.csv", "a", newline="", encoding="utf-8") as f:
-            w = csv.writer(f)
-            for row in listing_violations:
-                w.writerow([batch_id] + list(row))
-
     result_path = MANIFEST_DIR / f"batch_{batch_id:03d}_result.json"
     with open(result_path, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, default=str)
-
     print(json.dumps(result, indent=2, default=str))
     print(f"\nGATE: {'PASS' if gate_pass else 'STOP'}")
     return 0 if gate_pass else 1
@@ -233,4 +276,5 @@ if __name__ == "__main__":
     batch_id = int(sys.argv[1])
     start_idx = int(sys.argv[2])
     end_idx = int(sys.argv[3])
-    sys.exit(run_batch(batch_id, start_idx, end_idx))
+    max_requests = int(sys.argv[4]) if len(sys.argv) > 4 else 260
+    sys.exit(run_batch(batch_id, start_idx, end_idx, max_requests))

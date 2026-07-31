@@ -63,3 +63,34 @@ Format per `RP001_DEVIATION_POLICY.md`: **Deviation / Original Spec / Reason / D
 **Resolution status:** OPEN — execution paused. Batch 2 has not started. Awaiting your decision on how to investigate/resolve before Phase 2A.2 resumes (see `RP001_LOG.md` for the specific open questions and possible next steps).
 
 > **Correction note (added 2026-07-31, Phase 2A.2-R):** This deviation's escalation basis is preserved above unedited, but was built on a factual error inherited from `RP001_FULL_UNIVERSE_AVAILABILITY_AUDIT.md` (see that file's own correction note, same date): F_INST_01 is Foreign_Investor-only (`FEATURE_REGISTRY.md` line 11) and never reads `Dealer`/`Dealer_self`/`Dealer_Hedging`. Dealer-category drift cannot affect F_INST_01's constructibility. Full re-investigation on 86 cached stocks (`RP001_INSTITUTIONAL_SCHEMA_AUDIT.md`) additionally found: post-cutover Dealer recurrence is real but rare (1/86 stocks, stock 1342, isolated to 2019-12-17–2020-10-26) and does **not** recur inside the locked 2025 break-interval window for any of the 86 sampled stocks (0/86). Given both the corrected escalation basis and the empirical batch-scale evidence, **this deviation is downgraded from Escalated to Logged-and-Resolved for F_INST_01 and all of H-C1–H-C5** — it remains open only as a narrower, non-blocking note about F_INST_03/F_INST_04 (already non-Frozen features, not used by any locked hypothesis) and about full-universe generalizability (86/2,255 stocks checked; full-universe confirmation deferred to Phase 2A.2 batch acquisition, not required before resuming). See `RP001_PHASE2A1_REAUDIT.md` for the formal re-audit entry.
+
+---
+
+**Deviation D-05: `Dealer` vs. `Dealer_self`+`Dealer_Hedging` is not a one-time historical event at all — it is an ongoing, per-stock schema choice that can switch at any date, including inside the 2025 break window and as recently as 2026.**
+
+**Original Spec:** N/A — this corrects the *characterization* established by D-04's re-investigation (`RP001_INSTITUTIONAL_SCHEMA_AUDIT.md`), not the locked protocol itself.
+
+**Reason:** Batch 2 (stocks idx 120–239) surfaced two stocks with undifferentiated `Dealer` rows falling **inside** the locked break window (2025-08-01 to 2025-10-31) — a condition the 86-stock Phase 2A.2-R sample found zero instances of. Investigated immediately, not waved through:
+- **Stock 2072** (listed 2020-11-30): reports `Dealer` for its **entire history through 2026-03-25** (624 rows, 87.6% of its institutional rows), then switches cleanly to `Dealer_self`/`Dealer_Hedging` from 2026-03-26 onward (88 rows). Zero same-day overlap between the two. The entire 2025 break window falls on the `Dealer` side of this stock's own, much-later personal cutover.
+- **Stock 1623** (listed 2024-05-28): same pattern — `Dealer` from 2024-05-28 to 2026-01-20 (93 rows), clean switch to split categories from 2026-01-22 (125 rows), zero overlap. Two of its four break-window dates fall in the `Dealer` period.
+- Both cutover dates (2026-01-22, 2026-03-26) are **not the 2014-12-01 date** — this is not the same event as D-04's original finding, and not explainable as "old data still using the legacy category." It is direct evidence that FinMind's choice of `Dealer` vs. the split pair is a **per-stock, potentially per-provider-feed decision that can change at any time**, not a single historical migration.
+
+**Decided Before or After Seeing Results:** Before — found and investigated during Batch 2's Integrity Gate check, before any confirmatory test touches this data. `rp001_batch_acquire.py` v2's gate correctly hard-stopped on this (it is exactly the "genuinely new anomaly type" condition the v2 script was designed to still stop on, distinct from the three conditions already characterized and downgraded to warnings).
+
+**Impact on Which Hypothesis: None, verified, not assumed.** `Foreign_Investor` rows are present and complete for both stocks across their entire break-window date range (2072: 55/55 dates; 1623: 2/2 dates) — checked directly, not inferred from the Dealer finding. F_INST_01 and H-C1–H-C5 are unaffected for both stocks. The only features this could affect are F_INST_03/F_INST_04 (Dealer_self/Dealer_Hedging-based, already non-Frozen, used by no locked hypothesis) — same conclusion as D-04, reached independently this time with direct evidence rather than inherited from a documentation error.
+
+**Resolution status:** Logged and resolved for F_INST_01/H-C1–H-C5, same as D-04. **Not auto-generalized to future batches** — `rp001_batch_acquire.py`'s Integrity Gate deliberately continues to hard-stop on any future Dealer-in-break-window occurrence rather than being loosened to silently pass, since two data points is not enough to establish that `Foreign_Investor` will always remain unaffected; each future occurrence gets the same direct verification this one received, not a blanket assumption.
+
+---
+
+**Deviation D-06: Stock 1589 has institutional-data rows on 10 dates with no matching price row (10-date trading-calendar-inconsistency Integrity Gate trigger, Batch 2).**
+
+**Original Spec:** N/A — universe/pipeline-construction diagnostic, not a locked-spec item.
+
+**Reason:** Investigated the 10 flagged dates directly. Two (2019-08-24, 2019-10-26) are Saturdays — non-trading days with an erroneous institutional row, the same class of mis-dated-row contamination already root-caused and permanently guarded against by the Trading Calendar Gate built in Milestone 1B-R (`RP001_LOG.md`). One (2026-06-19) matches the exact date already identified in Milestone 1B as a known system-wide mis-dated-row date. The remaining seven (2026-06-10 to 2026-07-03) coincide with a **complete absence of price data for 1589 from 2026-04-02 onward** — the stock appears to have stopped trading (delisted or suspended) around early April 2026, while institutional reporting continued sporadically for a few more months. All 10 dates are **outside the 2025 break-interval window** (nearest is roughly 9 months before it, the rest 6+ years before or 8+ months after).
+
+**Decided Before or After Seeing Results:** Before — found during Batch 2's Integrity Gate check.
+
+**Impact on Which Hypothesis:** None. The existing Trading Calendar Gate (Milestone 1B-R, already part of the locked pipeline) structurally admits only dates present in **both** price and institutional data into any feature panel — these 10 institutional-only dates are excluded by that mechanism regardless of root cause, and none fall inside the break window regardless. 1589's apparent 2026-04 trading stoppage is noted for the Market Membership work (a candidate future delisting-date entry) but does not itself touch F_INST_01 or the break interval.
+
+**Resolution status:** Logged and resolved. Same non-generalization caveat as D-05 — the Integrity Gate continues to flag, not silently ignore, future trading-calendar-inconsistency triggers.

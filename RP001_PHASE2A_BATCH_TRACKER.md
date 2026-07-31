@@ -6,9 +6,29 @@ Each row = one batch, produced by `rp001_batch_acquire.py`. Integrity Gate must 
 
 | Batch ID | Stock Range | # Stocks | Rows | Download Time | Retries | Failed Symbols | Integrity Status | Manifest Ref |
 |---|---|---|---|---|---|---|---|---|
-| 1 | idx 0–120 (`rp001_data/phase2a_acquisition_universe.csv` rows 0–119) | 120 | 1,769,256 | 9m47s | 3 | 104 (see below) | **STOP — Integrity Gate FAILED** | `rp001_data/phase2a/manifests/pull_manifest.csv` (batch_id=1), `batch_001_result.json` |
+| 1 | idx 0–120 (`rp001_data/phase2a_acquisition_universe.csv` rows 0–119) | 120 | 360/360 requests complete | 9m47s (initial 256) + 2026-07-31 completion run (remaining 104) | 3 | 0 (all 104 originally-402'd requests succeeded on retry once quota reset) | **PASS** (re-run 2026-07-31 under `rp001_batch_acquire.py` v2 — see Batch 1 Resolution below) | `rp001_data/phase2a/manifests/pull_manifest.csv` (batch_id=1), `batch_001_result.json` |
+| 2 | idx 120–240 (rows 120–239) | 120 | 360/360 requests complete | Paused mid-run once (2026-07-31, quota) + resumed/completed 2026-08-01 | 0 | 0 | **PASS after investigation** (raw gate result was STOP — two new anomaly types, resolved via D-05/D-06, both confirmed non-material to F_INST_01/H-C1–H-C5 — see Batch 2 Resolution below) | `pull_manifest.csv` (batch_id=2), `batch_002_result.json` |
 
-## Batch 1 — STOP detail
+## Batch 1 — Resolution (2026-07-31, Phase 2A.2-R)
+
+**Integrity Gate now PASSES.** Batch 1 was completed (skip-existing re-run picked up the 104 requests that failed with HTTP 402 in the original run; all 104 succeeded once the anonymous quota reset — see `RP001_API_AND_SOURCE_FEASIBILITY.md`). Re-running the Integrity Gate under the v2 script (narrowed per `RP001_PHASE2A2R_DECISION_GATE.md` §7) finds the same three previously-blocking conditions, now correctly downgraded to warnings because Phase 2A.2-R built the governing policies for them:
+
+- 42 stocks (of the now-complete 120) exceed 10% missing rate → governed by `RP001_MISSINGNESS_POLICY.md`, not a stop.
+- 5 stocks show a listing-date gap > 30 days → governed by `RP001_DAILY_INVESTABLE_UNIVERSE_SPEC_v2.md`, not a stop.
+- Stock 1342 shows Dealer recurrence, confirmed outside the locked break window → governed by the D-04 downgrade, not a stop.
+
+**Zero new anomalies**: no schema drift beyond the known 6 categories, no duplicated observations, no trading-calendar inconsistency, and — the one condition that would still hard-stop — no Dealer recurrence *inside* the break window for any stock in this batch.
+
+## Batch 2 — Resolution (2026-08-01)
+
+**Raw Integrity Gate result: STOP.** `rp001_batch_acquire.py` v2's gate is deliberately narrower than v1 (three characterized conditions downgraded to warnings, per the Decision Gate), but it still hard-stops on genuinely new anomaly types — and Batch 2 tripped two:
+
+1. **Dealer recurrence INSIDE the locked break window** — stocks 2072 and 1623. Investigated directly (not waved through): both report undifferentiated `Dealer` for their *entire* history through the whole break window, switching cleanly to split categories only in 2026 (2072: 2026-03-26; 1623: 2026-01-22) — a materially broader pattern than D-04 characterized (an ongoing per-stock schema choice, not a 2014-only event). **`Foreign_Investor` independently verified present and complete for both stocks across every break-window date** — F_INST_01 and H-C1–H-C5 unaffected. Logged as **D-05**.
+2. **Trading-calendar inconsistency** — stock 1589, 10 institutional-only dates. Investigated: 2 are outright non-trading Saturdays (known contamination class from Milestone 1B), 7 coincide with 1589's price data ending entirely on 2026-04-02 (apparent delisting/suspension), 1 matches the already-known 2026-06-19 mis-dated-row date. All 10 fall outside the break window and are structurally excluded from any feature panel by the existing Trading Calendar Gate regardless of cause. Logged as **D-06**.
+
+**Disposition: both resolved as non-escalating (same tier as D-01/D-02/D-03), verified with direct evidence rather than assumed.** Neither touches F_INST_01's definition, rank normalization, return horizon, or the break interval boundary — the Deviation Policy's Escalation clause is not triggered. **The Integrity Gate script itself is not loosened** — future batches still hard-stop on either condition type and get the same individual verification, since two data points don't establish this is always safe.
+
+## Batch 1 — original STOP detail (preserved, not deleted)
 
 **Integrity Gate: FAILED.** Execution halted after Batch 1. Batch 2 has not been run. Full findings and disposition in `RP001_LOG.md` (this session's entry) — summarized here for the tracker.
 
