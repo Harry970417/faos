@@ -146,8 +146,16 @@ def run_batch(batch_id, start_idx, end_idx, max_requests=260):
     print(f"This run: {n_requests_this_run} requests issued, {n_success_this_run} succeeded, {len(failed_rows)} failed/queued")
 
     remaining = len(todo) - n_requests_this_run
+    non_402_failures = [r for r in failed_rows if r.get("http_status") != 402]
     if hit_rate_cap or remaining > 0:
         print(f"PAUSED: rate limit -- {remaining} requests still pending for batch {batch_id}. Re-run the same command to continue.")
+        return 2
+    if non_402_failures:
+        # Real failures (network/connectivity, not quota) leave the batch incomplete --
+        # these pairs stay non-"success" in the manifest, so the next invocation's
+        # todo list picks them up automatically via load_existing_success(). Do not
+        # run the Integrity Gate over a batch with known-missing data.
+        print(f"PAUSED: {len(non_402_failures)} non-quota failures (connectivity?) left {len(non_402_failures)} pairs incomplete -- see failed_queue.csv. Re-run the same command to retry.")
         return 2
 
     # --- Batch complete: run Integrity Gate over the FULL batch (not just this run's slice) ---

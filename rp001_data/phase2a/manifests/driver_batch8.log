@@ -1,0 +1,33 @@
+[2026-08-01T15:06:41.195173+00:00] Batch 8: attempt 1
+Batch 8: 120 stocks, 360 requests needed (0 already cached, skipped)
+  HTTP 402 (quota) at request 125/360 -- stopping this run early.
+This run: 125 requests issued, 124 succeeded, 1 failed/queued
+PAUSED: rate limit -- 235 requests still pending for batch 8. Re-run the same command to continue.
+[2026-08-01T15:12:16.335133+00:00] Batch 8: rate-limited, sleeping 3900s before retry
+[2026-08-01T16:17:16.336104+00:00] Batch 8: attempt 2
+Batch 8: 120 stocks, 236 requests needed (124 already cached, skipped)
+  HTTP 402 (quota) at request 1/236 -- stopping this run early.
+This run: 1 requests issued, 0 succeeded, 1 failed/queued
+PAUSED: rate limit -- 235 requests still pending for batch 8. Re-run the same command to continue.
+[2026-08-01T16:17:16.826568+00:00] Batch 8: rate-limited, sleeping 3900s before retry
+[2026-08-01T17:22:16.829774+00:00] Batch 8: attempt 3
+Batch 8: 120 stocks, 236 requests needed (124 already cached, skipped)
+This run: 236 requests issued, 0 succeeded, 236 failed/queued
+{
+  "batch_id": 8,
+  "n_stocks": 120,
+  "gate_pass": false,
+  "stop_reasons": [
+    "Dealer recurrence INSIDE the locked break window (new -- not seen in Phase 2A.2-R's 86-stock check): ['6614']"
+  ],
+  "warnings": [
+    "missing-rate > 10% (governed by RP001_MISSINGNESS_POLICY.md, not a stop): 27 stocks",
+    "listing-date gap > 30 days (governed by RP001_DAILY_INVESTABLE_UNIVERSE_SPEC_v2.md, not a stop): 33 stocks",
+    "Dealer recurrence outside break window (governed by D-04 downgrade, not a stop): ['6464', '6472', '6477', '6491', '6515', '6526', '6531', '6533', '6534', '6541', '6550', '6552', '6558', '6579', '6581', '6585', '6589', '6591', '6592', '6598', '6606', '6625', '6645', '6655', '6657', '6658', '6668', '6669', '6670']"
+  ],
+  "high_missing_count": 27,
+  "listing_violation_count": 33
+}
+
+GATE: STOP
+[2026-08-01T17:41:40.615882+00:00] Batch 8: resolved, exit code 1
