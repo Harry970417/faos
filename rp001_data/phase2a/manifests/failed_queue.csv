@@ -5,3 +5,4 @@ batch_id,dataset,stock_id,http_status,error,queued_at
 4,TaiwanStockPER,2480,402,,2026-08-01T08:21:12.203021
 5,TaiwanStockPrice,3305,402,,2026-08-01T11:56:04.227322
 5,TaiwanStockPER,3305,402,,2026-08-01T12:28:05.937646
+7,TaiwanStockPER,6120,402,,2026-08-01T13:47:21.626230
