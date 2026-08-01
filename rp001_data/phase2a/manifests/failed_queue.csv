@@ -1,2 +1,4 @@
 batch_id,dataset,stock_id,http_status,error,queued_at
 2,TaiwanStockInstitutionalInvestorsBuySell,1762,402,,2026-07-31T09:32:18.793842
+3,TaiwanStockPrice,2338,402,,2026-07-31T21:59:16.616149
+3,TaiwanStockPrice,2338,402,,2026-07-31T21:59:30.301871

@@ -1,0 +1,15 @@
+{
+  "batch_id": 3,
+  "n_stocks": 120,
+  "gate_pass": false,
+  "stop_reasons": [
+    "trading-calendar inconsistency: [('2380', 6)]"
+  ],
+  "warnings": [
+    "missing-rate > 10% (governed by RP001_MISSINGNESS_POLICY.md, not a stop): 20 stocks",
+    "listing-date gap > 30 days (governed by RP001_DAILY_INVESTABLE_UNIVERSE_SPEC_v2.md, not a stop): 8 stocks",
+    "Dealer recurrence outside break window (governed by D-04 downgrade, not a stop): ['2211', '2241', '2247', '2248', '2254']"
+  ],
+  "high_missing_count": 20,
+  "listing_violation_count": 8
+}

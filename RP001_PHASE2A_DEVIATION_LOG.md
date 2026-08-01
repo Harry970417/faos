@@ -94,3 +94,17 @@ Format per `RP001_DEVIATION_POLICY.md`: **Deviation / Original Spec / Reason / D
 **Impact on Which Hypothesis:** None. The existing Trading Calendar Gate (Milestone 1B-R, already part of the locked pipeline) structurally admits only dates present in **both** price and institutional data into any feature panel — these 10 institutional-only dates are excluded by that mechanism regardless of root cause, and none fall inside the break window regardless. 1589's apparent 2026-04 trading stoppage is noted for the Market Membership work (a candidate future delisting-date entry) but does not itself touch F_INST_01 or the break interval.
 
 **Resolution status:** Logged and resolved. Same non-generalization caveat as D-05 — the Integrity Gate continues to flag, not silently ignore, future trading-calendar-inconsistency triggers.
+
+---
+
+**Deviation D-07: Stock 2380 (Batch 3) — same trading-calendar-inconsistency class as D-06, confirms the contamination dates are systemic, not stock-specific.**
+
+**Original Spec:** N/A — universe/pipeline-construction diagnostic.
+
+**Reason:** 6 institutional-only dates flagged. Investigated directly: 2019-08-24, 2019-10-26 (both Saturdays), and 2026-06-19 are **the exact same dates** already found contaminated in stock 1589 (D-06) and, for 2026-06-19, already root-caused system-wide in Milestone 1B. Finding the identical dates recur in an unrelated stock **confirms this is a shared, system-wide mis-dated-row pattern on specific calendar dates, not stock-specific data corruption** — strengthens rather than weakens the existing diagnosis. Unlike 1589, 2380's price data has no gap (continues cleanly through 2026-07-31) — this is pure calendar contamination, no delisting/suspension involved. None of the 6 dates fall inside the 2025 break window.
+
+**Decided Before or After Seeing Results:** Before — found during Batch 3's Integrity Gate check.
+
+**Impact on Which Hypothesis:** None — same reasoning as D-06. The Trading Calendar Gate excludes institutional-only dates from any feature panel regardless of cause, and none of the 6 dates are inside the break window.
+
+**Resolution status:** Logged and resolved. Recommend (not yet implemented — a tooling improvement, not a spec change) that the acquisition script's trading-calendar check maintain a running set of "known contaminated calendar dates" across batches, so a *repeat* of an already-identified system-wide date (like 2026-06-19) can be distinguished at a glance from a genuinely new date in future batches' Integrity Gate output — purely a diagnostic convenience, does not change the gate's stop/pass logic.
