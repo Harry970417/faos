@@ -9,6 +9,7 @@ Each row = one batch, produced by `rp001_batch_acquire.py`. Integrity Gate must 
 | 1 | idx 0–120 (`rp001_data/phase2a_acquisition_universe.csv` rows 0–119) | 120 | 360/360 requests complete | 9m47s (initial 256) + 2026-07-31 completion run (remaining 104) | 3 | 0 (all 104 originally-402'd requests succeeded on retry once quota reset) | **PASS** (re-run 2026-07-31 under `rp001_batch_acquire.py` v2 — see Batch 1 Resolution below) | `rp001_data/phase2a/manifests/pull_manifest.csv` (batch_id=1), `batch_001_result.json` |
 | 2 | idx 120–240 (rows 120–239) | 120 | 360/360 requests complete | Paused mid-run once (2026-07-31, quota) + resumed/completed 2026-08-01 | 0 | 0 | **PASS after investigation** (raw gate result was STOP — two new anomaly types, resolved via D-05/D-06, both confirmed non-material to F_INST_01/H-C1–H-C5 — see Batch 2 Resolution below) | `pull_manifest.csv` (batch_id=2), `batch_002_result.json` |
 | 3 | idx 240–360 (rows 240–359) | 120 | 360/360 requests complete | Paused mid-run twice (quota) + completed 2026-08-01 | 0 | 0 | **PASS after investigation** (raw gate result was STOP — trading-calendar inconsistency, stock 2380, resolved via D-07 as a repeat of the known D-06 pattern, non-material) | `pull_manifest.csv` (batch_id=3), `batch_003_result.json` |
+| 4 | idx 360–480 (rows 360–479) | 120 | 360/360 requests complete | Spread across several runs (quota) 2026-08-01 | 0 | 0 | **PASS — clean, no new anomalies** | `pull_manifest.csv` (batch_id=4), `batch_004_result.json` |
 
 ## Batch 1 — Resolution (2026-07-31, Phase 2A.2-R)
 
