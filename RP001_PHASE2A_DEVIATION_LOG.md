@@ -81,6 +81,8 @@ Format per `RP001_DEVIATION_POLICY.md`: **Deviation / Original Spec / Reason / D
 
 **Resolution status:** Logged and resolved for F_INST_01/H-C1–H-C5, same as D-04. **Not auto-generalized to future batches** — `rp001_batch_acquire.py`'s Integrity Gate deliberately continues to hard-stop on any future Dealer-in-break-window occurrence rather than being loosened to silently pass, since two data points is not enough to establish that `Foreign_Investor` will always remain unaffected; each future occurrence gets the same direct verification this one received, not a blanket assumption.
 
+> **Addendum (2026-08-01, Batch 5): third instance, same disposition.** Stock 3135 (listed 2022-02-18) reports `Dealer` from 2022-02-18 through 2025-08-05, then switches cleanly to split categories from 2025-08-07 onward (zero same-day overlap) — the cutover this time lands **inside** the break window itself, leaving only 3 of the window's 61 institutional-data dates on the `Dealer` side. Verified directly: `Foreign_Investor` is present for all 61/61 break-window dates, no gap. Same conclusion as the first two instances — F_INST_01/H-C1–H-C5 unaffected. This is now the third stock (of ~600 checked across Batches 1–5, i.e. 3/600 = 0.5%) showing this pattern; still resolved individually per batch, not blanket-approved.
+
 ---
 
 **Deviation D-06: Stock 1589 has institutional-data rows on 10 dates with no matching price row (10-date trading-calendar-inconsistency Integrity Gate trigger, Batch 2).**
