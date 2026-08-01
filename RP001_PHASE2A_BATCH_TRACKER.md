@@ -11,6 +11,7 @@ Each row = one batch, produced by `rp001_batch_acquire.py`. Integrity Gate must 
 | 3 | idx 240–360 (rows 240–359) | 120 | 360/360 requests complete | Paused mid-run twice (quota) + completed 2026-08-01 | 0 | 0 | **PASS after investigation** (raw gate result was STOP — trading-calendar inconsistency, stock 2380, resolved via D-07 as a repeat of the known D-06 pattern, non-material) | `pull_manifest.csv` (batch_id=3), `batch_003_result.json` |
 | 4 | idx 360–480 (rows 360–479) | 120 | 360/360 requests complete | Spread across several runs (quota) 2026-08-01 | 0 | 0 | **PASS — clean, no new anomalies** | `pull_manifest.csv` (batch_id=4), `batch_004_result.json` |
 | 5 | idx 480–600 (rows 480–599) | 120 | 360/360 requests complete | Spread across several runs (quota) 2026-08-01 | 0 | 0 | **PASS after investigation** (raw gate result was STOP — Dealer-in-break-window, stock 3135, 3rd instance of the D-05 pattern, non-material) | `pull_manifest.csv` (batch_id=5), `batch_005_result.json` |
+| 6 | idx 600–720 (rows 600–719) | 120 | 360/360 requests complete | Spread across several runs (quota) 2026-08-01 | 0 | 0 | **PASS after investigation** (raw gate result was STOP — Dealer-in-break-window, 7 stocks, rate jump flagged as AR-13, all individually verified non-material) | `pull_manifest.csv` (batch_id=6), `batch_006_result.json` |
 
 ## Batch 1 — Resolution (2026-07-31, Phase 2A.2-R)
 
