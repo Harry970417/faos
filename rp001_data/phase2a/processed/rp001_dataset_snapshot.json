@@ -1,0 +1,119 @@
+{
+  "dataset_path": "rp001_data\\phase2a\\processed\\rp001_confirmatory_dataset_v0.1.parquet",
+  "sha256": "b945702f9e5f203703c1654b6657a24626747c1fd130a9d1070c5d6987917bb6",
+  "rows": 5718238,
+  "cols": 39,
+  "build_timestamp_utc": "2026-08-02T23:15:53.032865+00:00",
+  "stocks_total": 2096,
+  "stocks_passing_coverage_gate": 1462,
+  "coverage_gate_threshold": 0.8,
+  "tests_passed": 21,
+  "tests_total": 21,
+  "test_detail": [
+    {
+      "name": "Stock 1213 (known AR-03 sparse case) excluded by coverage gate",
+      "passed": true,
+      "detail": "1213 coverage_rate=0.346"
+    },
+    {
+      "name": "F_INST_01_foreign_rank: rank bounds [0,1]",
+      "passed": true,
+      "detail": "min=0.0005 max=1.0000"
+    },
+    {
+      "name": "F_INST_05_aggregate_rank: rank bounds [0,1]",
+      "passed": true,
+      "detail": "min=0.0005 max=1.0000"
+    },
+    {
+      "name": "F_INT_01_flow_x_momentum: no infinite values",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "F_INT_01_flow_x_momentum: product-of-ranks bounds [0,1]",
+      "passed": true,
+      "detail": "min=0.0000 max=0.9973"
+    },
+    {
+      "name": "F_INT_03_flow_x_liquidity: no infinite values",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "F_INT_03_flow_x_liquidity: product-of-ranks bounds [0,1]",
+      "passed": true,
+      "detail": "min=0.0001 max=1.0000"
+    },
+    {
+      "name": "F_INT_04_foreign_x_liquidity: no infinite values",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "F_INT_04_foreign_x_liquidity: product-of-ranks bounds [0,1]",
+      "passed": true,
+      "detail": "min=0.0001 max=1.0000"
+    },
+    {
+      "name": "F_INT_05_foreign_x_volatility: no infinite values",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "F_INT_05_foreign_x_volatility: product-of-ranks bounds [0,1]",
+      "passed": true,
+      "detail": "min=0.0000 max=0.9837"
+    },
+    {
+      "name": "F_INT_07_foreign_x_momentum: no infinite values",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "F_INT_07_foreign_x_momentum: product-of-ranks bounds [0,1]",
+      "passed": true,
+      "detail": "min=0.0000 max=0.9970"
+    },
+    {
+      "name": "F_INT_02_flow_x_size: all-NaN (D-08, not constructible)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "F_INT_06_foreign_x_size: all-NaN (D-08, not constructible)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "F_INST_05_aggregate == sum of 6 raw categories",
+      "passed": true,
+      "detail": "max_diff=0.0"
+    },
+    {
+      "name": "Explicit-zero F_INST_01 observations preserved (not NaN'd)",
+      "passed": true,
+      "detail": "n=180,445"
+    },
+    {
+      "name": "break_period split respects locked point estimate (2025-09-25)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Last eligible date per stock has NaN fwd_ret_t5 (no forward leakage past series end)",
+      "passed": true,
+      "detail": "100.0% of last-dates are NaN (expected ~100%, a small residual can occur if 5 more true trading days exist just past the eligible-window cutoff for a stock but before the panel's last acquisition date)"
+    },
+    {
+      "name": "Spot-check: forward returns near series end show increasing NaN density (no wraparound)",
+      "passed": true,
+      "detail": "stock 1101: 2/3 of last 3 rows NaN for fwd_ret_t1"
+    },
+    {
+      "name": "Daily rank is computed strictly within-day (no cross-date leakage)",
+      "passed": true,
+      "detail": "date=2025-05-15"
+    }
+  ]
+}

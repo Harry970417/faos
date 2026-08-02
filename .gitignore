@@ -1,2 +1,3 @@
 rp001_data/phase2a/raw/
+rp001_data/phase2a/processed/*.parquet
 __pycache__/

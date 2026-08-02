@@ -1,0 +1,31 @@
+[07:15:28] Loading feature panel...
+[07:15:29] Panel: 5,718,238 rows
+[07:15:29] Computing per-stock F_INST_01 coverage (Missingness Policy Rule 3)...
+[07:15:29] Coverage gate: 1462/2096 stocks pass (69.8%), threshold=0.8
+[07:15:30]   [PASS] Stock 1213 (known AR-03 sparse case) excluded by coverage gate - 1213 coverage_rate=0.346
+[07:15:30] Running unit tests...
+[07:15:30]   [PASS] F_INST_01_foreign_rank: rank bounds [0,1] - min=0.0005 max=1.0000
+[07:15:30]   [PASS] F_INST_05_aggregate_rank: rank bounds [0,1] - min=0.0005 max=1.0000
+[07:15:30]   [PASS] F_INT_01_flow_x_momentum: no infinite values 
+[07:15:30]   [PASS] F_INT_01_flow_x_momentum: product-of-ranks bounds [0,1] - min=0.0000 max=0.9973
+[07:15:30]   [PASS] F_INT_03_flow_x_liquidity: no infinite values 
+[07:15:30]   [PASS] F_INT_03_flow_x_liquidity: product-of-ranks bounds [0,1] - min=0.0001 max=1.0000
+[07:15:30]   [PASS] F_INT_04_foreign_x_liquidity: no infinite values 
+[07:15:30]   [PASS] F_INT_04_foreign_x_liquidity: product-of-ranks bounds [0,1] - min=0.0001 max=1.0000
+[07:15:30]   [PASS] F_INT_05_foreign_x_volatility: no infinite values 
+[07:15:30]   [PASS] F_INT_05_foreign_x_volatility: product-of-ranks bounds [0,1] - min=0.0000 max=0.9837
+[07:15:30]   [PASS] F_INT_07_foreign_x_momentum: no infinite values 
+[07:15:30]   [PASS] F_INT_07_foreign_x_momentum: product-of-ranks bounds [0,1] - min=0.0000 max=0.9970
+[07:15:30]   [PASS] F_INT_02_flow_x_size: all-NaN (D-08, not constructible) 
+[07:15:30]   [PASS] F_INT_06_foreign_x_size: all-NaN (D-08, not constructible) 
+[07:15:31]   [PASS] F_INST_05_aggregate == sum of 6 raw categories - max_diff=0.0
+[07:15:31]   [PASS] Explicit-zero F_INST_01 observations preserved (not NaN'd) - n=180,445
+[07:15:32]   [PASS] break_period split respects locked point estimate (2025-09-25) 
+[07:15:32] Running leakage-truncation tests...
+[07:15:33]   [PASS] Last eligible date per stock has NaN fwd_ret_t5 (no forward leakage past series end) - 100.0% of last-dates are NaN (expected ~100%, a small residual can occur if 5 more true trading days exist just past the eligible-window cutoff for a stock but before the panel's last acquisition date)
+[07:15:33]   [PASS] Spot-check: forward returns near series end show increasing NaN density (no wraparound) - stock 1101: 2/3 of last 3 rows NaN for fwd_ret_t1
+[07:15:34]   [PASS] Daily rank is computed strictly within-day (no cross-date leakage) - date=2025-05-15
+[07:15:34] 
+Unit + leakage tests: 21/21 passed
+[07:15:53] Final dataset: C:\Users\user\Desktop\faos\rp001_data\phase2a\processed\rp001_confirmatory_dataset_v0.1.parquet (SHA-256: b945702f9e5f2037...)
+[07:15:53] DONE
