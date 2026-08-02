@@ -333,3 +333,9 @@ batch_id,dataset,stock_id,http_status,error,queued_at
 18,TaiwanStockPER,1221,402,,2026-08-02T21:07:32.546607
 18,TaiwanStockPrice,5264,402,,2026-08-02T21:23:31.406321
 18,TaiwanStockPrice,1224,402,,2026-08-02T21:37:50.181153
+19,TaiwanStockInstitutionalInvestorsBuySell,9922,402,,2026-08-02T21:53:50.661279
+19,TaiwanStockInstitutionalInvestorsBuySell,9922,402,,2026-08-02T22:05:51.528480
+19,TaiwanStockInstitutionalInvestorsBuySell,9922,402,,2026-08-02T22:15:01.540804
+19,TaiwanStockInstitutionalInvestorsBuySell,9922,402,,2026-08-02T22:15:22.249719
+19,TaiwanStockPER,2522,402,,2026-08-02T22:29:41.230302
+19,TaiwanStockPER,6404,402,,2026-08-02T22:43:00.336291

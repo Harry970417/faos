@@ -24,6 +24,9 @@ Each row = one batch, produced by `rp001_batch_acquire.py`. Integrity Gate must 
 | 16 | idx 1800–1920 (rows 1800–1919) | 120 | 360/360 requests complete | 2026-08-02, spread across quota pauses | 0 | 0 | **PASS after investigation** (raw gate result was STOP — Dealer-in-break-window, 23 stocks including 6986 (the known 興櫃→TPEx transfer case); 46th-68th instances of the D-05 pattern, non-material) | `pull_manifest.csv` (batch_id=16), `batch_016_result.json` |
 | 17 | idx 1920–2040 (rows 1920–2039) | 120 | 360/360 requests complete | 2026-08-02, spread across quota pauses (background process interrupted several times, always resumed cleanly) | 0 | 0 | **PASS — clean, no new anomalies** (first clean pass since Batch 4) | `pull_manifest.csv` (batch_id=17), `batch_017_result.json` |
 | 18 | idx 2040–2160 (rows 2040–2159) | 120 | 360/360 requests complete | 2026-08-02, spread across quota pauses | 0 | 0 | **PASS — clean, no new anomalies** (second consecutive clean batch; missing-rate count drops sharply to 23/120, lowest since Batch 7) | `pull_manifest.csv` (batch_id=18), `batch_018_result.json` |
+| 19 (final) | idx 2160–2255 (rows 2160–2254) | 95 | 285/285 requests complete | 2026-08-02, spread across quota pauses | 0 | 0 | **PASS — clean, no new anomalies** (third consecutive clean batch; lowest missing-rate count of the whole acquisition, 18/95) | `pull_manifest.csv` (batch_id=19), `batch_019_result.json` |
+
+**Full-universe acquisition complete: all 19 batches, 2,255 stocks, 6,765 requests, PASS.**
 
 ## Batch 7 — Resolution (2026-08-01)
 
