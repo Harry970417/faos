@@ -1,0 +1,21 @@
+[2026-08-02T07:52:38.448754+00:00] Batch 11: attempt 1
+Batch 11: 120 stocks, 114 requests needed (246 already cached, skipped)
+This run: 114 requests issued, 114 succeeded, 0 failed/queued
+{
+  "batch_id": 11,
+  "n_stocks": 120,
+  "gate_pass": false,
+  "stop_reasons": [
+    "Dealer recurrence INSIDE the locked break window (new -- not seen in Phase 2A.2-R's 86-stock check): ['3485']"
+  ],
+  "warnings": [
+    "missing-rate > 10% (governed by RP001_MISSINGNESS_POLICY.md, not a stop): 88 stocks",
+    "listing-date gap > 30 days (governed by RP001_DAILY_INVESTABLE_UNIVERSE_SPEC_v2.md, not a stop): 21 stocks",
+    "Dealer recurrence outside break window (governed by D-04 downgrade, not a stop): ['3349', '3357', '3374', '3430', '3467', '3597', '3672']"
+  ],
+  "high_missing_count": 88,
+  "listing_violation_count": 21
+}
+
+GATE: STOP
+[2026-08-02T07:55:15.038701+00:00] Batch 11: resolved, exit code 1
