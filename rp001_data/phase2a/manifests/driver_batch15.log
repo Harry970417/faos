@@ -1,0 +1,21 @@
+[2026-08-02T18:03:46.635232+00:00] Batch 15: attempt 1
+Batch 15: 120 stocks, 35 requests needed (325 already cached, skipped)
+This run: 35 requests issued, 35 succeeded, 0 failed/queued
+{
+  "batch_id": 15,
+  "n_stocks": 120,
+  "gate_pass": false,
+  "stop_reasons": [
+    "Dealer recurrence INSIDE the locked break window (new -- not seen in Phase 2A.2-R's 86-stock check): ['6474', '6620', '6725', '6730']"
+  ],
+  "warnings": [
+    "missing-rate > 10% (governed by RP001_MISSINGNESS_POLICY.md, not a stop): 110 stocks",
+    "listing-date gap > 30 days (governed by RP001_DAILY_INVESTABLE_UNIVERSE_SPEC_v2.md, not a stop): 111 stocks",
+    "Dealer recurrence outside break window (governed by D-04 downgrade, not a stop): ['6469', '6470', '6485', '6486', '6488', '6492', '6496', '6498', '6499', '6510', '6512', '6516', '6517', '6523', '6527', '6530', '6532', '6535', '6538', '6542', '6546', '6547', '6548', '6561', '6568', '6569', '6574', '6576', '6577', '6578', '6584', '6588', '6596', '6597', '6612', '6613', '6615', '6617', '6624', '6637', '6640', '6642', '6643', '6649', '6651', '6654', '6664', '6679', '6683', '6684', '6690', '6692', '6693', '6703', '6708', '6712', '6720', '6721', '6727', '6732', '6733', '6735', '6739', '6752', '6761', '6762', '6763', '6767', '6785', '6788', '6804', '6811', '6821', '6823', '6829', '6840', '6841', '6844', '6856', '6859', '6865', '6870', '6872', '6875', '6877', '6881']"
+  ],
+  "high_missing_count": 110,
+  "listing_violation_count": 111
+}
+
+GATE: STOP
+[2026-08-02T18:04:57.108238+00:00] Batch 15: resolved, exit code 1

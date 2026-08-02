@@ -101,6 +101,8 @@ Format per `RP001_DEVIATION_POLICY.md`: **Deviation / Original Spec / Reason / D
 
 > **Addendum (2026-08-02, Batch 14): 1 more stock (6028), clean.** Dealer 2023-09-19 to 2026-03-27, split from 2026-03-30 — `Foreign_Investor` present on all 17 break-window dates carrying any institutional row. Running total: 41 individually-verified instances, zero exceptions. F_INST_01/H-C1–H-C5 unaffected.
 
+> **Addendum (2026-08-02, Batch 15): 4 more stocks (6474, 6620, 6725, 6730), clean — both warning counts set new highs (missing-rate 110/120, listing-gap 111/120).** This batch (stock_id range ~6469-6881) is almost entirely thinly-covered, recently-listed issuers. All 4 flagged stocks verified clean via the standard checker — `Foreign_Investor` present on every break-window date carrying any institutional row. Running total: 45 individually-verified instances, zero exceptions. The near-universal listing-date-gap warning (111/120) is consistent with this segment's newer-listing composition, not a new eligibility problem — still governed by `RP001_DAILY_INVESTABLE_UNIVERSE_SPEC_v2.md`. F_INST_01/H-C1–H-C5 unaffected.
+
 ---
 
 **Deviation D-06: Stock 1589 has institutional-data rows on 10 dates with no matching price row (10-date trading-calendar-inconsistency Integrity Gate trigger, Batch 2).**

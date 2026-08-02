@@ -232,3 +232,7 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 ---
 
 **Decision:** Batch 14 completed and resolved (PASS after investigation) -- routine, one Dealer-in-break-window stock (6028), 41st consecutive clean instance. Full detail: `RP001_PHASE2A_DEVIATION_LOG.md` D-05 Batch-14 addendum. Proceeding to Batch 15 (idx 1680-1800) and onward.
+
+---
+
+**Decision:** Batch 15 completed and resolved (PASS after investigation). Four Dealer-in-break-window stocks (6474, 6620, 6725, 6730), 42nd-45th consecutive clean instances. Both warning counts (missing-rate, listing-date-gap) set new highs (110/120 and 111/120) -- this stock range is almost entirely thin, recently-listed issuers, consistent with the trend since Batch 8, still fully governed by existing policy. Full detail: `RP001_PHASE2A_DEVIATION_LOG.md` D-05 Batch-15 addendum. Proceeding to Batch 16 (idx 1800-1920) and onward.
