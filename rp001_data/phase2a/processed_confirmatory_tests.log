@@ -1,0 +1,41 @@
+[07:30:42] Loading confirmatory dataset...
+[07:30:43] Panel: 5,718,238 rows
+[07:30:44] Confirmatory sample (coverage-gate-passing stocks): 3,934,274 rows, 1462 stocks
+[07:30:44] H-C1: pre-break positive predictive power...
+[07:31:00] H-C2: post-break null effect (t+5)...
+[07:31:01] H-C3: liquidity conditionality (t+5, full sample)...
+[07:31:08] H-C4: volatility-regime x break-period double-sort (t+5)...
+[07:31:17] H-C5: interaction feature residualization (5 constructible + 2 inconclusive)...
+[07:31:17]   residualizing F_INT_01_flow_x_momentum...
+[07:32:05]   residualizing F_INT_03_flow_x_liquidity...
+[07:32:51]   residualizing F_INT_04_foreign_x_liquidity...
+[07:33:37]   residualizing F_INT_05_foreign_x_volatility...
+[07:34:23]   residualizing F_INT_07_foreign_x_momentum...
+[07:35:09] Applying joint BH-FDR (alpha=0.10) across 16 primary tests...
+[07:35:09] Saved: C:\Users\user\Desktop\faos\rp001_data\phase2a\processed\rp001_confirmatory_test_results.json
+[07:35:09] 
+======================================================================
+[07:35:09] H-C1 (pre-break positive IC):
+[07:35:09]   t+1: mean_ic=0.0000 median_ic=-0.0005 t_nw=0.036 n=3283
+[07:35:09]   t+3: mean_ic=0.0016 median_ic=0.0020 t_nw=1.190 n=3283
+[07:35:09]   t+5: mean_ic=0.0011 median_ic=0.0032 t_nw=0.735 n=3283
+[07:35:09] H-C2 (post-break null, t+5):
+[07:35:09]   mean_ic=0.0021 t_nw=0.395 n=197
+[07:35:09] H-C3 (liquidity conditionality, t+5):
+[07:35:09]   Illiquid: mean_ic=0.0041 t_nw=1.827 n=3471
+[07:35:09]   Mid: mean_ic=0.0093 t_nw=5.411 n=3471
+[07:35:09]   Liquid: mean_ic=-0.0001 t_nw=-0.029 n=3471
+[07:35:09] H-C4 (volatility x break double-sort, t+5):
+[07:35:09]   LowVol_pre: mean_ic=0.0016 t_nw=0.789 n=1692
+[07:35:09]   LowVol_post: mean_ic=-0.0043 t_nw=-0.448 n=46
+[07:35:09]   HighVol_pre: mean_ic=0.0002 t_nw=0.098 n=1581
+[07:35:09]   HighVol_post: mean_ic=0.0041 t_nw=0.660 n=151
+[07:35:09] H-C5 (interaction residualization, t+5):
+[07:35:09]   F_INT_01_flow_x_momentum: residual_mean_ic=0.0063 t_nw=7.057 n=3460
+[07:35:09]   F_INT_03_flow_x_liquidity: residual_mean_ic=-0.0066 t_nw=-6.673 n=3471
+[07:35:09]   F_INT_04_foreign_x_liquidity: residual_mean_ic=-0.0067 t_nw=-6.719 n=3471
+[07:35:09]   F_INT_05_foreign_x_volatility: residual_mean_ic=0.0016 t_nw=1.990 n=3470
+[07:35:09]   F_INT_07_foreign_x_momentum: residual_mean_ic=0.0065 t_nw=7.489 n=3460
+[07:35:09]   F_INT_02_flow_x_size: NOT CONSTRUCTIBLE (Deviation D-08: market capitalization data unavailable at full-universe confirmatory scale)
+[07:35:09]   F_INT_06_foreign_x_size: NOT CONSTRUCTIBLE (Deviation D-08: market capitalization data unavailable at full-universe confirmatory scale)
+[07:35:09] DONE
