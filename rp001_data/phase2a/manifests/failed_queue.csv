@@ -296,3 +296,4 @@ batch_id,dataset,stock_id,http_status,error,queued_at
 9,TaiwanStockPER,911868,200,,2026-08-02T02:46:30.475031
 9,TaiwanStockPER,912000,200,,2026-08-02T02:46:31.327778
 9,TaiwanStockPER,9136,200,,2026-08-02T02:46:32.228647
+10,TaiwanStockInstitutionalInvestorsBuySell,3162,402,,2026-08-02T06:04:01.253690
