@@ -1,0 +1,27 @@
+[2026-08-02T18:55:43.490141+00:00] Batch 16: attempt 1
+Batch 16: 120 stocks, 91 requests needed (269 already cached, skipped)
+  HTTP 402 (quota) at request 1/91 -- stopping this run early.
+This run: 1 requests issued, 0 succeeded, 1 failed/queued
+PAUSED: rate limit -- 90 requests still pending for batch 16. Re-run the same command to continue.
+[2026-08-02T18:55:43.958769+00:00] Batch 16: rate-limited, sleeping 720s before retry
+[2026-08-02T19:07:43.959427+00:00] Batch 16: attempt 2
+Batch 16: 120 stocks, 91 requests needed (269 already cached, skipped)
+This run: 91 requests issued, 91 succeeded, 0 failed/queued
+{
+  "batch_id": 16,
+  "n_stocks": 120,
+  "gate_pass": false,
+  "stop_reasons": [
+    "Dealer recurrence INSIDE the locked break window (new -- not seen in Phase 2A.2-R's 86-stock check): ['6884', '6910', '6945', '6961', '6971', '6983', '6986', '7716', '7738', '7744', '7751', '7753', '7757', '7767', '7777', '7782', '7792', '7805', '7810', '7819', '7820', '7828', '7842']"
+  ],
+  "warnings": [
+    "missing-rate > 10% (governed by RP001_MISSINGNESS_POLICY.md, not a stop): 105 stocks",
+    "listing-date gap > 30 days (governed by RP001_DAILY_INVESTABLE_UNIVERSE_SPEC_v2.md, not a stop): 72 stocks",
+    "Dealer recurrence outside break window (governed by D-04 downgrade, not a stop): ['6894', '6895', '6899', '6903', '6904', '6913', '6922', '6925', '6929', '6953', '6967', '6968', '6982', '6996', '6997', '7402', '7547', '7556', '7584', '7642', '7703', '7704', '7709', '7712', '7714', '7715', '7718', '7723', '7728', '7734', '7743', '7747', '7770', '7772', '7811', '8027', '8089', '8102', '8227', '8272', '8279']"
+  ],
+  "high_missing_count": 105,
+  "listing_violation_count": 72
+}
+
+GATE: STOP
+[2026-08-02T19:10:17.211813+00:00] Batch 16: resolved, exit code 1

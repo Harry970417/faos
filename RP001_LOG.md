@@ -236,3 +236,10 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 ---
 
 **Decision:** Batch 15 completed and resolved (PASS after investigation). Four Dealer-in-break-window stocks (6474, 6620, 6725, 6730), 42nd-45th consecutive clean instances. Both warning counts (missing-rate, listing-date-gap) set new highs (110/120 and 111/120) -- this stock range is almost entirely thin, recently-listed issuers, consistent with the trend since Batch 8, still fully governed by existing policy. Full detail: `RP001_PHASE2A_DEVIATION_LOG.md` D-05 Batch-15 addendum. Proceeding to Batch 16 (idx 1800-1920) and onward.
+
+---
+
+**Decision:** Batch 16 completed and resolved (PASS after investigation). 23 Dealer-in-break-window stocks -- the largest single-batch count by far -- including stock 6986, already documented in Phase 2A.1's Availability Audit as a 興櫃→TPEx transfer case.
+**Reason:** All 23 flagged stocks are 2023-2025 IPOs, the same structural pattern established since Batch 9 (new-issuer segments haven't reached their personal Dealer→split cutover before or during the break window).
+**Evidence:** All 23 individually verified via `rp001_verify_dealer_break.py` -- zero `Foreign_Investor`-specific gaps in any case, including 4 stocks (6884, 6961, 7716, 7842) with only 1 institutional-bearing date in the entire 62-day break window (these will very likely fail the Missingness Policy's 80% coverage gate and be excluded from the confirmatory universe -- the correct designed outcome, not a defect). 6986's Dealer/split pattern (cutover 2026-06-26) does not interact with its already-documented 興櫃 pre-listing history.
+**Impact:** F_INST_01/H-C1-H-C5 unaffected. Running total: 68 individually-verified Dealer-in-break-window instances, zero exceptions. Proceeding to Batch 17 (idx 1920-2040) and onward.
