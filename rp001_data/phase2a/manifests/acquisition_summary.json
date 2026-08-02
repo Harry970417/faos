@@ -1,0 +1,62 @@
+{
+  "phase": "RP-001 Phase 2A.2 Full Data Acquisition",
+  "completed_at_utc": "2026-08-02T23:01:03.507916+00:00",
+  "universe_size": 2255,
+  "universe_by_market": {
+    "TWSE": 1089,
+    "TPEx": 891,
+    "UNKNOWN": 275
+  },
+  "universe_by_listing_source": {
+    "registry": 1980,
+    "price_proxy": 275
+  },
+  "total_requests": 6765,
+  "total_data_rows": 34236687,
+  "status_breakdown": {
+    "success": 6261,
+    "empty": 504
+  },
+  "by_dataset": {
+    "TaiwanStockPER": {
+      "requests": 2255,
+      "success": 2067,
+      "empty": 188,
+      "total_rows": 5841909
+    },
+    "TaiwanStockPrice": {
+      "requests": 2255,
+      "success": 2098,
+      "empty": 157,
+      "total_rows": 6267742
+    },
+    "TaiwanStockInstitutionalInvestorsBuySell": {
+      "requests": 2255,
+      "success": 2096,
+      "empty": 159,
+      "total_rows": 22127036
+    }
+  },
+  "total_retries": 21,
+  "batches": 19,
+  "batch_size": "120 stocks (18 batches) + 95 stocks (final batch)",
+  "source_endpoint": "https://api.finmindtrade.com/api/v4/data",
+  "query_date_range": "2012-01-01 to 2026-08-02 (acquisition-day-varying end_date)",
+  "raw_data_bytes_on_disk": 3854193466,
+  "raw_file_count": 6765,
+  "manifest_files": {
+    "pull_manifest": "rp001_data/phase2a/manifests/pull_manifest.csv",
+    "failed_queue_log": "rp001_data/phase2a/manifests/failed_queue.csv",
+    "per_batch_gate_results": "rp001_data/phase2a/manifests/batch_0XX_result.json (19 files)"
+  },
+  "deviations_logged": [
+    "D-01",
+    "D-02",
+    "D-03",
+    "D-04 (downgraded)",
+    "D-05 (69 individually-verified instances)",
+    "D-06",
+    "D-07"
+  ],
+  "integrity_gate_final_status": "PASS (all 19 batches)"
+}
