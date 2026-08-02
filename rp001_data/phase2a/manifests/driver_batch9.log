@@ -1,0 +1,31 @@
+[2026-08-01T21:12:37.417142+00:00] Batch 9: attempt 1
+Batch 9: 120 stocks, 360 requests needed (0 already cached, skipped)
+  HTTP 402 (quota) at request 181/360 -- stopping this run early.
+This run: 181 requests issued, 180 succeeded, 1 failed/queued
+PAUSED: rate limit -- 179 requests still pending for batch 9. Re-run the same command to continue.
+[2026-08-01T21:17:01.288245+00:00] Batch 9: rate-limited, sleeping 3900s before retry
+[2026-08-01T22:22:01.288834+00:00] Batch 9: attempt 2
+Batch 9: 120 stocks, 180 requests needed (180 already cached, skipped)
+This run: 180 requests issued, 170 succeeded, 10 failed/queued
+PAUSED: 10 non-quota failures (connectivity?) left 10 pairs incomplete -- see failed_queue.csv. Re-run the same command to retry.
+[2026-08-01T22:25:54.331868+00:00] Batch 9: rate-limited, sleeping 3900s before retry
+[2026-08-01T23:30:54.335765+00:00] Batch 9: attempt 3
+Batch 9: 120 stocks, 10 requests needed (350 already cached, skipped)
+This run: 10 requests issued, 0 succeeded, 10 failed/queued
+PAUSED: 10 non-quota failures (connectivity?) left 10 pairs incomplete -- see failed_queue.csv. Re-run the same command to retry.
+[2026-08-01T23:31:02.606513+00:00] Batch 9: rate-limited, sleeping 3900s before retry
+[2026-08-02T00:36:02.607268+00:00] Batch 9: attempt 4
+Batch 9: 120 stocks, 10 requests needed (350 already cached, skipped)
+This run: 10 requests issued, 0 succeeded, 10 failed/queued
+PAUSED: 10 non-quota failures (connectivity?) left 10 pairs incomplete -- see failed_queue.csv. Re-run the same command to retry.
+[2026-08-02T00:36:14.144979+00:00] Batch 9: rate-limited, sleeping 3900s before retry
+[2026-08-02T01:41:14.145171+00:00] Batch 9: attempt 5
+Batch 9: 120 stocks, 10 requests needed (350 already cached, skipped)
+This run: 10 requests issued, 0 succeeded, 10 failed/queued
+PAUSED: 10 non-quota failures (connectivity?) left 10 pairs incomplete -- see failed_queue.csv. Re-run the same command to retry.
+[2026-08-02T01:41:23.457302+00:00] Batch 9: rate-limited, sleeping 3900s before retry
+[2026-08-02T02:46:23.457985+00:00] Batch 9: attempt 6
+Batch 9: 120 stocks, 10 requests needed (350 already cached, skipped)
+This run: 10 requests issued, 0 succeeded, 10 failed/queued
+PAUSED: 10 non-quota failures (connectivity?) left 10 pairs incomplete -- see failed_queue.csv. Re-run the same command to retry.
+[2026-08-02T02:46:32.629981+00:00] Batch 9: rate-limited, sleeping 3900s before retry

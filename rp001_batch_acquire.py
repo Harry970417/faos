@@ -54,11 +54,17 @@ FAILED_QUEUE_PATH = MANIFEST_DIR / "failed_queue.csv"
 
 
 def load_existing_success():
-    """(dataset, stock_id) pairs already successfully downloaded, per the manifest."""
+    """(dataset, stock_id) pairs already resolved, per the manifest.
+
+    "empty" (HTTP 200, zero rows -- e.g. TaiwanStockPER has no data at all
+    for some TDR-style codes) is a legitimate terminal state, same as
+    "success" -- retrying it forever would never produce a different
+    result. Only "failed" (non-200 / exception) pairs need retry.
+    """
     if not MANIFEST_PATH.exists():
         return set()
     m = pd.read_csv(MANIFEST_PATH, dtype=str)
-    ok = m[m["status"] == "success"]
+    ok = m[m["status"].isin(["success", "empty"])]
     return set(zip(ok["dataset"], ok["stock_id"]))
 
 
@@ -116,7 +122,7 @@ def run_batch(batch_id, start_idx, end_idx, max_requests=260):
             "status": status, "file_path": str(out_path.relative_to(ROOT)),
         }
         manifest_rows.append(row)
-        if status != "success":
+        if status == "failed":
             failed_rows.append({"batch_id": batch_id, "dataset": dataset, "stock_id": sid,
                                  "http_status": payload.get("status") if isinstance(payload, dict) else None,
                                  "error": err, "queued_at": datetime.utcnow().isoformat()})
