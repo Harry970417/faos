@@ -228,3 +228,7 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 ---
 
 **Decision:** Batch 13 completed and resolved (PASS after investigation) -- routine, one Dealer-in-break-window stock (5547), 40th consecutive clean instance. The shortened 12-minute driver retry interval completed this batch in a single background run (6 attempts, ~1hr9min), confirming the earlier tooling change is working as intended. Full detail: `RP001_PHASE2A_DEVIATION_LOG.md` D-05 Batch-13 addendum. Proceeding to Batch 14 (idx 1560-1680) and onward.
+
+---
+
+**Decision:** Batch 14 completed and resolved (PASS after investigation) -- routine, one Dealer-in-break-window stock (6028), 41st consecutive clean instance. Full detail: `RP001_PHASE2A_DEVIATION_LOG.md` D-05 Batch-14 addendum. Proceeding to Batch 15 (idx 1680-1800) and onward.

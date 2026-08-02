@@ -19,6 +19,7 @@ Each row = one batch, produced by `rp001_batch_acquire.py`. Integrity Gate must 
 | 11 | idx 1200–1320 (rows 1200–1319) | 120 | 360/360 requests complete | 2026-08-02, spread across quota pauses | 0 | 0 | **PASS after investigation** (raw gate result was STOP — Dealer-in-break-window, 1 stock: 3485; 38th instance of the D-05 pattern, non-material) | `pull_manifest.csv` (batch_id=11), `batch_011_result.json` |
 | 12 | idx 1320–1440 (rows 1320–1439) | 120 | 360/360 requests complete | 2026-08-02, spread across quota pauses | 0 | 0 | **PASS after investigation** (raw gate result was STOP — Dealer-in-break-window, 1 stock: 4166; 39th instance of the D-05 pattern, non-material; missing-rate warning count sets a new high, 99/120) | `pull_manifest.csv` (batch_id=12), `batch_012_result.json` |
 | 13 | idx 1440–1560 (rows 1440–1559) | 120 | 360/360 requests complete | 2026-08-02, spread across quota pauses (completed in one background run, 6 attempts) | 0 | 0 | **PASS after investigation** (raw gate result was STOP — Dealer-in-break-window, 1 stock: 5547; 40th instance of the D-05 pattern, non-material) | `pull_manifest.csv` (batch_id=13), `batch_013_result.json` |
+| 14 | idx 1560–1680 (rows 1560–1679) | 120 | 360/360 requests complete | 2026-08-02, spread across quota pauses | 0 | 0 | **PASS after investigation** (raw gate result was STOP — Dealer-in-break-window, 1 stock: 6028; 41st instance of the D-05 pattern, non-material) | `pull_manifest.csv` (batch_id=14), `batch_014_result.json` |
 
 ## Batch 7 — Resolution (2026-08-01)
 

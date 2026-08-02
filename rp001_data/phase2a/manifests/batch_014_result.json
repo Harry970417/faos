@@ -1,0 +1,15 @@
+{
+  "batch_id": 14,
+  "n_stocks": 120,
+  "gate_pass": false,
+  "stop_reasons": [
+    "Dealer recurrence INSIDE the locked break window (new -- not seen in Phase 2A.2-R's 86-stock check): ['6028']"
+  ],
+  "warnings": [
+    "missing-rate > 10% (governed by RP001_MISSINGNESS_POLICY.md, not a stop): 87 stocks",
+    "listing-date gap > 30 days (governed by RP001_DAILY_INVESTABLE_UNIVERSE_SPEC_v2.md, not a stop): 16 stocks",
+    "Dealer recurrence outside break window (governed by D-04 downgrade, not a stop): ['5864', '6026', '6417', '6418', '6419', '6423', '6425', '6432', '6441', '6461', '6462']"
+  ],
+  "high_missing_count": 87,
+  "listing_violation_count": 16
+}

@@ -1,0 +1,50 @@
+[2026-08-02T11:01:28.226286+00:00] Batch 14: attempt 1
+Batch 14: 120 stocks, 280 requests needed (80 already cached, skipped)
+  HTTP 402 (quota) at request 1/280 -- stopping this run early.
+This run: 1 requests issued, 0 succeeded, 1 failed/queued
+PAUSED: rate limit -- 279 requests still pending for batch 14. Re-run the same command to continue.
+[2026-08-02T11:01:28.588957+00:00] Batch 14: rate-limited, sleeping 720s before retry
+[2026-08-02T11:13:28.589574+00:00] Batch 14: attempt 2
+Batch 14: 120 stocks, 280 requests needed (80 already cached, skipped)
+  HTTP 402 (quota) at request 1/280 -- stopping this run early.
+This run: 1 requests issued, 0 succeeded, 1 failed/queued
+PAUSED: rate limit -- 279 requests still pending for batch 14. Re-run the same command to continue.
+[2026-08-02T11:13:29.087905+00:00] Batch 14: rate-limited, sleeping 720s before retry
+[2026-08-02T11:25:29.090615+00:00] Batch 14: attempt 3
+Batch 14: 120 stocks, 280 requests needed (80 already cached, skipped)
+  HTTP 402 (quota) at request 1/280 -- stopping this run early.
+This run: 1 requests issued, 0 succeeded, 1 failed/queued
+PAUSED: rate limit -- 279 requests still pending for batch 14. Re-run the same command to continue.
+[2026-08-02T11:25:29.430919+00:00] Batch 14: rate-limited, sleeping 720s before retry
+[2026-08-02T11:37:29.431648+00:00] Batch 14: attempt 4
+Batch 14: 120 stocks, 280 requests needed (80 already cached, skipped)
+  HTTP 402 (quota) at request 18/280 -- stopping this run early.
+This run: 18 requests issued, 17 succeeded, 1 failed/queued
+PAUSED: rate limit -- 262 requests still pending for batch 14. Re-run the same command to continue.
+[2026-08-02T11:37:50.567318+00:00] Batch 14: rate-limited, sleeping 720s before retry
+[2026-08-02T11:49:50.567701+00:00] Batch 14: attempt 5
+Batch 14: 120 stocks, 263 requests needed (97 already cached, skipped)
+This run: 250 requests issued, 250 succeeded, 0 failed/queued
+PAUSED: rate limit -- 13 requests still pending for batch 14. Re-run the same command to continue.
+[2026-08-02T11:54:05.388044+00:00] Batch 14: rate-limited, sleeping 720s before retry
+[2026-08-02T12:06:05.388577+00:00] Batch 14: attempt 6
+Batch 14: 120 stocks, 13 requests needed (347 already cached, skipped)
+This run: 13 requests issued, 13 succeeded, 0 failed/queued
+{
+  "batch_id": 14,
+  "n_stocks": 120,
+  "gate_pass": false,
+  "stop_reasons": [
+    "Dealer recurrence INSIDE the locked break window (new -- not seen in Phase 2A.2-R's 86-stock check): ['6028']"
+  ],
+  "warnings": [
+    "missing-rate > 10% (governed by RP001_MISSINGNESS_POLICY.md, not a stop): 87 stocks",
+    "listing-date gap > 30 days (governed by RP001_DAILY_INVESTABLE_UNIVERSE_SPEC_v2.md, not a stop): 16 stocks",
+    "Dealer recurrence outside break window (governed by D-04 downgrade, not a stop): ['5864', '6026', '6417', '6418', '6419', '6423', '6425', '6432', '6441', '6461', '6462']"
+  ],
+  "high_missing_count": 87,
+  "listing_violation_count": 16
+}
+
+GATE: STOP
+[2026-08-02T12:06:29.180493+00:00] Batch 14: resolved, exit code 1
