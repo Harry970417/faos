@@ -224,3 +224,7 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 ---
 
 **Decision:** Batch 12 completed and resolved (PASS after investigation) -- routine, one Dealer-in-break-window stock (4166), 39th consecutive clean instance. Missing-rate warning count sets a new high (99/120, 82.5%), continuing the trend seen since Batch 8; still fully governed by the Missingness Policy. Also noted: background acquisition processes in this environment have been getting killed mid-sleep well before their intended retry interval (observed across Batches 9-12) -- not a data-integrity issue (all state is persisted to disk and resumed correctly each time via skip-existing logic), but shortened the driver's retry sleep from 65 to 12 minutes (`rp001_batch_driver.py`) so each relaunch wastes less time if killed again. Full detail: `RP001_PHASE2A_DEVIATION_LOG.md` D-05 Batch-12 addendum. Proceeding to Batch 13 (idx 1440-1560) and onward.
+
+---
+
+**Decision:** Batch 13 completed and resolved (PASS after investigation) -- routine, one Dealer-in-break-window stock (5547), 40th consecutive clean instance. The shortened 12-minute driver retry interval completed this batch in a single background run (6 attempts, ~1hr9min), confirming the earlier tooling change is working as intended. Full detail: `RP001_PHASE2A_DEVIATION_LOG.md` D-05 Batch-13 addendum. Proceeding to Batch 14 (idx 1560-1680) and onward.

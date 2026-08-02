@@ -97,6 +97,8 @@ Format per `RP001_DEVIATION_POLICY.md`: **Deviation / Original Spec / Reason / D
 
 > **Addendum (2026-08-02, Batch 12): 1 more stock (4166), clean; missing-rate warning count sets a new high (99/120, 82.5%).** Dealer 2012-11-01 to 2025-08-20, split from 2025-08-21 (cutover lands 2 weeks inside the break window) — `Foreign_Investor` present on all 57 break-window dates carrying any institutional row. Running total: 39 individually-verified instances, zero exceptions. The rising missing-rate trend across Batches 8-12 (73%, 49%, 79%, 79%, 82.5%) continues to track smaller/newer/TPEx-leaning stock segments as the universe list works through less liquid names — still fully governed by the Missingness Policy's coverage gate, not a new condition. F_INST_01/H-C1–H-C5 unaffected.
 
+> **Addendum (2026-08-02, Batch 13): 1 more stock (5547), clean.** Dealer 2021-10-22 to 2026-01-27, split from 2026-02-03 — `Foreign_Investor` present on all 6 break-window dates carrying any institutional row. Running total: 40 individually-verified instances, zero exceptions. F_INST_01/H-C1–H-C5 unaffected.
+
 ---
 
 **Deviation D-06: Stock 1589 has institutional-data rows on 10 dates with no matching price row (10-date trading-calendar-inconsistency Integrity Gate trigger, Batch 2).**
