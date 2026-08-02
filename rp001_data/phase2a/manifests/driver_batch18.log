@@ -1,0 +1,30 @@
+[2026-08-02T21:19:47.749557+00:00] Batch 18: attempt 1
+Batch 18: 120 stocks, 226 requests needed (134 already cached, skipped)
+  HTTP 402 (quota) at request 111/226 -- stopping this run early.
+This run: 111 requests issued, 46 succeeded, 1 failed/queued
+PAUSED: rate limit -- 115 requests still pending for batch 18. Re-run the same command to continue.
+[2026-08-02T21:23:31.411853+00:00] Batch 18: rate-limited, sleeping 720s before retry
+[2026-08-02T21:35:31.412575+00:00] Batch 18: attempt 2
+Batch 18: 120 stocks, 116 requests needed (244 already cached, skipped)
+  HTTP 402 (quota) at request 58/116 -- stopping this run early.
+This run: 58 requests issued, 31 succeeded, 1 failed/queued
+PAUSED: rate limit -- 58 requests still pending for batch 18. Re-run the same command to continue.
+[2026-08-02T21:37:50.185115+00:00] Batch 18: rate-limited, sleeping 720s before retry
+[2026-08-02T21:49:50.185640+00:00] Batch 18: attempt 3
+Batch 18: 120 stocks, 59 requests needed (301 already cached, skipped)
+This run: 59 requests issued, 15 succeeded, 0 failed/queued
+{
+  "batch_id": 18,
+  "n_stocks": 120,
+  "gate_pass": true,
+  "stop_reasons": [],
+  "warnings": [
+    "missing-rate > 10% (governed by RP001_MISSINGNESS_POLICY.md, not a stop): 23 stocks",
+    "Dealer recurrence outside break window (governed by D-04 downgrade, not a stop): ['6747', '6288', '8480']"
+  ],
+  "high_missing_count": 23,
+  "listing_violation_count": 0
+}
+
+GATE: PASS
+[2026-08-02T21:51:18.103802+00:00] Batch 18: resolved, exit code 0

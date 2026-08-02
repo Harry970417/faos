@@ -247,3 +247,7 @@ Every Research Decision from this point forward is recorded here: **Decision / R
 ---
 
 **Decision:** Batch 17 completed and resolved -- clean PASS, first batch since Batch 4 with zero new anomalies. Proceeding to Batch 18 (idx 2040-2160) and onward.
+
+---
+
+**Decision:** Batch 18 completed and resolved -- clean PASS, second consecutive clean batch. Missing-rate warning count drops sharply to 23/120, the lowest since Batch 7, and zero listing-date-gap warnings -- this batch's stock segment (idx 2040-2160, near the end of the currently-listed universe before the delisted-stock tail) looks structurally different from the sparse mid-range batches. Proceeding to Batch 19 (idx 2160-2255, the final batch, 95 stocks) and onward.
