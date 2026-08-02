@@ -10,7 +10,7 @@ import sys, time
 from datetime import datetime, timezone
 from rp001_batch_acquire import run_batch
 
-RETRY_SLEEP_SECONDS = 65 * 60  # a bit over an hour, safely past any reset window
+RETRY_SLEEP_SECONDS = 12 * 60  # short retries -- this environment's background tasks don't reliably survive a full hourly sleep; a 402 costs nothing so frequent re-checks are cheap
 
 
 def log(msg):
