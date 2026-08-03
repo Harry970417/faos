@@ -18,4 +18,6 @@ Drop-in section for a personal portfolio repo/site README, extracted from this r
 
 **What this demonstrates:** end-to-end data engineering (rate-limited API acquisition, two real pipeline bugs found and fixed, systematic data-quality auditing across 69 individually-verified schema-drift cases), rigorous statistical inference (Newey-West, cross-sectional residualization, Benjamini-Hochberg FDR), and — the part most student projects skip — reporting a negative result for the central hypothesis honestly, without adjusting methodology after seeing it.
 
-**Full writeup:** [`RP001_FINAL_RESEARCH_REPORT.md`](RP001_FINAL_RESEARCH_REPORT.md) · **One page:** [`RP001_PORTFOLIO_ONE_PAGE.md`](RP001_PORTFOLIO_ONE_PAGE.md) · **Reproduce it:** [`RP001_PHASE2A_REPRODUCIBILITY_REPORT.md`](RP001_PHASE2A_REPRODUCIBILITY_REPORT.md)
+**Full writeup:** `research/RP001_FINAL_RESEARCH_REPORT.md` · **One page:** `portfolio/RP001_PORTFOLIO_ONE_PAGE.md` · **Reproduce it:** `research/RP001_PHASE2A_REPRODUCIBILITY_REPORT.md`
+
+*(Paths above are relative to the FAOS repo root — adjust if you copy this section into a different repo.)*

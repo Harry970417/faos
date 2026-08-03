@@ -1,8 +1,8 @@
 # RP-001 Feature Registry
 
-Governs all 11 features from RP001_FEATURE_SPECIFICATION.md. Built and tested on the 50-stock characterization sample (24,535 panel rows, 2024-07-01 to 2026-07-09) — **not yet the full RP-001 research universe**, which is a separate, later data-engineering task. No IC, backtest, or portfolio construction performed against these features at this milestone.
+Governs all 11 features from `research/RP001_FEATURE_SPECIFICATION.md`. Built and tested on the 50-stock characterization sample (24,535 panel rows, 2024-07-01 to 2026-07-09) — **not yet the full RP-001 research universe**, which is a separate, later data-engineering task. No IC, backtest, or portfolio construction performed against these features at this milestone.
 
-**Version: v0.1** | **Build date:** recorded per-row in the feature file itself | **Source code:** `rp001_build_features.py` | **Test suite:** `rp001_feature_tests.py`, 15/15 passed | **Output:** `rp001_data/features/rp001_features_v0.1.{parquet,csv}`
+**Version: v0.1** | **Build date:** recorded per-row in the feature file itself | **Source code:** `research/rp001_build_features.py` | **Test suite:** `research/rp001_feature_tests.py`, 15/15 passed | **Output:** `rp001_data/features/rp001_features_v0.1.{parquet,csv}`
 
 ## Registry
 
@@ -31,11 +31,11 @@ Governs all 11 features from RP001_FEATURE_SPECIFICATION.md. Built and tested on
 
 ## Full-universe scale-up — explicitly deferred
 
-This registry and its build reflect the 50-stock characterization sample. Extending to RP-001's actual research universe (full TWSE/TPEx, survivorship-bias-free, per RP001_RESEARCH_DESIGN.md) requires the delisted-stock integration and full-universe pull that Milestone 0A confirmed is *available* (`TaiwanStockDelisting`, 337 rows) but not yet *executed*. That's a Milestone 1A follow-up, not done here.
+This registry and its build reflect the 50-stock characterization sample. Extending to RP-001's actual research universe (full TWSE/TPEx, survivorship-bias-free, per `research/RP001_RESEARCH_DESIGN.md`) requires the delisted-stock integration and full-universe pull that Milestone 0A confirmed is *available* (`TaiwanStockDelisting`, 337 rows) but not yet *executed*. That's a Milestone 1A follow-up, not done here.
 
 ## Feature Status — FROZEN as of Milestone 1D (Feature Freeze Review)
 
-Freeze does not mean permanently valid, tradeable, deployable, or performance-validated — it means the research determination below is stable under current sample/methods/robustness tests and will not change by design preference alone; only new evidence can revise it. Full basis in `RP001_MILESTONE_1D_FEATURE_FREEZE_REVIEW.md` and `RP001_FEATURE_DECISION_TABLE.md`.
+Freeze does not mean permanently valid, tradeable, deployable, or performance-validated — it means the research determination below is stable under current sample/methods/robustness tests and will not change by design preference alone; only new evidence can revise it. Full basis in `research/RP001_MILESTONE_1D_FEATURE_FREEZE_REVIEW.md` and `research/RP001_FEATURE_DECISION_TABLE.md`.
 
 | Feature | Frozen Status | Basis |
 |---|---|---|
@@ -72,7 +72,7 @@ Freeze does not mean permanently valid, tradeable, deployable, or performance-va
 
 ## Feature Status — FINAL, post-Phase 2A Confirmatory Closure (RP-001: Completed)
 
-**This section supersedes the Milestone 1D table above for research-status purposes. The Milestone 1D table is preserved unchanged above it — it documents what the exploratory-phase evidence supported at that time, and remains correct as a historical record. It does not describe the current, final status.** Basis: `RP001_PHASE2A_CONFIRMATORY_RESULTS.md`, `RP001_PHASE2A_HYPOTHESIS_VERDICTS.md`, `RP001_FINAL_ACCEPTANCE_REPORT.md`. RP-001 is closed; no further feature-status revision is planned under this research ID.
+**This section supersedes the Milestone 1D table above for research-status purposes. The Milestone 1D table is preserved unchanged above it — it documents what the exploratory-phase evidence supported at that time, and remains correct as a historical record. It does not describe the current, final status.** Basis: `research/RP001_PHASE2A_CONFIRMATORY_RESULTS.md`, `research/RP001_PHASE2A_HYPOTHESIS_VERDICTS.md`, `research/RP001_FINAL_ACCEPTANCE_REPORT.md`. RP-001 is closed; no further feature-status revision is planned under this research ID.
 
 | Feature | Final Status | Basis |
 |---|---|---|
@@ -86,4 +86,4 @@ Freeze does not mean permanently valid, tradeable, deployable, or performance-va
 | **F_INST_05_aggregate** | **Deprecated** | Unchanged from Milestone 1D. |
 | **Interaction Family (F_INT_01–F_INT_07)** | **Exploratory conclusions not uniformly replicated; newly observed residual effects require a separate pre-registered study** | Milestone 1D's uniform "Confirmed Artifact" verdict is **not uniformly upheld**: of the five interactions testable at full-universe scale (F_INT_01, 03, 04, 05, 07 — F_INT_02/F_INT_06 untestable, Deviation D-08), four (F_INT_01, 03, 04, 07) show a small-magnitude but statistically robust residual effect surviving joint residualization and BH-FDR correction (H-C5). This is a genuine, unexplained, confirmatory-scale finding, not evidence that any of the seven is a usable factor — RP-001's own protocol prohibits treating an incidental finding surfaced during closure as grounds for a new, un-pre-registered investigation. Any future work on this residual effect requires its own independently pre-registered study, not an extension of RP-001. |
 
-**RP-001 formal status: Completed.** No feature above carries forward as an actionable, tradeable, or further-research-ready result under this research ID. See `RP001_FINAL_ACCEPTANCE_REPORT.md` for the full closure decision.
+**RP-001 formal status: Completed.** No feature above carries forward as an actionable, tradeable, or further-research-ready result under this research ID. See `research/RP001_FINAL_ACCEPTANCE_REPORT.md` for the full closure decision.

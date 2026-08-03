@@ -1,10 +1,10 @@
 # Changelog
 
-High-level project history. RP-001-internal detail: `RP001_CHANGELOG_v0.2.md`, `RP001_LOG.md`, `RP001_PHASE2A_DEVIATION_LOG.md`.
+High-level project history. RP-001-internal detail: `research/RP001_CHANGELOG_v0.2.md`, `research/RP001_LOG.md`, `research/RP001_PHASE2A_DEVIATION_LOG.md`.
 
 ## 2026-08-03 — RP-001 formal closure
 
-Status set to Completed. Final feature statuses assigned, formal core conclusion fixed, `RP001_ARCHIVE_MANIFEST.json` recorded. No further work authorized under this research ID. (Final commit `40a2be9`.)
+Status set to Completed. Final feature statuses assigned, formal core conclusion fixed, `research/RP001_ARCHIVE_MANIFEST.json` recorded. No further work authorized under this research ID. (Final commit `40a2be9`.)
 
 ## 2026-08-01 to 2026-08-03 — Phase 2A execution
 

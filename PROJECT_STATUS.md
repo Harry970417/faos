@@ -4,7 +4,7 @@
 
 ## FAOS
 
-**Version:** Alpha 0.2 (`FAOS_ALPHA_0.2.md`) at the time RP-001 began; a small, evidence-backed v0.3 proposal now exists (`FAOS_ALPHA_0.3_PROPOSAL.md`) based on what RP-001's execution actually surfaced. Not yet adopted — proposal only.
+**Version:** Alpha 0.2 (`architecture/FAOS_ALPHA_0.2.md`) at the time RP-001 began; a small, evidence-backed v0.3 proposal now exists (`architecture/FAOS_ALPHA_0.3_PROPOSAL.md`) based on what RP-001's execution actually surfaced. Not yet adopted — proposal only.
 
 ## RP-001 (External Institutional Flow and Taiwan Stock Returns)
 
@@ -20,16 +20,17 @@
 | Phase 2A.4 (H-C1–H-C5 Confirmatory Tests) | Complete |
 | Formal closure and archival | Complete |
 | Portfolio/application material set | Complete |
+| Final Publication Pass (repo reorganization, terminology, figure renaming, consistency audit) | Complete |
 
 **No further work is authorized under RP-001.** No new feature discovery, breakpoint optimization, threshold tuning, portfolio backtest, trading strategy, investment recommendation, or rescue analysis of H-C1.
 
 ## What's next
 
-RP-002 candidate briefs exist (`RP002_CANDIDATE_RESEARCH_BRIEF.md` + alternatives, ranked) but **no RP-002 work has started.** See `ROADMAP.md`.
+RP-002 candidate briefs exist (`research/RP002_CANDIDATE_RESEARCH_BRIEF.md` + alternatives, ranked) but **no RP-002 work has started.** See `ROADMAP.md`.
 
 ## Quick links
 
-- Formal closure record: `RP001_FINAL_ACCEPTANCE_REPORT.md`
-- Full research report: `RP001_FINAL_RESEARCH_REPORT.md`
+- Formal closure record: `research/RP001_FINAL_ACCEPTANCE_REPORT.md`
+- Full research report: `research/RP001_FINAL_RESEARCH_REPORT.md`
 - Reading paths by audience: `RP001_READING_GUIDE.md`
-- Reproducibility: `RP001_PHASE2A_REPRODUCIBILITY_REPORT.md`
+- Reproducibility: `research/RP001_PHASE2A_REPRODUCIBILITY_REPORT.md`
