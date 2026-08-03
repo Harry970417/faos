@@ -107,7 +107,7 @@ def main():
 
     # ==== Chart 5: Break before/after (exploratory vs confirmatory) ====
     log("Chart 5: break before/after comparison...")
-    fig, ax = plt.subplots(figsize=(7, 4.5))
+    fig, ax = plt.subplots(figsize=(9, 4.5))
     labels = ["Pre-break\n(exploratory)", "Pre-break\n(confirmatory)", "Post-break\n(exploratory)", "Post-break\n(confirmatory)"]
     vals = [0.052, results["results"]["H-C1"]["t5"]["mean_ic"], -0.008, results["results"]["H-C2"]["t5"]["mean_ic"]]
     colors = ["#4C72B0", "#4C72B0", "#C44E52", "#C44E52"]
@@ -118,7 +118,8 @@ def main():
     ax.axhline(0, color="black", linewidth=0.8)
     ax.set_ylabel("Mean IC (t+5), Spearman Rank IC"); ax.set_title(
         "RP-001: Break-Period IC, Exploratory vs. Confirmatory\n"
-        "(solid = exploratory, 50 stocks, 2024-2026; hatched = confirmatory, 1,462 stocks, 2012-2026)")
+        "(solid = exploratory, 50 stocks, 2024-2026; hatched = confirmatory, 1,462 stocks, 2012-2026)",
+        fontsize=10.5)
     fig.tight_layout(); fig.savefig(CHART_DIR / "Figure05_BreakBeforeAfter.png"); plt.close(fig)
 
     # ==== Chart 6: Liquidity groups ====
