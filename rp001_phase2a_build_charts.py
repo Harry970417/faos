@@ -116,7 +116,9 @@ def main():
     for b, h in zip(bars, hatches):
         b.set_hatch(h)
     ax.axhline(0, color="black", linewidth=0.8)
-    ax.set_ylabel("Mean IC (t+5)"); ax.set_title("RP-001: Break-Period IC, Exploratory vs. Confirmatory\n(solid = exploratory 50-stock; hatched = confirmatory full-universe)")
+    ax.set_ylabel("Mean IC (t+5), Spearman Rank IC"); ax.set_title(
+        "RP-001: Break-Period IC, Exploratory vs. Confirmatory\n"
+        "(solid = exploratory, 50 stocks, 2024-2026; hatched = confirmatory, 1,462 stocks, 2012-2026)")
     fig.tight_layout(); fig.savefig(CHART_DIR / "05_break_before_after.png"); plt.close(fig)
 
     # ==== Chart 6: Liquidity groups ====
@@ -131,7 +133,8 @@ def main():
     for bar, t in zip(bars, ts):
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.0003, f"t={t:.2f}", ha="center", fontsize=9)
     ax.axhline(0, color="black", linewidth=0.8)
-    ax.set_ylabel("Mean IC (t+5)"); ax.set_title("RP-001 Phase 2A: H-C3 Liquidity Conditionality (green = |t|>1.96)")
+    ax.set_ylabel("Mean IC (t+5), Spearman Rank IC")
+    ax.set_title("RP-001 Phase 2A: H-C3 Liquidity Conditionality\nConfirmatory sample, 1,462 stocks, full 2012-2026 sample (green = |NW t|>1.96)")
     fig.tight_layout(); fig.savefig(CHART_DIR / "06_liquidity_groups.png"); plt.close(fig)
 
     # ==== Chart 7: Hypothesis verdicts scorecard ====
@@ -167,7 +170,79 @@ def main():
     ax.legend()
     fig.tight_layout(); fig.savefig(CHART_DIR / "08_exploratory_vs_confirmatory.png"); plt.close(fig)
 
-    log(f"All 8 charts saved to {CHART_DIR}")
+    # ==== Chart 9: Interaction residualization, raw vs. residual IC ====
+    log("Chart 9: interaction residualization before/after...")
+    hc5 = results["results"]["H-C5"]
+    int_names = ["F_INT_01\n(flow x momentum)", "F_INT_03\n(flow x liquidity)", "F_INT_04\n(foreign x liquidity)",
+                 "F_INT_05\n(foreign x volatility)", "F_INT_07\n(foreign x momentum)"]
+    int_keys = ["F_INT_01_flow_x_momentum", "F_INT_03_flow_x_liquidity", "F_INT_04_foreign_x_liquidity",
+                "F_INT_05_foreign_x_volatility", "F_INT_07_foreign_x_momentum"]
+    raw_ic = [hc5[k]["raw"]["5"]["mean_ic"] for k in int_keys]
+    resid_ic = [hc5[k]["residualized"]["5"]["mean_ic"] for k in int_keys]
+    resid_t = [hc5[k]["residualized"]["5"]["t_nw"] for k in int_keys]
+    fig, ax = plt.subplots(figsize=(10, 5))
+    x = np.arange(len(int_names))
+    ax.bar(x - 0.2, raw_ic, width=0.4, label="Raw IC (before residualization)", color="#4C72B0")
+    bars2 = ax.bar(x + 0.2, resid_ic, width=0.4, label="Residual IC (after joint residualization)", color="#DD8452")
+    for bar, t in zip(bars2, resid_t):
+        marker = "*" if abs(t) > 1.96 else ""
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + (0.0003 if bar.get_height() >= 0 else -0.0012),
+                f"t={t:.2f}{marker}", ha="center", fontsize=8)
+    ax.axhline(0, color="black", linewidth=0.8)
+    ax.set_xticks(x); ax.set_xticklabels(int_names, fontsize=8)
+    ax.set_ylabel("Mean IC (t+5), Spearman Rank IC")
+    ax.set_title("RP-001 Phase 2A: H-C5 Interaction Residualization, Before vs. After\n"
+                  "Confirmatory sample, 1,462 stocks, 2012-2026 (* = survives |NW t|>1.96)")
+    ax.legend(fontsize=8)
+    fig.tight_layout(); fig.savefig(CHART_DIR / "09_interaction_residualization.png"); plt.close(fig)
+
+    # ==== Chart 10: Data quality issues and fixes summary ====
+    log("Chart 10: data quality issues and fixes summary...")
+    fq = pd.read_csv(ROOT / "rp001_data" / "phase2a" / "manifests" / "failed_queue.csv")
+    m = pd.read_csv(ROOT / "rp001_data" / "phase2a" / "manifests" / "pull_manifest.csv", dtype=str)
+    n_dealer_instances = 69  # RP001_PHASE2A_DEVIATION_LOG.md D-05, individually verified, cumulative count
+    n_calendar_contam = 16459  # Trading Calendar Gate exclusions, RP001_PHASE2A_CONFIRMATORY_DATASET.md
+    n_tooling_bugs = 2
+    n_empty_legit = int((m["status"] == "empty").sum())
+    categories = ["Dealer schema\ninstances verified\n(0 affected F_INST_01)", "Mis-dated rows\nexcluded\n(Trading Calendar Gate)",
+                  "Legitimate empty\nresponses\n(TDR-style codes)", "Acquisition\ntooling bugs\nfound & fixed"]
+    counts = [n_dealer_instances, n_calendar_contam, n_empty_legit, n_tooling_bugs]
+    fig, axes = plt.subplots(1, 4, figsize=(11, 4))
+    for ax, cat, cnt in zip(axes, categories, counts):
+        ax.bar([0], [cnt], color="#4C72B0", width=0.5)
+        ax.set_xticks([]); ax.set_title(cat, fontsize=9)
+        ax.text(0, cnt, f"{cnt:,}", ha="center", va="bottom", fontsize=11, fontweight="bold")
+        ax.set_ylim(0, cnt * 1.25 if cnt > 0 else 1)
+    fig.suptitle("RP-001 Phase 2A: Data Quality Issues Found and Resolved (all individually verified, zero unresolved)", fontsize=11)
+    fig.tight_layout(); fig.savefig(CHART_DIR / "10_data_quality_summary.png"); plt.close(fig)
+
+    # ==== Chart 11: Full research lifecycle timeline ====
+    log("Chart 11: research lifecycle timeline...")
+    milestones = [
+        ("2026-07-10", "FAOS Alpha 0.2\nbaseline"),
+        ("2026-07-11", "Exploratory research\ncomplete (Milestones 0A-1D)"),
+        ("2026-07-11", "Phase 2A\nProtocol Lock"),
+        ("2026-07-31", "Phase 2A.1\nReadiness + Phase 2A.2-R"),
+        ("2026-08-02", "Full acquisition complete\n(19 batches, 2,255 stocks)"),
+        ("2026-08-03", "Confirmatory Dataset +\nH-C1-H-C5 results"),
+        ("2026-08-03", "RP-001 formal\nclosure"),
+    ]
+    dates = [pd.Timestamp(d) for d, _ in milestones]
+    labels = [l for _, l in milestones]
+    fig, ax = plt.subplots(figsize=(12, 5))
+    ax.plot(dates, [0] * len(dates), color="#4C72B0", linewidth=2, zorder=1)
+    ax.scatter(dates, [0] * len(dates), color="#DD8452", s=80, zorder=2)
+    levels = [0.35, 0.7, 1.05, -0.35, -0.7, -1.05, 0.35]
+    for i, (d, l) in enumerate(zip(dates, labels)):
+        y = levels[i % len(levels)]
+        ax.annotate(l, (d, 0), xytext=(d, y), ha="center", fontsize=8,
+                    arrowprops=dict(arrowstyle="-", color="gray", lw=0.6))
+    ax.set_ylim(-1.4, 1.4); ax.set_yticks([])
+    ax.set_title("RP-001 Full Research Lifecycle Timeline (actual commit dates)")
+    fig.autofmt_xdate()
+    fig.tight_layout(); fig.savefig(CHART_DIR / "11_research_lifecycle_timeline.png"); plt.close(fig)
+
+    log(f"All 11 charts saved to {CHART_DIR}")
     log("DONE")
 
 
