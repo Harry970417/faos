@@ -2,9 +2,11 @@
 
 **Status: RP-001 — Confirmatory validation (Phase 2A) complete. Formal conclusion updated.** This report supersedes v0.1's "nothing confirmed yet" status. Phase 2A ran all five pre-registered confirmatory hypotheses on the full TWSE+TPEx universe (2,255 stocks, 2012–2026), independent of the 50-stock exploratory sample. v0.1's findings are preserved below exactly as originally written, not rewritten — the new Confirmatory section states plainly which of them did and did not survive.
 
-## Formal Core Conclusion (v0.2, supersedes v0.1's wording)
+## Formal Core Conclusion (v0.2, FIXED WORDING — final, not to be paraphrased)
 
-> Foreign investor net flow's exploratory-phase predictive relationship with cross-sectional Taiwan stock returns — discovered on a 50-stock, ~2-year sample — **does not replicate** on the full survivorship-bias-free universe and full available history (2012–2026). Pre-break IC is statistically indistinguishable from zero at every tested horizon (t+1/t+3/t+5), roughly 40–70× smaller than the exploratory estimate. The volatility-regime break-conditionality mechanism likewise does not replicate, because the effect it was meant to explain the disappearance of was itself not present at full-universe scale. Liquidity conditionality partially replicates (direction correct, not clean). Separately and unexpectedly, four of five testable interaction features — previously characterized as fully explained by additive recombination of their constituents — show a small but statistically robust residual effect after joint residualization at full-universe scale, a new finding requiring its own follow-up.
+> 本研究在 50 檔探索樣本中觀察到外資買賣超的條件式預測能力，但該結果未能在完整 TWSE 與 TPEx 股票池中複現。低波動機制亦未獲支持，流動性條件僅部分複現。部分交互作用項在完整樣本中出現小量級殘差效果，但屬確認性樣本中的意外發現，必須由新的預註冊研究獨立驗證。整體證據不支持將外資買賣超視為穩定、普遍或可直接交易的無條件因子。
+
+**English restatement, for reference only — the Chinese text above is the fixed, authoritative wording:** Foreign investor net flow's exploratory-phase predictive relationship with cross-sectional Taiwan stock returns — discovered on a 50-stock, ~2-year sample — does not replicate on the full survivorship-bias-free universe and full available history (2012–2026). The low-volatility mechanism is likewise unsupported; liquidity conditionality only partially replicates. A small-magnitude residual effect appears in some interaction terms on the full sample, but this is an unexpected confirmatory-phase finding requiring independent, separately pre-registered validation — not a basis for further work under RP-001. Overall, the evidence does not support treating foreign net flow as a stable, universal, or directly tradeable unconditional factor.
 
 ## v0.1's original formal conclusion (preserved verbatim, not deleted)
 

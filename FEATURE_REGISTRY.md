@@ -67,3 +67,23 @@ Freeze does not mean permanently valid, tradeable, deployable, or performance-va
 
 **Acceptable wording:** *"Foreign investor net flow showed conditional predictive power for cross-sectional returns, concentrated in a pre-break interval (through approximately Q3 2025), low-volatility regimes, and illiquid-to-mid-liquidity names."*
 **Prohibited wording:** "Foreign flow predicts returns" (unqualified); any causal claim; "robust factor" applied to any interaction feature; "statistically significant" used as a synonym for "real" or "tradeable."
+
+---
+
+## Feature Status — FINAL, post-Phase 2A Confirmatory Closure (RP-001: Completed)
+
+**This section supersedes the Milestone 1D table above for research-status purposes. The Milestone 1D table is preserved unchanged above it — it documents what the exploratory-phase evidence supported at that time, and remains correct as a historical record. It does not describe the current, final status.** Basis: `RP001_PHASE2A_CONFIRMATORY_RESULTS.md`, `RP001_PHASE2A_HYPOTHESIS_VERDICTS.md`, `RP001_FINAL_ACCEPTANCE_REPORT.md`. RP-001 is closed; no further feature-status revision is planned under this research ID.
+
+| Feature | Final Status | Basis |
+|---|---|---|
+| **F_INST_01_foreign** | **Not Replicated — Exploratory Only** | Pre-break IC statistically indistinguishable from zero at t+1/t+3/t+5 on the full-universe confirmatory sample (H-C1). The break-conditional and volatility-conditional mechanisms (H-C4) likewise do not replicate. Downgraded from Milestone 1D's "Frozen — Conditional" — the exploratory-phase conditions never received independent confirmation. |
+| **F_INST_07_flow_to_volume** | **Inconclusive / Secondary Research Candidate** | Never reached its own confirmatory test (outside H-C1–H-C5's locked scope); its Milestone 1D status was already conditional on an unconfirmed break (permutation p=0.171). Remains only a candidate for a future, separately pre-registered study — not carried forward as evidenced. |
+| **F_INST_06_value_proxy** | **Deprecated — Redundant** | Unchanged from Milestone 1D — confirmed redundant with F_INST_05, not re-tested at full-universe scale, no basis to revise. |
+| **F_INST_02_trust** | **Rejected** | Unchanged from Milestone 1D — no evidence of predictive power at any horizon tested. |
+| **F_INST_04_dealer_hedge** | **Rejected** | Unchanged from Milestone 1D — no evidence of predictive power at any horizon tested. |
+| **F_INST_09_change_rate** | **Rejected** | Unchanged from Milestone 1D — no evidence of predictive power at any horizon tested. |
+| **F_INST_03_dealer_self, F_INST_08_streak** | **Inconclusive** | Unchanged from Milestone 1D — marginal exploratory-scale evidence, never entered Phase 2A's locked hypothesis set, not further tested. |
+| **F_INST_05_aggregate** | **Deprecated** | Unchanged from Milestone 1D. |
+| **Interaction Family (F_INT_01–F_INT_07)** | **Exploratory conclusions not uniformly replicated; newly observed residual effects require a separate pre-registered study** | Milestone 1D's uniform "Confirmed Artifact" verdict is **not uniformly upheld**: of the five interactions testable at full-universe scale (F_INT_01, 03, 04, 05, 07 — F_INT_02/F_INT_06 untestable, Deviation D-08), four (F_INT_01, 03, 04, 07) show a small-magnitude but statistically robust residual effect surviving joint residualization and BH-FDR correction (H-C5). This is a genuine, unexplained, confirmatory-scale finding, not evidence that any of the seven is a usable factor — RP-001's own protocol prohibits treating an incidental finding surfaced during closure as grounds for a new, un-pre-registered investigation. Any future work on this residual effect requires its own independently pre-registered study, not an extension of RP-001. |
+
+**RP-001 formal status: Completed.** No feature above carries forward as an actionable, tradeable, or further-research-ready result under this research ID. See `RP001_FINAL_ACCEPTANCE_REPORT.md` for the full closure decision.
