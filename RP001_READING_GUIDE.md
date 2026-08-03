@@ -10,7 +10,7 @@ This repo has ~90 RP-001 documents accumulated across exploratory and confirmato
 
 ## 推甄審查者 / Admissions reviewer (non-specialist, time-constrained)
 
-1. `RP001_PORTFOLIO_ONE_PAGE.md`
+1. `portfolio/RP001_PORTFOLIO_ONE_PAGE.md`
 2. `portfolio/RP001_PORTFOLIO_CARD.md` (if even less time)
 3. One chart: `figures/Figure07_HypothesisVerdicts.png`
 
@@ -32,7 +32,7 @@ This repo has ~90 RP-001 documents accumulated across exploratory and confirmato
 ## 一般讀者 / General reader
 
 1. `README.md`'s RP-001 section
-2. `RP001_FINAL_SHOWCASE.md` (Chinese, illustrated, A–O sections)
+2. `portfolio/RP001_FINAL_SHOWCASE.md` (Chinese, illustrated, A–O sections)
 
 ## 想重現研究的人 / Someone reproducing the study
 

@@ -99,7 +99,7 @@ RP-001's full research record: exploratory phase, Phase 2A protocol/execution/re
 
 ### Closure and final governance — ✅ current, definitive, Keep
 
-`research/RP001_FINAL_ACCEPTANCE_REPORT.md`, `research/RP001_ARCHIVE_MANIFEST.json`, `RP001_FINAL_CONTENT_AUDIT.md`, `research/RP001_FINAL_CONSISTENCY_AUDIT.md`, `research/RP001_LOG.md`.
+`research/RP001_FINAL_ACCEPTANCE_REPORT.md`, `research/RP001_ARCHIVE_MANIFEST.json`, `research/RP001_FINAL_CONTENT_AUDIT.md`, `research/RP001_FINAL_CONSISTENCY_AUDIT.md`, `research/RP001_LOG.md`.
 
 ### Report suites — mixed, see reasoning
 
@@ -122,9 +122,9 @@ All `rp001_*.py` files, `research/test_daily_universe_gate.py`, and `rp001_data/
 
 | File | 用途 | 是否應保留 |
 |---|---|---|
-| `RP001_FINAL_SHOWCASE.md` | Chinese-language illustrated showcase, sections A–O | Keep |
-| `RP001_PORTFOLIO_ONE_PAGE.md`, `portfolio/RP001_PORTFOLIO_CARD.md` | One-page and micro-card portfolio versions | Keep |
-| `RP001_PORTFOLIO_LAYOUT_GUIDE.md`, `RP001_IMAGES_NEEDED.md` | Layout planning and figure-selection guidance | Keep |
+| `portfolio/RP001_FINAL_SHOWCASE.md` | Chinese-language illustrated showcase, sections A–O | Keep |
+| `portfolio/RP001_PORTFOLIO_ONE_PAGE.md`, `portfolio/RP001_PORTFOLIO_CARD.md` | One-page and micro-card portfolio versions | Keep |
+| `portfolio/RP001_PORTFOLIO_LAYOUT_GUIDE.md`, `portfolio/RP001_IMAGES_NEEDED.md` | Layout planning and figure-selection guidance | Keep |
 | `portfolio/RP001_AUTOBIOGRAPHY_PARAGRAPH.md`, `portfolio/RP001_STUDY_PLAN_PARAGRAPH.md`, `portfolio/RP001_RESEARCH_MOTIVATION_PARAGRAPH.md`, `portfolio/RP001_FUTURE_RESEARCH_PARAGRAPH.md` | Reusable paragraph banks (formal/concise/conversational) | Keep |
 
 ## Applications (`applications/`)
@@ -137,7 +137,7 @@ All `rp001_*.py` files, `research/test_daily_universe_gate.py`, and `rp001_data/
 
 ## Figures (`figures/`)
 
-11 PNG charts, renamed per `FIGURE_MANIFEST.md` (built alongside this index — see that document for the old→new filename mapping and per-figure detail). Chart-generation script (`rp001_phase2a_build_charts.py`) updated to write to the new location.
+11 PNG charts, renamed per `FIGURE_MANIFEST.md` (built alongside this index — see that document for the old→new filename mapping and per-figure detail). Chart-generation script (`research/rp001_phase2a_build_charts.py`) updated to write to the new location.
 
 ## GitHub / repo-root navigation (stays at root — these are meant to be found immediately)
 

@@ -32,7 +32,7 @@
 | API 請求數 | — | 6,765 次,100% 成功解析,零筆未解決失敗 |
 | 進入確認性樣本的股票 | — | 1,462 檔(通過 80% 資料覆蓋率門檻) |
 
-![Universe Coverage](figures/Figure01_UniverseCoverage.png)
+![Universe Coverage](../figures/Figure01_UniverseCoverage.png)
 
 ## D. 資料品質修復
 
@@ -43,11 +43,11 @@
 
 法人分類(Dealer vs. Dealer_self/Dealer_Hedging)歷史語義調查:全市場在 **2014 年 12 月**有一次清楚的制度轉換,但另有 **69 個個別股票案例**在轉換後仍偶爾恢復使用未拆分的 `Dealer` 分類,每一個案例都經過逐一查證——**F_INST_01 唯一依賴的外資買賣超欄位,在全部 69 個案例中零例外地完整存在**,不受影響。
 
-![Dealer Category History](figures/Figure03_InstitutionalCategoryHistory.png)
+![Dealer Category History](../figures/Figure03_InstitutionalCategoryHistory.png)
 
 缺值處理:從不將缺值填為 0,顯性零(真實回報「無淨買賣」)予以保留(180,445 筆),其餘缺值以 NaN 處理並在橫斷面計算中排除。個股層級要求至少 80% 資料覆蓋率才進入確認性樣本。
 
-![Missingness Distribution](figures/Figure02_MissingnessDistribution.png)
+![Missingness Distribution](../figures/Figure02_MissingnessDistribution.png)
 
 ## E. 探索性研究發現(原始結論,未被覆寫)
 
@@ -59,13 +59,13 @@
 
 在全樣本、全歷史規模下重新檢定同樣的五項假設:
 
-![Rolling IC](figures/Figure04_RollingIC.png)
+![Rolling IC](../figures/Figure04_RollingIC.png)
 
 F_INST_01 的 60 天滾動 IC 在完整 14 年歷史上呈現規律的正負震盪,並沒有「斷點前穩定為正、斷點後歸零」的清楚形態——這與探索性階段在 2 年樣本上觀察到的模式明顯不同。
 
 ## G. H-C1～H-C5 判定
 
-![Hypothesis Verdicts](figures/Figure07_HypothesisVerdicts.png)
+![Hypothesis Verdicts](../figures/Figure07_HypothesisVerdicts.png)
 
 | 假設 | 內容 | 判定 |
 |---|---|---|
@@ -90,19 +90,19 @@ F_INST_01 的 60 天滾動 IC 在完整 14 年歷史上呈現規律的正負震�
 
 **否。** 探索階段發現的「斷點前 IC=0.052(t=3.99)、斷點後 IC=-0.008」在全樣本上完全沒有重現——斷點前 IC 僅 0.0011(t=0.735),統計上與零無異。斷點前後對照失去意義,因為「前」本身就不顯著。
 
-![Break Before After](figures/Figure05_BreakBeforeAfter.png)
+![Break Before After](../figures/Figure05_BreakBeforeAfter.png)
 
 ## J. 流動性條件是否複現?
 
 **部分複現。** 方向正確(不流動、中流動性股票的 IC 皆高於流動股票,流動股票本身不顯著),但強度不對稱——只有「中流動性」組別獨立達到統計顯著(t=5.41),「不流動」組別僅接近臨界值(t=1.83),與探索階段「兩者強度相近」的結論不同。
 
-![Liquidity Groups](figures/Figure06_LiquidityGroups.png)
+![Liquidity Groups](../figures/Figure06_LiquidityGroups.png)
 
 ## K. 所有交互作用是否仍為 Artifact?
 
 **不完全是——這是本次確認性驗證最意外的發現。** 5 個可建構的交互作用因子中,有 4 個在聯合殘差化後仍顯示統計上穩健、可通過 FDR 校正的殘差 IC。但量級遠比原始 raw IC 小(縮減 75-95%),意味著這些交互作用「絕大部分」確實是加法組合的產物,只是在全樣本規模下,統計檢定力足以偵測到殘差並非精確為零。這不代表這些因子具經濟上的重要性或可交易性,但確實代表「完全歸零」的原始定性描述過強。
 
-![Exploratory vs Confirmatory](figures/Figure08_ExploratoryVsConfirmatory.png)
+![Exploratory vs Confirmatory](../figures/Figure08_ExploratoryVsConfirmatory.png)
 
 ## L. 研究限制
 
@@ -115,7 +115,7 @@ F_INST_01 的 60 天滾動 IC 在完整 14 年歷史上呈現規律的正負震�
 
 1. **完整的端對端量化研究生命週期**:從假設生成、預註冊、全市場資料採集(2,255 檔股票、640 萬筆原始請求成功解析)、資料品質工程(發現並修復 2 個真實的資料管線 bug)、到嚴謹的統計檢定與誠實報告負面結果——這是課堂作業很少完整涵蓋的全流程。
 2. **展現研究誠信,而非只展現「成功」**:核心因子的探索性發現未能在全樣本複現,完整、如實地記錄下來,不調整方法論、不隱藏矛盾發現——這正是量化研究方法論訓練最重視的能力。
-3. **69 個個案的系統性資料品質稽核**(法人分類схема歷史)展現處理真實世界髒資料的紮實工程能力,而非僅套用現成乾淨資料集。
+3. **69 個個案的系統性資料品質稽核**(法人分類 schema 歷史)展現處理真實世界髒資料的紮實工程能力,而非僅套用現成乾淨資料集。
 4. **統計方法的正確使用**:Newey-West 修正、Benjamini-Hochberg 多重檢定校正、聯合殘差化檢定交互作用——並且誠實區分「統計顯著」與「經濟上重要」的差異(H-C5 的量級但書)。
 
 ## N. Git commit 與可重現性資訊

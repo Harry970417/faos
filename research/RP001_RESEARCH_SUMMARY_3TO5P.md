@@ -3,7 +3,7 @@
 外資買賣超與台股橫斷面報酬:從探索性發現到全樣本預註冊確認性驗證
 
 **用途:** 推甄附件 / 教授快速閱讀 / 作品集研究章節 / 面試前複習
-**完整版本:** `research/RP001_FINAL_RESEARCH_REPORT.md` | **一頁版:** `RP001_PORTFOLIO_ONE_PAGE.md`
+**完整版本:** `research/RP001_FINAL_RESEARCH_REPORT.md` | **一頁版:** `portfolio/RP001_PORTFOLIO_ONE_PAGE.md`
 
 ---
 

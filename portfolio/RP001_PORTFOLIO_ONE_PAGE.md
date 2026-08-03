@@ -26,7 +26,7 @@ Spearman 橫斷面 Rank IC、Newey-West 修正 t 檢定、橫斷面殘差化(交
 
 五項預註冊假設中,**三項未複現**(含最核心的「斷點前預測力」與「波動度條件性」),一項部分複現,一項複現但證據力弱。核心效果的量級在全樣本規模下縮減 40-70 倍,統計上與零無異。
 
-![Rolling IC](figures/Figure04_RollingIC.png)
+![Rolling IC](../figures/Figure04_RollingIC.png)
 *圖:F_INST_01 於完整 14 年歷史的 60 天滾動 IC——並未呈現「斷點前穩定為正」的形態,這正是 H-C1 未能複現的直接視覺證據。*
 
 ## 未複現結果(誠實報告,非失敗)

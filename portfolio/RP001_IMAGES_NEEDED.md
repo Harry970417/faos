@@ -4,9 +4,9 @@
 
 ## 已具備,直接可用(11 張,`figures/`)
 
-全部由真實結果產生,無示意資料。用途對照見 `RP001_FIGURE_INDEX.md`。
+全部由真實結果產生,無示意資料。用途對照見 `figures/RP001_FIGURE_INDEX.md`,清單見 `FIGURE_MANIFEST.md`。
 
-01_universe_coverage.png、02_missingness_distribution.png、03_institutional_category_history.png、Figure04_RollingIC.png、05_break_before_after.png、06_liquidity_groups.png、Figure07_HypothesisVerdicts.png、08_exploratory_vs_confirmatory.png、09_interaction_residualization.png、10_data_quality_summary.png、11_research_lifecycle_timeline.png
+`figures/Figure01_UniverseCoverage.png`、`figures/Figure02_MissingnessDistribution.png`、`figures/Figure03_InstitutionalCategoryHistory.png`、`figures/Figure04_RollingIC.png`、`figures/Figure05_BreakBeforeAfter.png`、`figures/Figure06_LiquidityGroups.png`、`figures/Figure07_HypothesisVerdicts.png`、`figures/Figure08_ExploratoryVsConfirmatory.png`、`figures/Figure09_InteractionResidualization.png`、`figures/Figure10_DataQualitySummary.png`、`figures/Figure11_ResearchLifecycleTimeline.png`
 
 ## 不需要額外製作的項目
 
@@ -17,7 +17,7 @@
 ## 若有餘力才考慮製作(非必要)
 
 - **GitHub commit 歷史截圖**:如果要放進紙本或簡報版作品集(而非直接連結 GitHub),可截取 `git log --oneline --graph` 的一段輸出作為視覺佐證,證明每個階段獨立 commit——但這屬於「有更好」而非「必要」,線上作品集直接附連結即可,不必截圖
-- **面試簡報用的單頁摘要圖卡**:若需要在口頭面試中出示紙本,可將 `Figure07_HypothesisVerdicts.png` 與關鍵數字合併成一張 A4 摘要卡,但這是排版工作,不是新圖表,直接沿用 `RP001_PORTFOLIO_LAYOUT_GUIDE.md` 的版面建議即可產生
+- **面試簡報用的單頁摘要圖卡**:若需要在口頭面試中出示紙本,可將 `figures/Figure07_HypothesisVerdicts.png` 與關鍵數字合併成一張 A4 摘要卡,但這是排版工作,不是新圖表,直接沿用 `portfolio/RP001_PORTFOLIO_LAYOUT_GUIDE.md` 的版面建議即可產生
 
 ## 明確不要製作的項目(避免濫列)
 
