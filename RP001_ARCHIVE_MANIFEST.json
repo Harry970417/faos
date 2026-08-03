@@ -1,0 +1,114 @@
+{
+  "research_id": "RP-001",
+  "status": "Completed",
+  "closure_date": "2026-08-03",
+  "final_git_commit": "this commit (the one that adds this file) is the final RP-001 commit -- see `git log -1` or the final acceptance report handed to the user for its exact hash, since a file cannot contain its own commit hash before being committed",
+  "faos_version": "FAOS Alpha 0.2 (FAOS_ALPHA_0.2.md)",
+  "protocol_lock": {
+    "locked_date": "2026-07-11",
+    "locking_git_commit": "82bc4a3",
+    "document_hashes_sha256": {
+      "RP001_PHASE2A_CONFIRMATORY_PROTOCOL.md": "dd23d310838dc1cbc1454715d49b2f866f869a5fc0cf93a6f13707eace262735",
+      "RP001_FULL_UNIVERSE_SPEC.md": "20d4c4993fb188cc43d799d38ba86cd8a40870ee4bee4c6931980bc793d49b4f",
+      "RP001_CONFIRMATORY_HYPOTHESES.md": "d94600f79422c3c386bbe9cbf901293f7a19f9e90ad375f5c9c828d8abcfc10e",
+      "RP001_DEVIATION_POLICY.md": "98d811ca4f0759819a27252175602f383327c6ff949c87e156e66a7a0762b0a8",
+      "RP001_CONFIRMATORY_ACCEPTANCE_CRITERIA.md": "643cf41f14fd988e931b1e9727498d0dadfc11b39142edd2824df5ff8a8f5a42",
+      "RP001_PHASE2A_EXECUTION_PLAN.md": "630d416e41799411ce56df6cdd92ca5e77c5c337bcc4fa1e874c9a5b84490e5b"
+    },
+    "note": "None of these six documents were edited in place after lock. All Phase 2A deviations were logged via RP001_PHASE2A_DEVIATION_LOG.md, never by modifying the locked files."
+  },
+  "dataset_manifest": {
+    "final_confirmatory_dataset_path": "rp001_data/phase2a/processed/rp001_confirmatory_dataset_v0.1.parquet",
+    "final_confirmatory_dataset_sha256": "b945702f9e5f203703c1654b6657a24626747c1fd130a9d1070c5d6987917bb6",
+    "rows": 5718238,
+    "cols": 39,
+    "confirmatory_test_sample_stocks": 1462,
+    "confirmatory_test_sample_rows": 3934274,
+    "raw_acquisition_manifest": "rp001_data/phase2a/manifests/pull_manifest.csv",
+    "raw_acquisition_requests": 6765,
+    "raw_acquisition_resolved_pct": 100.0,
+    "confirmatory_test_results": "rp001_data/phase2a/processed/rp001_confirmatory_test_results.json",
+    "dataset_snapshot": "rp001_data/phase2a/processed/rp001_dataset_snapshot.json"
+  },
+  "report_hashes_sha256": {
+    "RP001_PHASE2A_FINAL_DATASET.md": "6b50433a633019277ddf4d2bd7cef9d24f8cfb67f47be62d6296ad44dd501220",
+    "RP001_PHASE2A_CONFIRMATORY_DATASET.md": "e27223570dd07780541c7973a13fb0c8f245eaeb01063b16463eb78b126c9385",
+    "RP001_PHASE2A_FEATURE_REGISTRY.md": "1a7f09345693e3719b269b90dfbf8de51da7c22bc8e1175468a4c2fc995d15f0",
+    "RP001_PHASE2A_DATA_TEST_REPORT.md": "2863311bffc496d3ba6ac73152e03601420ec3c642c249ed692104af9a8fd148",
+    "RP001_PHASE2A_CONFIRMATORY_RESULTS.md": "45a3cb58c1c4a06ed7895b5f1299db82619426c50ea78915471347d8b60becec",
+    "RP001_PHASE2A_HYPOTHESIS_VERDICTS.md": "759f4dedceb9a61cf747ee3eaf60ae2fd1f246fbb2a8188175c080ebc445e795",
+    "RP001_PHASE2A_DEVIATION_FINAL.md": "70998ffd19fa8ee4a321dfeb281a01b8396237086142a4f68834af0b8f59e5f1",
+    "RP001_PHASE2A_REPRODUCIBILITY_REPORT.md": "f9d19ca0c99a1dc0436eb82328761ee4f57ad48ab6569da411a135d97553c686",
+    "RP001_RESEARCH_REPORT_v0.2.md": "c933f81021ebf835978a92e5fa2ecfd9d0c17589c8245a9c4b12ef1971c87d68",
+    "RP001_EXECUTIVE_SUMMARY_v0.2.md": "f9ee7b4c38f73f5412c527eb4574b024c20816e281f9bb00ec30458b98eb56a6",
+    "RP001_METHODS_AND_DATA_v0.2.md": "6549ba3413b5c3f5eede4b7d19d162786926f94054b147ea0cfeaa1c97ec25d1",
+    "RP001_RESULTS_TABLES_v0.2.md": "98dfbb82ab4e956a5ec98a001d4288be3fd2f4e628d696144daf874287ff96e4",
+    "RP001_LIMITATIONS_v0.2.md": "ec487fa193b03da6dc25de4edc156c2349b063cd2da38403001ae91174fe8e68",
+    "RP001_REPRODUCIBILITY_APPENDIX_v0.2.md": "cbca312dd33996b74e13dbdf6bead9ce08f2fd6389f168c756385d10b830f1e2",
+    "RP001_FAOS_TRACE_v0.2.md": "6584dfb386f2f768be657e998351813a9715b8f0c965a7075d327c8273e48166",
+    "RP001_CHANGELOG_v0.2.md": "2a09e7bd36faf8121357fc61f74a11080fe6e690f27307be648c07f391f7ed77",
+    "RP001_RESEARCH_FINDINGS_v0.2.md": "74ad3e9d067c30f7bd78a19320f6ae765f014a34c1cdcae3191e178189e9c11c",
+    "RP001_FINAL_ACCEPTANCE_REPORT.md": "bef4e5665ab9688d8394a534a3e39b2dde36c05e3d6785200638985c29910f42",
+    "RP001_FINAL_SHOWCASE.md": "1deea635be2eff19431f717ef53033c525b4e13eb88a503840a6224f6e6cb19c",
+    "FEATURE_REGISTRY.md": "f581ba66aa06ecdf56b30cfadc7717b2119c87d41728eefaee35a2ca597acab3"
+  },
+  "code_hashes_sha256": {
+    "rp001_batch_acquire.py": "523c34701175fb624e8fbd714559d4ede7fe2320a0f029e18c4e787e4fda66fd",
+    "rp001_batch_driver.py": "5f214a9a654b6f70466653582ab79efd9b196a42425aefcfcac13abc3eed4001",
+    "rp001_verify_dealer_break.py": "ac090e9a31e42537391902e28a1ce3e0903b5c2746c63e8b10621d0103405ab6",
+    "rp001_phase2a_build_panel.py": "73de300066aae22f665f834342a568b9c2b3eb39e22ef511852cd955e4a8d6da",
+    "rp001_phase2a_build_features.py": "4b4e9d4fe0e2522743c60fe4b9d66f906a09f864cab1261ef57f939357752ece",
+    "rp001_phase2a_coverage_and_tests.py": "bb996e403af20ea8394b4fc8eb70f889ef93672543f5c98bab43540b4bafab87",
+    "rp001_phase2a_confirmatory_tests.py": "eeaaa37b35fdb4eb9aa835982f2f45a1a66ead75648b7ad82235398fa3b705df",
+    "rp001_phase2a_build_charts.py": "362fa55415445f05061ac5f67ede621b553116b8e0325a7ab80da90f770ba7db"
+  },
+  "chart_hashes_sha256": {
+    "rp001_data/phase2a/charts/01_universe_coverage.png": "7170fe244e3aadad53b043a12e435a3c72999a964482ebc7af752f532af45b7d",
+    "rp001_data/phase2a/charts/02_missingness_distribution.png": "9d732ea3fea639ead99100a97531a83e25d8eedc8ee75c02d192a7d4eed9badc",
+    "rp001_data/phase2a/charts/03_institutional_category_history.png": "98a8e6b1d18c3fa6750c169d7729866e99529f5783eecb8395c1b2722476d6fa",
+    "rp001_data/phase2a/charts/04_rolling_ic.png": "3a3af122bc6d22a41377a97b4034a99c2ee7434ec95f71546f71d39427c23f40",
+    "rp001_data/phase2a/charts/05_break_before_after.png": "959c458df1a0b9d38c6f43a1acdec52b885083dd5ecdc415035ac1490d63974a",
+    "rp001_data/phase2a/charts/06_liquidity_groups.png": "2f70afdc7a177e7bc8cbea018beeb266e6de9c0cbb66c429f164e9ab63e31359",
+    "rp001_data/phase2a/charts/07_hypothesis_verdicts.png": "4a452cb9a776482f3ed129541975cb55128e96b7c142ab52935412d056275bfa",
+    "rp001_data/phase2a/charts/08_exploratory_vs_confirmatory.png": "e608ee457fcdfe0ef758d55896e93a55eec62ff94cb9e6cb0c13a0cf41bcf42d"
+  },
+  "raw_data_exclusion_policy": {
+    "policy": "Raw acquisition data and large derived parquet datasets are never committed to git.",
+    "gitignore_patterns": [
+      "rp001_data/phase2a/raw/",
+      "rp001_data/phase2a/processed/*.parquet",
+      "__pycache__/"
+    ],
+    "what_is_committed_instead": "SHA-256 hash of every raw file (pull_manifest.csv), SHA-256 of every derived dataset (this manifest + rp001_dataset_snapshot.json), all source code, all reports, all charts, all logs.",
+    "raw_data_local_location": "rp001_data/phase2a/raw/ (present on the machine that ran acquisition, not distributed via git)"
+  },
+  "reproduction_entry_points": {
+    "step_1_acquisition": "rp001_batch_acquire.py <batch_id> <start_idx> <end_idx> [max_requests] (19 batches, idx ranges documented in RP001_PHASE2A_BATCH_TRACKER.md)",
+    "step_2_panel": "python rp001_phase2a_build_panel.py",
+    "step_3_features": "python rp001_phase2a_build_features.py",
+    "step_4_coverage_and_tests": "python rp001_phase2a_coverage_and_tests.py",
+    "step_5_confirmatory_tests": "python rp001_phase2a_confirmatory_tests.py",
+    "step_6_charts": "python rp001_phase2a_build_charts.py",
+    "determinism": "No random seed or stochastic step anywhere in steps 2-6; byte-identical results given the same raw data in rp001_data/phase2a/raw/."
+  },
+  "final_feature_decisions": {
+    "F_INST_01": "Not Replicated - Exploratory Only",
+    "F_INST_07": "Inconclusive / Secondary Research Candidate",
+    "F_INST_06": "Deprecated - Redundant",
+    "F_INST_02": "Rejected",
+    "F_INST_04": "Rejected",
+    "F_INST_09": "Rejected",
+    "F_INST_03": "Inconclusive",
+    "F_INST_08": "Inconclusive",
+    "F_INST_05": "Deprecated",
+    "interaction_family_F_INT_01_to_07": "Exploratory conclusions not uniformly replicated; newly observed residual effects require a separate pre-registered study"
+  },
+  "hypothesis_verdicts": {
+    "H-C1": "Not Replicated",
+    "H-C2": "Replicated (weak - see RP001_PHASE2A_HYPOTHESIS_VERDICTS.md)",
+    "H-C3": "Partially Replicated",
+    "H-C4": "Not Replicated",
+    "H-C5": "Not Replicated"
+  },
+  "closure_authorization": "User, 2026-08-03. No further Feature Discovery, Breakpoint Optimization, Threshold Tuning, Portfolio Backtest, Trading Strategy, Investment Recommendation, or H-C1 rescue analysis is authorized under this research ID."
+}
