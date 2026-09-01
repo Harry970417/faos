@@ -141,12 +141,22 @@ nx.draw_networkx_labels(ego, pos2, labels=labels2, font_size=10, ax=ax)
 handles2 = [plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=c, markersize=10, label=t)
             for t, c in type_colors.items() if t in [G.nodes[n]["type"] for n in ego.nodes()]]
 ax.legend(handles=handles2, loc="upper left", fontsize=11, title="Object Type")
-ax.set_title(f"FAOS 代表性研究子圖：以「Information Coefficient」為中心的真實關聯網絡"
+ax.set_title(f"FAOS 代表性研究子圖：以「Information Coefficient」為中心的真實關聯網絡\n"
              f"（{len(ego.nodes())}節點、{len(ego.edges())}邊，皆為knowledge_base_v0.2.psv中的真實邊）",
-             fontsize=14)
+             fontsize=13.5)
 ax.axis("off")
+# pad the axes limits well beyond the actual node-position extent so labels
+# (which extend past the node markers themselves) never clip at the canvas
+# edge -- previously the title and several node labels touched left/right
+# edges (Codex adversarial review, 2026-09-01).
+xs = [p[0] for p in pos2.values()]
+ys = [p[1] for p in pos2.values()]
+x_pad = (max(xs) - min(xs)) * 0.25 or 0.2
+y_pad = (max(ys) - min(ys)) * 0.2 or 0.2
+ax.set_xlim(min(xs) - x_pad, max(xs) + x_pad)
+ax.set_ylim(min(ys) - y_pad, max(ys) + y_pad)
 fig.tight_layout()
-fig.savefig(OUT / "faos_representative_subgraph.png", dpi=300)
+fig.savefig(OUT / "faos_representative_subgraph.png", dpi=300, bbox_inches="tight")
 plt.close(fig)
 print(f"representative subgraph: {len(ego.nodes())} nodes, {len(ego.edges())} edges (real ego-network around ME07)")
 
