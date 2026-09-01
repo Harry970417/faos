@@ -28,7 +28,7 @@ def read_psv(path):
 rows = read_psv(ROOT / "knowledge" / "knowledge_base_v0.2.psv")
 G = nx.DiGraph()
 for r in rows:
-    G.add_node(r["ID"], type=r["Type"])
+    G.add_node(r["ID"], type=r["Type"], name=r["Name"])
     for col in ["DependsOn", "References", "Implements", "DerivedFrom"]:
         for target in (r[col] or "").split(";"):
             target = target.split("(")[0].strip()  # strip informal annotations like F1(informal-F1)
@@ -53,7 +53,7 @@ handles = [plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=c, marker
            for t, c in type_colors.items() if t in [G.nodes[n]["type"] for n in Gc.nodes()]]
 ax.legend(handles=handles, loc="upper left", fontsize=8, title="Object Type")
 ax.set_title(f"FAOS Knowledge Graph（核心子圖：degree>=2 節點，{len(Gc.nodes())}/{len(G.nodes())} 個，"
-             f"{len(Gc.edges())}/{len(G.edges())} 條真實關係邊）", fontsize=12)
+             f"{len(Gc.edges())}/{len(G.edges())} 條真實關係邊）", fontsize=15)
 ax.axis("off")
 fig.tight_layout()
 fig.savefig(OUT / "faos_knowledge_graph.png", dpi=300)
@@ -71,8 +71,8 @@ counts = [type_counts[t] for t in types]
 ax.barh(types, counts, color=[type_colors.get(t, "#999999") for t in types])
 for i, c in enumerate(counts):
     ax.text(c + 1, i, str(c), va="center", fontsize=9)
-ax.set_xlabel("Knowledge Object 數量")
-ax.set_title("FAOS Knowledge Object Model：物件類型分布（實際303筆資料統計）")
+ax.set_xlabel("Knowledge Object 數量", fontsize=12)
+ax.set_title("FAOS Knowledge Object Model：物件類型分布（實際303筆資料統計）", fontsize=15)
 fig.tight_layout()
 fig.savefig(OUT / "faos_kom_ontology.png", dpi=300)
 plt.close(fig)
@@ -96,7 +96,7 @@ for i, (title, sub) in enumerate(stages):
 ax.set_xlim(-0.2, len(stages) * 2.6)
 ax.set_ylim(-0.2, 1.7)
 ax.axis("off")
-ax.set_title("FAOS 研究治理流程：RP-001 案例", fontsize=12)
+ax.set_title("FAOS 研究治理流程：RP-001 案例", fontsize=15)
 fig.tight_layout()
 fig.savefig(OUT / "faos_protocol_flow.png", dpi=300)
 plt.close(fig)
@@ -117,8 +117,8 @@ ax.bar([i + w / 2 for i in x], confirm_vals, width=w, label="確認期（全市�
 ax.set_xticks(list(x))
 ax.set_xticklabels(["樣本股數", "資料列數（萬列）"])
 ax.set_yscale("log")
-ax.set_ylabel("數量（log scale）")
-ax.set_title("FAOS RP-001：探索期 vs 確認期研究規模對照")
+ax.set_ylabel("數量（log scale）", fontsize=12)
+ax.set_title("FAOS RP-001：探索期 vs 確認期研究規模對照", fontsize=15)
 for i, (e, c) in enumerate(zip(explore_vals, confirm_vals)):
     ax.text(i - w / 2, e * 1.1, f"{e:g}", ha="center", fontsize=9)
     ax.text(i + w / 2, c * 1.1, f"{c:g}", ha="center", fontsize=9)
@@ -127,5 +127,27 @@ fig.tight_layout()
 fig.savefig(OUT / "faos_rp001_exploratory_vs_confirmatory.png", dpi=300)
 plt.close(fig)
 print("RP-001 comparison chart done")
+
+# 5. Representative research subgraph (real ego-network around Information Coefficient,
+# the metric actually used across this portfolio's research -- not an arbitrary pick).
+ego = nx.ego_graph(G.to_undirected(), "ME07", radius=1)
+fig, ax = plt.subplots(figsize=(11, 9))
+pos2 = nx.spring_layout(ego, seed=7, k=0.9)
+node_colors2 = [type_colors.get(G.nodes[n]["type"], "#999999") for n in ego.nodes()]
+labels2 = {n: f'{n}\n{G.nodes[n]["name"][:18]}' for n in ego.nodes()}
+nx.draw_networkx_edges(ego, pos2, alpha=0.5, width=1.3, ax=ax)
+nx.draw_networkx_nodes(ego, pos2, node_color=node_colors2, node_size=1400, ax=ax)
+nx.draw_networkx_labels(ego, pos2, labels=labels2, font_size=10, ax=ax)
+handles2 = [plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=c, markersize=10, label=t)
+            for t, c in type_colors.items() if t in [G.nodes[n]["type"] for n in ego.nodes()]]
+ax.legend(handles=handles2, loc="upper left", fontsize=11, title="Object Type")
+ax.set_title(f"FAOS 代表性研究子圖：以「Information Coefficient」為中心的真實關聯網絡"
+             f"（{len(ego.nodes())}節點、{len(ego.edges())}邊，皆為knowledge_base_v0.2.psv中的真實邊）",
+             fontsize=14)
+ax.axis("off")
+fig.tight_layout()
+fig.savefig(OUT / "faos_representative_subgraph.png", dpi=300)
+plt.close(fig)
+print(f"representative subgraph: {len(ego.nodes())} nodes, {len(ego.edges())} edges (real ego-network around ME07)")
 
 print("\nAll charts written to", OUT)
