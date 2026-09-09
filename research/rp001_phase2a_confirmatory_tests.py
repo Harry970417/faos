@@ -14,6 +14,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
+from quant_formulas.factor_stats import newey_west_se, t_stat_and_pvalue
+
 ROOT = Path(r"C:\Users\user\Desktop\faos")
 PROC_DIR = ROOT / "rp001_data" / "phase2a" / "processed"
 
@@ -50,19 +52,18 @@ def daily_ic(df, feature, ret_col, min_n=8):
 
 
 def newey_west_tstat(x, lags=5):
+    """Delegates to quant_formulas (Desktop/quant-system-core); max_lags=5 and
+    df=None (normal-distribution p-value fallback) reproduce this script's
+    original hand-rolled formula exactly -- RP-001 is a locked confirmatory
+    protocol, so this refactor must not change any H-C1-H-C5 number."""
     x = np.asarray(x, dtype=float)
     n = len(x)
     if n < 2:
         return np.nan, np.nan
-    mean_x = x.mean()
-    resid = x - mean_x
-    gamma0 = np.sum(resid ** 2) / n
-    v = gamma0
-    for lag in range(1, min(lags, n - 1) + 1):
-        w = 1 - lag / (lags + 1)
-        v += 2 * w * np.sum(resid[lag:] * resid[:-lag]) / n
-    se = np.sqrt(v / n) if v > 0 else np.nan
-    t = mean_x / se if se and se > 0 else np.nan
+    se = newey_west_se(pd.Series(x), max_lags=lags)
+    if not se or se <= 0:
+        return np.nan, se
+    t, _ = t_stat_and_pvalue(x.mean(), se, df=None)
     return t, se
 
 

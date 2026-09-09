@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
+from quant_formulas.factor_stats import newey_west_se, t_stat_and_pvalue
+
 ROOT = Path(r"C:\Users\user\Desktop\faos")
 feat = pd.read_parquet(ROOT / "rp001_data" / "features" / "rp001_features_v0.2.parquet")
 
@@ -52,19 +54,15 @@ def daily_ic(df, feature, ret_col):
     return pd.DataFrame(recs)
 
 def newey_west_tstat(ic_series, lags=5):
-    """Newey-West adjusted t-stat for mean(IC) != 0."""
-    x = ic_series.values
-    n = len(x)
-    mean_ic = x.mean()
-    resid = x - mean_ic
-    gamma0 = np.sum(resid**2) / n
-    nw_var = gamma0
-    for lag in range(1, lags+1):
-        w = 1 - lag/(lags+1)
-        gamma_l = np.sum(resid[lag:] * resid[:-lag]) / n
-        nw_var += 2 * w * gamma_l
-    se_nw = np.sqrt(nw_var / n)
-    t_nw = mean_ic / se_nw if se_nw > 0 else np.nan
+    """Newey-West adjusted t-stat for mean(IC) != 0. Delegates to
+    quant_formulas (Desktop/quant-system-core); max_lags=5 and df=None
+    reproduce this script's original formula exactly (byte-identical --
+    this is a locked RP-001 milestone script, not a bug fix)."""
+    mean_ic = ic_series.values.mean()
+    se_nw = newey_west_se(pd.Series(ic_series.values), max_lags=lags)
+    if not se_nw or se_nw <= 0:
+        return np.nan, se_nw
+    t_nw, _ = t_stat_and_pvalue(mean_ic, se_nw, df=None)
     return t_nw, se_nw
 
 print("=" * 70)

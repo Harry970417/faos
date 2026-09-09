@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
+from quant_formulas.factor_stats import newey_west_se, t_stat_and_pvalue
+
 ROOT = Path(r"C:\Users\user\Desktop\faos")
 feat = pd.read_parquet(ROOT / "rp001_data" / "features" / "rp001_features_1c_plus.parquet")
 
@@ -16,14 +18,15 @@ def daily_ic(df, feature, ret_col):
     return np.array(recs)
 
 def newey_west_tstat(x, lags=5):
-    n = len(x); mean_x = x.mean(); resid = x - mean_x
-    gamma0 = np.sum(resid**2)/n
-    v = gamma0
-    for lag in range(1, lags+1):
-        w = 1 - lag/(lags+1)
-        v += 2*w*np.sum(resid[lag:]*resid[:-lag])/n
-    se = np.sqrt(v/n)
-    return mean_x/se if se>0 else np.nan
+    """Delegates to quant_formulas (Desktop/quant-system-core); max_lags=5 and
+    df=None reproduce this script's original formula exactly (byte-identical
+    -- this is a locked RP-001 milestone script, not a bug fix)."""
+    mean_x = np.mean(x)
+    se = newey_west_se(pd.Series(x), max_lags=lags)
+    if not se or se <= 0:
+        return np.nan
+    t, _ = t_stat_and_pvalue(mean_x, se, df=None)
+    return t
 
 def neutralize(df, feature, controls):
     out = pd.Series(index=df.index, dtype=float)

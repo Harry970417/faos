@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
+from quant_formulas.factor_stats import newey_west_se, t_stat_and_pvalue
+
 ROOT = Path(r"C:\Users\user\Desktop\faos")
 feat = pd.read_parquet(ROOT / "rp001_data" / "features" / "rp001_features_1c_plus.parquet")
 price = pd.concat([pd.read_csv(f, dtype={"stock_id": str}) for f in sorted((ROOT/"rp001_data"/"raw_price").glob("price_*.csv"))], ignore_index=True)
@@ -21,14 +23,15 @@ def daily_ic_series(df, feature, ret_col):
     return pd.DataFrame(recs).set_index("date")["ic"].sort_index() if recs else pd.Series(dtype=float)
 
 def newey_west_tstat(x, lags=5):
-    n = len(x); mean_x = x.mean(); resid = x - mean_x
-    gamma0 = np.sum(resid**2)/n
-    v = gamma0
-    for lag in range(1, lags+1):
-        w = 1 - lag/(lags+1)
-        v += 2*w*np.sum(resid[lag:]*resid[:-lag])/n
-    se = np.sqrt(v/n)
-    return mean_x/se if se>0 else np.nan, se
+    """Delegates to quant_formulas (Desktop/quant-system-core); max_lags=5 and
+    df=None reproduce this script's original formula exactly (byte-identical
+    -- this is a locked RP-001 milestone script, not a bug fix)."""
+    mean_x = np.mean(x)
+    se = newey_west_se(pd.Series(x), max_lags=lags)
+    if not se or se <= 0:
+        return np.nan, se
+    t, _ = t_stat_and_pvalue(mean_x, se, df=None)
+    return t, se
 
 RET = "fwd_ret_t5"
 ic_series = daily_ic_series(feat, "F_INST_01_foreign_rank", RET)
