@@ -60,7 +60,7 @@ Freeze does not mean permanently valid, tradeable, deployable, or performance-va
 
 1. Effect concentrated before the structural-break interval (approx. through Q3 2025)
 2. Post-break IC is approximately zero, not merely smaller
-3. Stronger in illiquid / mid-liquidity names; weak in liquid, large-cap names
+3. Stronger in illiquid / mid-liquidity names; weak in liquid, large-cap names — **caveat (2026-09 Financial Foundations Adversarial Audit)**: F_INST_01 is raw net-buy *shares*, not scaled by market cap or shares outstanding; cross-stock comparison relies on cross-sectional rank, not raw regression, which mitigates but does not eliminate the concern that small-cap names' raw share counts mechanically rank as more extreme regardless of true institutional-flow intensity. The market-cap-scaled version needed to fully disentangle this (F_INT_02/F_INT_06) could not be built for lack of full-market cap data (Deviation D-08, Inconclusive). This condition should not be over-read as demonstrating a pure liquidity-conditional informed-trading effect until a market-cap-scaled replication is possible.
 4. The low-volatility result is not independent of the break (Low-vol & Post-break IC ≈ 0)
 5. Cannot be described as universally stable
 6. Cannot be described as a confirmed causal informed-trading mechanism — "consistent with," never "demonstrates"
