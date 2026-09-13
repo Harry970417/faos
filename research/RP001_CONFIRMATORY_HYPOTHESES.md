@@ -1,6 +1,8 @@
-# RP-001 Phase 2A: Pre-Registered Confirmatory Hypotheses
+# RP-001 Phase 2A: Post-Exploration Prospective Confirmatory Hypotheses
 
-Fixed before any full-universe data is pulled. This is a confirmatory study — no new feature discovery, no new grouping hypotheses, no new breakpoint search. Only the five hypotheses below are tested.
+**Terminology note (added per Deviation D-10, does not change any hypothesis, threshold, or method below):** these five hypotheses are a *post-exploration prospective confirmatory protocol lock* — they were formed from, and locked after, the completed exploratory-phase analysis (50-stock sample, ~2-year period), then fixed and locked (2026-07-11, `research/RP001_PHASE2A_PROTOCOL_LOCK.md`) before any full-universe confirmatory data was pulled or seen. This is prospective registration relative to the confirmatory test, not a claim that the entire RP-001 research process — including the exploratory phase that motivated these hypotheses — was pre-registered before any data was examined. The former title ("Pre-Registered Confirmatory Hypotheses") remains technically correct about the confirmatory phase but was ambiguous on this point standing alone.
+
+Fixed after exploratory analysis and before any full-universe data is pulled. This is a confirmatory study — no new feature discovery, no new grouping hypotheses, no new breakpoint search. Only the five hypotheses below are tested.
 
 ## H-C1: Pre-break positive predictive power
 

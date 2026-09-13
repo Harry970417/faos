@@ -2,7 +2,7 @@
 
 **RP-001 — Does foreign institutional net flow predict Taiwan stock returns? Status: Completed.**
 
-A 50-stock exploratory study found a conditional "yes." A full-market, 14-year confirmatory re-test — pre-registered before the data was touched — found the central claim **does not replicate**. Reported honestly, not softened. That's the whole story in one sentence; everything below just backs it up.
+A 50-stock exploratory study found a conditional "yes." A full-market, 14-year confirmatory re-test — a *post-exploration prospective confirmatory protocol lock*, i.e. hypotheses fixed and locked after the exploratory analysis and before the full-market confirmatory data was touched — found the central claim **does not replicate**. Reported honestly, not softened. That's the whole story in one sentence; everything below just backs it up.
 
 ## What was done
 
@@ -34,7 +34,7 @@ Does foreign institutional net flow (外資買賣超) predict short-horizon cros
 
 > 本研究在 50 檔探索樣本中觀察到外資買賣超的條件式預測能力，但該結果未能在完整 TWSE 與 TPEx 股票池中複現。低波動機制亦未獲支持，流動性條件僅部分複現。部分交互作用項在完整樣本中出現小量級殘差效果，但屬確認性樣本中的意外發現，必須由新的預註冊研究獨立驗證。整體證據不支持將外資買賣超視為穩定、普遍或可直接交易的無條件因子。
 
-**RP-001 does not claim to have found a stable, tradeable alpha.** It demonstrates a full, honest pre-registered confirmatory validation cycle — including reporting that the central exploratory finding does not survive full-universe testing.
+**RP-001 does not claim to have found a stable, tradeable alpha.** It demonstrates a full, honest post-exploration prospective confirmatory validation cycle — including reporting that the central exploratory finding does not survive full-universe testing.
 
 ## Why worth reading
 

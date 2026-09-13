@@ -6,7 +6,7 @@ Drop-in section for a personal portfolio repo/site README, extracted from this r
 
 ## RP-001: Does Foreign Institutional Flow Predict Taiwan Stock Returns?
 
-**Status: Completed** — a full pre-registered confirmatory validation cycle, from a promising 50-stock exploratory finding to a full-market, 14-year independent re-test.
+**Status: Completed** — a full post-exploration prospective confirmatory validation cycle (hypotheses fixed and locked after the exploratory analysis, before the confirmatory data was touched), from a promising 50-stock exploratory finding to a full-market, 14-year independent re-test.
 
 **Research question:** Does foreign institutional net flow predict short-horizon cross-sectional returns in Taiwan equities?
 

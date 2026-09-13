@@ -44,3 +44,21 @@ Top by betweenness: **Frictionless Markets and CAPM stayed #1/#2 even after the 
 ## The one finding that matters most for how to grow this further
 
 **Connectivity got relatively worse as the seed grew, not better.** Giant component share: 80% at n=50 → 47% at n=253 → 44.7% at n=302. This isn't random — it's a direct consequence of *how* the seed was expanded: each growth round added many atomic reference objects (Concepts, Standards, Assumptions) faster than it added the higher-level objects (Theories, Procedures, Models, Frameworks) that would actually cross-reference them. Breadth-first term addition fragments a knowledge graph; it's the connective objects that hold it together. Actionable for any future expansion (v0.3, or Stage 3 content authoring generally): prioritize adding objects that reference existing ones over adding new atomic terms, or connectivity will keep degrading as the corpus grows.
+
+## Integrity metrics, formalized (2026-09-13 addendum)
+
+The counts above (302 nodes, 233 edges, 71 isolated, 135-node giant component) were computed correctly but only as one-off script output. They are now backed by an automated regression-guard test suite, `test_knowledge_graph_integrity.py` (repo root, 8 tests, run via `pytest test_knowledge_graph_integrity.py`), which additionally checks dimensions this document had not previously stated explicitly:
+
+| Metric | Value | Checked by |
+|---|---|---|
+| Nodes | 302 | `test_node_and_edge_counts_match_disclosed_baseline` |
+| Edges | 233 | `test_node_and_edge_counts_match_disclosed_baseline` |
+| Duplicate node IDs | **0** | `test_no_duplicate_node_ids` |
+| Dangling edge references (missing source/target) | **0** | `test_no_dangling_edge_references` |
+| Duplicate edges | **0** | `test_no_duplicate_edges` |
+| Invalid edge types (outside DependsOn/References/Implements/DerivedFrom) | **0** | `test_no_invalid_edge_types` |
+| Node-type schema violations (outside the 11 KOM types) | **0** | `test_no_node_type_schema_violations` |
+| Isolated node count | **71** (23.5%) | `test_isolated_node_count_does_not_regress` (regression guard: fails if it grows past 71) |
+| Connected components | **105** | `test_connected_component_count_does_not_regress` (regression guard: fails if it grows past 105, or the giant component shrinks below 135 nodes) |
+
+**Honest reading:** the graph passes every hard-integrity check (no dangling references, no duplicate IDs/edges, no invalid types, no schema violations) — the structure is clean. What it does *not* have is density: 105 separate connected components is a highly fragmented graph, not a single coherent network, and this is the reason the portfolio materials present a real representative subgraph (Page 3, centered on the highest-degree node, Information Coefficient, degree 14) rather than implying the full 302-node graph reads as one connected structure.

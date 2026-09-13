@@ -15,7 +15,7 @@
 |---|---|
 | `research/RP001_PHASE2A_CONFIRMATORY_PROTOCOL.md` | `2cb7e9369c0d5d28834d5fcfb5f154e1639f24e8902e4c6e41fb25335aa2441e` |
 | `research/RP001_FULL_UNIVERSE_SPEC.md` | `dcf56e89af94423d51d5184a95e971ab9ac5864ee81eca53f64201805b1adea0` |
-| `research/RP001_CONFIRMATORY_HYPOTHESES.md` | `30ad7bd075ab60864a0a47eb2eb369d833532e49111a699dca30710463785b2c` |
+| `research/RP001_CONFIRMATORY_HYPOTHESES.md` | `7d15480602ea160a0a3a4a146f45fe267f4151bfe5d2b61c34f4f97d86e0d00b` |
 | `research/RP001_DEVIATION_POLICY.md` | `c7c01395f6ebc128b1de6dd52e12116506dcf3e586b73af40bf54a928744dc2f` |
 | `research/RP001_CONFIRMATORY_ACCEPTANCE_CRITERIA.md` | `643cf41f14fd988e931b1e9727498d0dadfc11b39142edd2824df5ff8a8f5a42` |
 | `research/RP001_PHASE2A_EXECUTION_PLAN.md` | `b400c77737c7bb66a92e7adb014d6400925975f57e6c5516f0332c0b2368b903` |
@@ -29,3 +29,5 @@ The specific items these six documents themselves designate as immovable (restat
 ## Amendment history
 
 **2026-09-08:** Hash table updated to reflect commit `190c568`'s (2026-08-03) path-only relocation of 5 of the 6 files into `research/`. See Deviation D-09, `research/RP001_PHASE2A_DEVIATION_LOG.md`, for the full account and confirmation that no substantive content changed. Prior to this amendment, the table and "Verification performed" statement incorrectly implied the six files remained byte-identical to the `82bc4a3` lock commit.
+
+**2026-09-13:** `research/RP001_CONFIRMATORY_HYPOTHESES.md`'s hash updated (`30ad7bd0...` → `7d154806...`) following a title/intro-line terminology clarification — "Pre-Registered Confirmatory Hypotheses" is now labeled explicitly as a **post-exploration prospective confirmatory protocol lock**, to prevent the standalone title from being read as claiming the entire RP-001 study (including the exploratory phase that produced the original hypotheses) was preregistered before any data was seen. See Deviation D-10, `research/RP001_PHASE2A_DEVIATION_LOG.md`. No hypothesis, threshold, sample definition, or method changed.

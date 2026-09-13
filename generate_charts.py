@@ -88,8 +88,8 @@ print("KOM ontology chart done:", type_counts)
 # 3. Protocol flow (conceptual, but dates/commits are real from RP001_PHASE2A_PROTOCOL_LOCK.md)
 fig, ax = plt.subplots(figsize=(11, 3.2))
 stages = [
-    ("前註冊\n（探索期已完成）", "commit 82bc4a3"),
-    ("協定鎖定\n2026-07-11", "6份文件SHA-256凍結"),
+    ("探索期分析\n（已完成）", "50檔樣本，發現條件式訊號"),
+    ("確認性協定鎖定\n2026-07-11", "commit 82bc4a3\n6份文件SHA-256凍結"),
     ("確認性測試\n2026-08-02", "1,462檔/3,934,274列"),
     ("決策\n（結案）", "H-C1/C4/C5未複現\n（README正式記錄）"),
 ]
@@ -103,7 +103,7 @@ for i, (title, sub) in enumerate(stages):
 ax.set_xlim(-0.2, len(stages) * 2.6)
 ax.set_ylim(-0.2, 1.7)
 ax.axis("off")
-ax.set_title("FAOS 研究治理流程：RP-001 案例", fontsize=15)
+ax.set_title("FAOS 研究治理流程：RP-001 案例（post-exploration prospective confirmatory protocol lock）", fontsize=13)
 fig.tight_layout()
 fig.savefig(OUT / "faos_protocol_flow.png", dpi=300)
 plt.close(fig)
