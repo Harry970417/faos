@@ -70,6 +70,8 @@ def load_existing_success():
 
 def fetch(dataset, stock_id, start, end, max_retries=3):
     retries = 0
+    t0 = time.time()
+    last_err = "unknown"
     while retries < max_retries:
         t0 = time.time()
         try:
@@ -78,10 +80,11 @@ def fetch(dataset, stock_id, start, end, max_retries=3):
             payload = resp.json()
             elapsed = time.time() - t0
             return payload, retries, elapsed, None
-        except Exception as e:
+        except Exception as e:  # Py3 unbinds `e` after the block; keep the message explicitly
+            last_err = f"{type(e).__name__}: {e}"
             retries += 1
             time.sleep(1.5)
-    return {"status": -1, "data": []}, retries, time.time() - t0, str(e) if 'e' in dir() else "unknown"
+    return {"status": -1, "data": []}, retries, time.time() - t0, last_err
 
 
 def run_batch(batch_id, start_idx, end_idx, max_requests=260):

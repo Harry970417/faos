@@ -77,7 +77,7 @@ def ic_stats(ic_df, label):
     median_ic = np.median(ic)
     t_nw, se = newey_west_tstat(ic)
     ci_low, ci_high = (mean_ic - 1.96 * se, mean_ic + 1.96 * se) if se and pd.notna(se) else (np.nan, np.nan)
-    raw_p = 2 * (1 - stats.norm.cdf(abs(t_nw))) if pd.notna(t_nw) else np.nan
+    raw_p = 2 * stats.norm.sf(abs(t_nw)) if pd.notna(t_nw) else np.nan
     return {"label": label, "n": int(n), "mean_ic": float(mean_ic), "median_ic": float(median_ic),
             "t_nw": float(t_nw) if pd.notna(t_nw) else None,
             "ci_low": float(ci_low) if pd.notna(ci_low) else None,

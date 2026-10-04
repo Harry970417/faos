@@ -23,7 +23,7 @@ def bh_fdr(pvals, alpha=0.10):
 
 # ---- Compile test inventory from Milestone 1C's IC summary ----
 ic_summary = pd.read_csv(ROOT / "rp001_data" / "milestone1c_ic_summary.csv")
-ic_summary["p_raw"] = 2 * (1 - stats.norm.cdf(ic_summary["t_nw"].abs()))
+ic_summary["p_raw"] = 2 * stats.norm.sf(ic_summary["t_nw"].abs())
 ic_summary["test_id"] = ic_summary["feature"] + "_t" + ic_summary["horizon"].astype(str)
 ic_summary["test_family"] = "1C_feature_horizon_IC"
 
@@ -41,7 +41,7 @@ additional = [
 ]
 add_df = pd.DataFrame(additional)
 add_df["p_raw"] = add_df.apply(
-    lambda r: r["p_raw"] if pd.notna(r["p_raw"]) else (2*(1-stats.norm.cdf(abs(r["t_nw"]))) if pd.notna(r["t_nw"]) else np.nan),
+    lambda r: r["p_raw"] if pd.notna(r["p_raw"]) else (2*stats.norm.sf(abs(r["t_nw"])) if pd.notna(r["t_nw"]) else np.nan),
     axis=1)
 
 full = pd.concat([
